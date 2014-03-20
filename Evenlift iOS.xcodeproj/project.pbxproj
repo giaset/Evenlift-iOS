@@ -28,6 +28,7 @@
 		68AABC2118DBA0C8008E883D /* FirebaseSimpleLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68AABC2018DBA0C8008E883D /* FirebaseSimpleLogin.framework */; };
 		68AABC2318DBA0D0008E883D /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68AABC2218DBA0D0008E883D /* Accounts.framework */; };
 		68AABC2518DBA0D6008E883D /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68AABC2418DBA0D6008E883D /* Social.framework */; };
+		68AABC2718DBA14A008E883D /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68AABC2618DBA14A008E883D /* FacebookSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		68AABC2018DBA0C8008E883D /* FirebaseSimpleLogin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseSimpleLogin.framework; path = ../../frameworks/FirebaseSimpleLogin.framework; sourceTree = "<group>"; };
 		68AABC2218DBA0D0008E883D /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		68AABC2418DBA0D6008E883D /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		68AABC2618DBA14A008E883D /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 				68AABC1918DBA064008E883D /* libc++.dylib in Frameworks */,
 				68AABC1718DBA05A008E883D /* libicucore.dylib in Frameworks */,
 				68AABBE818DB9FA7008E883D /* CoreGraphics.framework in Frameworks */,
+				68AABC2718DBA14A008E883D /* FacebookSDK.framework in Frameworks */,
 				68AABBEA18DB9FA7008E883D /* UIKit.framework in Frameworks */,
 				68AABBE618DB9FA7008E883D /* Foundation.framework in Frameworks */,
 				68AABC1518DBA03F008E883D /* Firebase.framework in Frameworks */,
@@ -123,6 +126,7 @@
 		68AABBE418DB9FA7008E883D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				68AABC2618DBA14A008E883D /* FacebookSDK.framework */,
 				68AABC2418DBA0D6008E883D /* Social.framework */,
 				68AABC2218DBA0D0008E883D /* Accounts.framework */,
 				68AABC2018DBA0C8008E883D /* FirebaseSimpleLogin.framework */,
@@ -399,6 +403,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/GiaSet/Desktop/evenlift/frameworks,
+					/Users/GiaSet/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Evenlift iOS/Evenlift iOS-Prefix.pch";
@@ -417,6 +422,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/GiaSet/Desktop/evenlift/frameworks,
+					/Users/GiaSet/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Evenlift iOS/Evenlift iOS-Prefix.pch";
