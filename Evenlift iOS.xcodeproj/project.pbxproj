@@ -25,6 +25,9 @@
 		68AABC1B18DBA069008E883D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68AABC1A18DBA069008E883D /* CFNetwork.framework */; };
 		68AABC1D18DBA06E008E883D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68AABC1C18DBA06E008E883D /* Security.framework */; };
 		68AABC1F18DBA074008E883D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68AABC1E18DBA074008E883D /* SystemConfiguration.framework */; };
+		68AABC2118DBA0C8008E883D /* FirebaseSimpleLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68AABC2018DBA0C8008E883D /* FirebaseSimpleLogin.framework */; };
+		68AABC2318DBA0D0008E883D /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68AABC2218DBA0D0008E883D /* Accounts.framework */; };
+		68AABC2518DBA0D6008E883D /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68AABC2418DBA0D6008E883D /* Social.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +63,9 @@
 		68AABC1A18DBA069008E883D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		68AABC1C18DBA06E008E883D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		68AABC1E18DBA074008E883D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		68AABC2018DBA0C8008E883D /* FirebaseSimpleLogin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseSimpleLogin.framework; path = ../../frameworks/FirebaseSimpleLogin.framework; sourceTree = "<group>"; };
+		68AABC2218DBA0D0008E883D /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		68AABC2418DBA0D6008E883D /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +73,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68AABC2518DBA0D6008E883D /* Social.framework in Frameworks */,
+				68AABC2318DBA0D0008E883D /* Accounts.framework in Frameworks */,
 				68AABC1F18DBA074008E883D /* SystemConfiguration.framework in Frameworks */,
 				68AABC1D18DBA06E008E883D /* Security.framework in Frameworks */,
 				68AABC1B18DBA069008E883D /* CFNetwork.framework in Frameworks */,
@@ -76,6 +84,7 @@
 				68AABBEA18DB9FA7008E883D /* UIKit.framework in Frameworks */,
 				68AABBE618DB9FA7008E883D /* Foundation.framework in Frameworks */,
 				68AABC1518DBA03F008E883D /* Firebase.framework in Frameworks */,
+				68AABC2118DBA0C8008E883D /* FirebaseSimpleLogin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +123,9 @@
 		68AABBE418DB9FA7008E883D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				68AABC2418DBA0D6008E883D /* Social.framework */,
+				68AABC2218DBA0D0008E883D /* Accounts.framework */,
+				68AABC2018DBA0C8008E883D /* FirebaseSimpleLogin.framework */,
 				68AABC1E18DBA074008E883D /* SystemConfiguration.framework */,
 				68AABC1C18DBA06E008E883D /* Security.framework */,
 				68AABC1A18DBA069008E883D /* CFNetwork.framework */,
