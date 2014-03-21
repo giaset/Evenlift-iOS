@@ -7,7 +7,6 @@
 //
 
 #import "ELLoginViewController.h"
-#import <FacebookSDK/FacebookSDK.h>
 #import <Firebase/Firebase.h>
 #import <FirebaseSimpleLogin/FirebaseSimpleLogin.h>
 
@@ -37,19 +36,6 @@
     // Do any additional setup after loading the view from its nib.
     Firebase* f = [[Firebase alloc] initWithUrl:kEvenliftURL];
     self.authClient = [[FirebaseSimpleLogin alloc] initWithRef:f];
-    
-    [self.authClient checkAuthStatusWithBlock:^(NSError *error, FAUser *user) {
-        if (error) {
-            // there was an error
-            NSLog(@"ERROR");
-        } else if (!user) {
-            // user is not logged in
-            NSLog(@"USER NOT LOGGED IN");
-        } else {
-            // user is logged in
-            NSLog(@"USER LOGGED IN");
-        }
-    }];
 }
 
 - (IBAction)login:(id)sender {

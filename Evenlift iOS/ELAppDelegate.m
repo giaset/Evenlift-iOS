@@ -8,14 +8,35 @@
 
 #import "ELAppDelegate.h"
 #import "ELLoginViewController.h"
+#import <Firebase/Firebase.h>
+#import <FirebaseSimpleLogin/FirebaseSimpleLogin.h>
 
 @implementation ELAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-
-    self.window.rootViewController = [[ELLoginViewController alloc] init];
+    
+    // Set the rootViewController to a splash screen while we check user's authStatus
+    self.window.rootViewController = [[UIViewController alloc] init];
+    
+    // Check user's authStatus
+    Firebase* f = [[Firebase alloc] initWithUrl:@"https://evenlift.firebaseio.com/"];
+    FirebaseSimpleLogin* authClient = [[FirebaseSimpleLogin alloc] initWithRef:f];
+    [authClient logout];
+    
+    [authClient checkAuthStatusWithBlock:^(NSError *error, FAUser *user) {
+        if (error) {
+            // there was an error
+            NSLog(@"ERROR");
+        } else if (!user) {
+            // user is not logged in
+            self.window.rootViewController = [[ELLoginViewController alloc] init];
+        } else {
+            // user is logged in
+            NSLog(@"USER LOGGED IN");
+        }
+    }];
     
     [self.window makeKeyAndVisible];
     return YES;
