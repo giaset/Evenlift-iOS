@@ -39,6 +39,22 @@
     self.authClient = [[FirebaseSimpleLogin alloc] initWithRef:self.firebase];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    // Check user's auth status
+    [self.authClient checkAuthStatusWithBlock:^(NSError *error, FAUser *user) {
+        if (error) {
+            // there was an error
+            NSLog(@"ERROR");
+        } else if (!user) {
+            // user is not logged in
+        } else {
+            // user is logged in
+            [self launchApp];
+        }
+    }];
+}
+
 - (IBAction)login:(id)sender {
     UIButton* loginButton = (UIButton*)sender;
     [loginButton setTitle:@"Please wait..." forState:UIControlStateNormal];
@@ -53,10 +69,15 @@
             [[userRef childByAppendingPath:@"first_name"] setValue:[user.thirdPartyUserData valueForKey:@"first_name"]];
             [[userRef childByAppendingPath:@"last_name"] setValue:[user.thirdPartyUserData valueForKey:@"last_name"]];
             
-            UIViewController* loggedIn = [[UIViewController alloc] init];
-            loggedIn.view.backgroundColor = [UIColor blueColor];
-            [self presentViewController:loggedIn animated:NO completion:nil];
+            [self launchApp];
         }
     }];
+}
+
+- (void)launchApp
+{
+    UIViewController* loggedIn = [[UIViewController alloc] init];
+    loggedIn.view.backgroundColor = [UIColor blueColor];
+    [self presentViewController:loggedIn animated:NO completion:nil];
 }
 @end
