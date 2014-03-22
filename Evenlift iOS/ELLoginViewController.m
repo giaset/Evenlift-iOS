@@ -41,11 +41,11 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self.loginButton setTitle:@"Please wait..." forState:UIControlStateNormal];
+    [self.loginButton setTitle:@"PLEASE WAIT..." forState:UIControlStateNormal];
     
     // Check user's auth status
     [self.authClient checkAuthStatusWithBlock:^(NSError *error, FAUser *user) {
-        [self.loginButton setTitle:@"Login with Facebook" forState:UIControlStateNormal];
+        [self.loginButton setTitle:@"LOGIN WITH FACEBOOK" forState:UIControlStateNormal];
         if (error) {
             // there was an error
             NSLog(@"ERROR");
@@ -59,7 +59,7 @@
 }
 
 - (IBAction)login:(id)sender {
-    [self.loginButton setTitle:@"Please wait..." forState:UIControlStateNormal];
+    [self.loginButton setTitle:@"PLEASE WAIT..." forState:UIControlStateNormal];
     
     [self.authClient loginToFacebookAppWithId:@"420007321469839" permissions:nil audience:ACFacebookAudienceFriends withCompletionBlock:^(NSError *error, FAUser *user) {
         if (error) {
