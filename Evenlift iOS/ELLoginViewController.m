@@ -9,6 +9,7 @@
 #import "ELLoginViewController.h"
 #import <Firebase/Firebase.h>
 #import <FirebaseSimpleLogin/FirebaseSimpleLogin.h>
+#import "ELHomeViewController.h"
 
 #define kEvenliftURL @"https://evenlift.firebaseio.com/"
 
@@ -97,7 +98,7 @@
     UITabBarController* tabBarController = [[UITabBarController alloc] init];
     
     // Initialize Home viewController
-    UIViewController* home = [[UIViewController alloc] init];
+    ELHomeViewController* home = [[ELHomeViewController alloc] init];
     home.title = @"Home";
     UIBarButtonItem* logoutButton = [[UIBarButtonItem alloc]
                                      initWithTitle:@"Logout"
