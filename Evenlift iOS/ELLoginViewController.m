@@ -76,8 +76,23 @@
 
 - (void)launchApp
 {
-    UIViewController* loggedIn = [[UIViewController alloc] init];
-    loggedIn.view.backgroundColor = [UIColor blueColor];
-    [self presentViewController:loggedIn animated:NO completion:nil];
+    UITabBarController* tabBarController = [[UITabBarController alloc] init];
+    
+    // Initialize Home viewController
+    UIViewController* home = [[UIViewController alloc] init];
+    home.view.backgroundColor = [UIColor blueColor];
+    
+    // Initialize Workouts viewController
+    UIViewController* workouts = [[UIViewController alloc] init];
+    workouts.view.backgroundColor = [UIColor whiteColor];
+    
+    // Initialize Analysis viewController
+    UIViewController* analysis = [[UIViewController alloc] init];
+    analysis.view.backgroundColor = [UIColor redColor];
+    
+    NSArray* controllers = [NSArray arrayWithObjects:home, workouts, analysis, nil];
+    tabBarController.viewControllers = controllers;
+    
+    [self presentViewController:tabBarController animated:NO completion:nil];
 }
 @end
