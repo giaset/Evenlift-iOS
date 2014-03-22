@@ -14,6 +14,7 @@
 
 @interface ELLoginViewController ()
 
+@property (nonatomic, strong) Firebase* firebase;
 @property (nonatomic, strong) FirebaseSimpleLogin* authClient;
 
 @end
@@ -34,8 +35,8 @@
     [super viewDidLoad];
     
     // Do any additional setup after loading the view from its nib.
-    Firebase* f = [[Firebase alloc] initWithUrl:kEvenliftURL];
-    self.authClient = [[FirebaseSimpleLogin alloc] initWithRef:f];
+    self.firebase = [[Firebase alloc] initWithUrl:kEvenliftURL];
+    self.authClient = [[FirebaseSimpleLogin alloc] initWithRef:self.firebase];
 }
 
 - (IBAction)login:(id)sender {
@@ -46,7 +47,12 @@
         if (error) {
             NSLog(@"FB LOGIN ERROR");
         } else {
-            // FB login successful
+            // FB login successful. Add this user to our databse
+            NSString* userPath = [NSString stringWithFormat:@"users/%@", user.uid];
+            Firebase* userRef = [self.firebase childByAppendingPath:userPath];
+            [[userRef childByAppendingPath:@"first_name"] setValue:[user.thirdPartyUserData valueForKey:@"first_name"]];
+            [[userRef childByAppendingPath:@"last_name"] setValue:[user.thirdPartyUserData valueForKey:@"last_name"]];
+            
             UIViewController* loggedIn = [[UIViewController alloc] init];
             loggedIn.view.backgroundColor = [UIColor blueColor];
             [self presentViewController:loggedIn animated:NO completion:nil];
