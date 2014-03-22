@@ -50,7 +50,6 @@
             NSLog(@"ERROR");
         } else if (!user) {
             // user is not logged in
-            [self.loginButton setTitle:@"LOGIN WITH FACEBOOK" forState:UIControlStateNormal];
             self.loginButton.hidden = NO;
         } else {
             // user is logged in
@@ -63,14 +62,24 @@
     [self.loginButton setTitle:@"PLEASE WAIT..." forState:UIControlStateNormal];
     
     [self.authClient loginToFacebookAppWithId:@"420007321469839" permissions:nil audience:ACFacebookAudienceFriends withCompletionBlock:^(NSError *error, FAUser *user) {
+        [self.loginButton setTitle:@"LOGIN WITH FACEBOOK" forState:UIControlStateNormal];
         if (error) {
             NSLog(@"FB LOGIN ERROR");
         } else {
-            // FB login successful. Add this user to our databse
-            NSString* userPath = [NSString stringWithFormat:@"users/%@", user.uid];
-            Firebase* userRef = [self.firebase childByAppendingPath:userPath];
-            [[userRef childByAppendingPath:@"first_name"] setValue:[user.thirdPartyUserData valueForKey:@"first_name"]];
-            [[userRef childByAppendingPath:@"last_name"] setValue:[user.thirdPartyUserData valueForKey:@"last_name"]];
+            // FB login successful. First see if we already had this user in our userDefaults
+            NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+            NSString* savedUID = [userDefaults stringForKey:@"uid"];
+            
+            if (![savedUID isEqualToString:user.uid]) {
+                // Save user.uid to our userDefaults
+                [userDefaults setObject:user.uid forKey:@"uid"];
+                
+                // And add this user to our Firebase
+                NSString* userPath = [NSString stringWithFormat:@"users/%@", user.uid];
+                Firebase* userRef = [self.firebase childByAppendingPath:userPath];
+                [[userRef childByAppendingPath:@"first_name"] setValue:[user.thirdPartyUserData valueForKey:@"first_name"]];
+                [[userRef childByAppendingPath:@"last_name"] setValue:[user.thirdPartyUserData valueForKey:@"last_name"]];
+            }
             
             [self launchApp];
         }
