@@ -114,4 +114,9 @@
     [self presentViewController:tabBarController animated:NO completion:nil];
 }
 
+-(BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
 @end
