@@ -62,7 +62,6 @@
     [self.loginButton setTitle:@"Please wait..." forState:UIControlStateNormal];
     
     [self.authClient loginToFacebookAppWithId:@"420007321469839" permissions:nil audience:ACFacebookAudienceFriends withCompletionBlock:^(NSError *error, FAUser *user) {
-        [self.loginButton setTitle:@"Login with Facebook" forState:UIControlStateNormal];
         if (error) {
             NSLog(@"FB LOGIN ERROR");
         } else {
