@@ -81,16 +81,22 @@
     // Initialize Home viewController
     UIViewController* home = [[UIViewController alloc] init];
     home.view.backgroundColor = [UIColor blueColor];
+    home.title = @"Home";
+    UINavigationController* homeNavController = [[UINavigationController alloc] initWithRootViewController:home];
     
     // Initialize Workouts viewController
     UIViewController* workouts = [[UIViewController alloc] init];
     workouts.view.backgroundColor = [UIColor whiteColor];
+    workouts.title = @"Workouts";
+    UINavigationController* workoutsNavController = [[UINavigationController alloc] initWithRootViewController:workouts];
     
-    // Initialize Analysis viewController
-    UIViewController* analysis = [[UIViewController alloc] init];
-    analysis.view.backgroundColor = [UIColor redColor];
+    // Initialize Stats viewController
+    UIViewController* stats = [[UIViewController alloc] init];
+    stats.view.backgroundColor = [UIColor redColor];
+    stats.title = @"Stats";
+    UINavigationController* statsNavController = [[UINavigationController alloc] initWithRootViewController:stats];
     
-    NSArray* controllers = [NSArray arrayWithObjects:home, workouts, analysis, nil];
+    NSArray* controllers = [NSArray arrayWithObjects:homeNavController, workoutsNavController, statsNavController, nil];
     tabBarController.viewControllers = controllers;
     
     [self presentViewController:tabBarController animated:NO completion:nil];
