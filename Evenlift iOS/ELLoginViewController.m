@@ -41,8 +41,11 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [self.loginButton setTitle:@"Please wait..." forState:UIControlStateNormal];
+    
     // Check user's auth status
     [self.authClient checkAuthStatusWithBlock:^(NSError *error, FAUser *user) {
+        [self.loginButton setTitle:@"Login with Facebook" forState:UIControlStateNormal];
         if (error) {
             // there was an error
             NSLog(@"ERROR");
@@ -56,10 +59,10 @@
 }
 
 - (IBAction)login:(id)sender {
-    UIButton* loginButton = (UIButton*)sender;
-    [loginButton setTitle:@"Please wait..." forState:UIControlStateNormal];
+    [self.loginButton setTitle:@"Please wait..." forState:UIControlStateNormal];
     
     [self.authClient loginToFacebookAppWithId:@"420007321469839" permissions:nil audience:ACFacebookAudienceFriends withCompletionBlock:^(NSError *error, FAUser *user) {
+        [self.loginButton setTitle:@"Login with Facebook" forState:UIControlStateNormal];
         if (error) {
             NSLog(@"FB LOGIN ERROR");
         } else {
@@ -74,31 +77,42 @@
     }];
 }
 
+-(IBAction)logout
+{
+    [self.authClient logout];
+    [self dismissViewControllerAnimated:NO completion:nil];
+}
+
 - (void)launchApp
 {
     UITabBarController* tabBarController = [[UITabBarController alloc] init];
     
     // Initialize Home viewController
     UIViewController* home = [[UIViewController alloc] init];
-    home.view.backgroundColor = [UIColor blueColor];
     home.title = @"Home";
+    UIBarButtonItem* logoutButton = [[UIBarButtonItem alloc]
+                                     initWithTitle:@"Logout"
+                                     style:UIBarButtonItemStyleBordered
+                                     target:self
+                                     action:@selector(logout)];
+    home.navigationItem.rightBarButtonItem = logoutButton;
     UINavigationController* homeNavController = [[UINavigationController alloc] initWithRootViewController:home];
     
     // Initialize Workouts viewController
     UIViewController* workouts = [[UIViewController alloc] init];
-    workouts.view.backgroundColor = [UIColor whiteColor];
     workouts.title = @"Workouts";
     UINavigationController* workoutsNavController = [[UINavigationController alloc] initWithRootViewController:workouts];
     
     // Initialize Stats viewController
     UIViewController* stats = [[UIViewController alloc] init];
-    stats.view.backgroundColor = [UIColor redColor];
     stats.title = @"Stats";
     UINavigationController* statsNavController = [[UINavigationController alloc] initWithRootViewController:stats];
     
+    // Set these viewControllers to the tabBarController and present it
     NSArray* controllers = [NSArray arrayWithObjects:homeNavController, workoutsNavController, statsNavController, nil];
     tabBarController.viewControllers = controllers;
     
     [self presentViewController:tabBarController animated:NO completion:nil];
 }
+
 @end

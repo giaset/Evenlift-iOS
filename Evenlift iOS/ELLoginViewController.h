@@ -10,5 +10,6 @@
 
 @interface ELLoginViewController : UIViewController
 - (IBAction)login:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
 
 @end

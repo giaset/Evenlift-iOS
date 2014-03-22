@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ELLoginViewController">
             <connections>
+                <outlet property="loginButton" destination="sZf-ef-VVZ" id="dGX-Or-u4r"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
