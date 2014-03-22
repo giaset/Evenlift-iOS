@@ -39,11 +39,17 @@
 }
 
 - (IBAction)login:(id)sender {
+    UIButton* loginButton = (UIButton*)sender;
+    [loginButton setTitle:@"Please wait..." forState:UIControlStateNormal];
+    
     [self.authClient loginToFacebookAppWithId:@"420007321469839" permissions:nil audience:ACFacebookAudienceFriends withCompletionBlock:^(NSError *error, FAUser *user) {
         if (error) {
             NSLog(@"FB LOGIN ERROR");
         } else {
-            NSLog(@"FB LOGIN SUCCESS");
+            // FB login successful
+            UIViewController* loggedIn = [[UIViewController alloc] init];
+            loggedIn.view.backgroundColor = [UIColor blueColor];
+            [self presentViewController:loggedIn animated:NO completion:nil];
         }
     }];
 }

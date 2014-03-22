@@ -18,7 +18,9 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     // Set the rootViewController to a splash screen while we check user's authStatus
-    self.window.rootViewController = [[UIViewController alloc] init];
+    UIViewController* splash = [[UIViewController alloc] init];
+    splash.view.backgroundColor = [UIColor redColor];
+    self.window.rootViewController = splash;
     
     // Check user's authStatus
     Firebase* f = [[Firebase alloc] initWithUrl:@"https://evenlift.firebaseio.com/"];
@@ -34,7 +36,9 @@
             self.window.rootViewController = [[ELLoginViewController alloc] init];
         } else {
             // user is logged in
-            NSLog(@"USER LOGGED IN");
+            UIViewController* loggedIn = [[UIViewController alloc] init];
+            loggedIn.view.backgroundColor = [UIColor blueColor];
+            self.window.rootViewController = loggedIn;
         }
     }];
     
