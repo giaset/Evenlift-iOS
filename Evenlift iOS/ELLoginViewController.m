@@ -41,16 +41,17 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self.loginButton setTitle:@"PLEASE WAIT..." forState:UIControlStateNormal];
+    self.loginButton.hidden = YES;
     
     // Check user's auth status
     [self.authClient checkAuthStatusWithBlock:^(NSError *error, FAUser *user) {
-        [self.loginButton setTitle:@"LOGIN WITH FACEBOOK" forState:UIControlStateNormal];
         if (error) {
             // there was an error
             NSLog(@"ERROR");
         } else if (!user) {
             // user is not logged in
+            [self.loginButton setTitle:@"LOGIN WITH FACEBOOK" forState:UIControlStateNormal];
+            self.loginButton.hidden = NO;
         } else {
             // user is logged in
             [self launchApp];
