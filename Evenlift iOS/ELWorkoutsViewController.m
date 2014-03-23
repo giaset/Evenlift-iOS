@@ -38,15 +38,23 @@
     addWorkoutViewController.view.backgroundColor = [UIColor redColor];
     addWorkoutViewController.title = @"Add Workout";
     
-    // Set up close button
-    UIBarButtonItem* closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissAddWorkoutViewController)];
+    // Set up left Cancel button
+    UIBarButtonItem* cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelWorkout)];
+    addWorkoutViewController.navigationItem.leftBarButtonItem = cancelButton;
+    
+    // Set up right Close button
+    UIBarButtonItem* closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(finishWorkout)];
     addWorkoutViewController.navigationItem.rightBarButtonItem = closeButton;
     
     UINavigationController* addWorkoutNavController = [[UINavigationController alloc] initWithRootViewController:addWorkoutViewController];
     [self presentViewController:addWorkoutNavController animated:YES completion:nil];
 }
 
-- (IBAction)dismissAddWorkoutViewController{
+- (IBAction)cancelWorkout{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)finishWorkout{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

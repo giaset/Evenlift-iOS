@@ -99,15 +99,9 @@
     UITabBarController* tabBarController = [[UITabBarController alloc] init];
     
     // Initialize Home viewController
-    ELHomeViewController* home = [[ELHomeViewController alloc] init];
+    /*ELHomeViewController* home = [[ELHomeViewController alloc] init];
     home.title = @"Home";
-    UIBarButtonItem* logoutButton = [[UIBarButtonItem alloc]
-                                     initWithTitle:@"Logout"
-                                     style:UIBarButtonItemStyleBordered
-                                     target:self
-                                     action:@selector(logout)];
-    home.navigationItem.rightBarButtonItem = logoutButton;
-    UINavigationController* homeNavController = [[UINavigationController alloc] initWithRootViewController:home];
+    UINavigationController* homeNavController = [[UINavigationController alloc] initWithRootViewController:home];*/
     
     // Initialize Workouts viewController
     ELWorkoutsViewController* workouts = [[ELWorkoutsViewController alloc] init];
@@ -117,10 +111,19 @@
     // Initialize Stats viewController
     UIViewController* stats = [[UIViewController alloc] init];
     stats.title = @"Stats";
+    
+    // Set up right Logout button on Stats viewController
+    UIBarButtonItem* logoutButton = [[UIBarButtonItem alloc]
+                                     initWithTitle:@"Logout"
+                                     style:UIBarButtonItemStyleBordered
+                                     target:self
+                                     action:@selector(logout)];
+    stats.navigationItem.rightBarButtonItem = logoutButton;
+    
     UINavigationController* statsNavController = [[UINavigationController alloc] initWithRootViewController:stats];
     
     // Set these viewControllers to the tabBarController and present it
-    NSArray* controllers = [NSArray arrayWithObjects:homeNavController, workoutsNavController, statsNavController, nil];
+    NSArray* controllers = [NSArray arrayWithObjects:workoutsNavController, statsNavController, nil];
     tabBarController.viewControllers = controllers;
     
     [self presentViewController:tabBarController animated:NO completion:nil];
