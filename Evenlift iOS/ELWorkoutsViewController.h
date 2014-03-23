@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ELWorkoutsViewController : UIViewController
+@interface ELWorkoutsViewController : UIViewController <UIAlertViewDelegate>
 
 @end

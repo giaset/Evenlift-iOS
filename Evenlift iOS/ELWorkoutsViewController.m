@@ -39,22 +39,57 @@
     addWorkoutViewController.title = @"Add Workout";
     
     // Set up left Cancel button
-    UIBarButtonItem* cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelWorkout)];
+    UIBarButtonItem* cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonClicked)];
     addWorkoutViewController.navigationItem.leftBarButtonItem = cancelButton;
     
     // Set up right Close button
-    UIBarButtonItem* closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(finishWorkout)];
+    UIBarButtonItem* closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonClicked)];
     addWorkoutViewController.navigationItem.rightBarButtonItem = closeButton;
     
     UINavigationController* addWorkoutNavController = [[UINavigationController alloc] initWithRootViewController:addWorkoutViewController];
     [self presentViewController:addWorkoutNavController animated:YES completion:nil];
 }
 
-- (IBAction)cancelWorkout{
+- (IBAction)cancelButtonClicked{
+    UIAlertView* cancelAlert = [[UIAlertView alloc]
+                                initWithTitle:@"Cancel Workout?"
+                                message:@"Cancelling this workout will cause all entered data to be discarded. Are you sure?"
+                                delegate:self
+                                cancelButtonTitle:@"No"
+                                otherButtonTitles:@"Yes", nil];
+    cancelAlert.tag = 1;
+    [cancelAlert show];
+}
+
+- (IBAction)doneButtonClicked{
+    UIAlertView* doneAlert = [[UIAlertView alloc]
+                                initWithTitle:@"Finish Workout?"
+                                message:@"Finishing this workout will cause all entered data to be saved forever, without possibility for later modification. Are you sure?"
+                                delegate:self
+                                cancelButtonTitle:@"No"
+                                otherButtonTitles:@"Yes", nil];
+    doneAlert.tag = 2;
+    [doneAlert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 1 && buttonIndex == 1) {
+        // Clicked YES on "Cancel" Alert View
+        [self cancelWorkout];
+    } else if (alertView.tag == 2 && buttonIndex == 1) {
+        // Clicked YES on "Done" Alert View
+        [self finishWorkout];
+    }
+}
+
+- (void)cancelWorkout
+{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)finishWorkout{
+- (void)finishWorkout
+{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
