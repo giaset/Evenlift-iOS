@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		681F739F18DF223D00AE982D /* ELWorkoutsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 681F739D18DF223D00AE982D /* ELWorkoutsViewController.m */; };
+		681F73A018DF223D00AE982D /* ELWorkoutsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 681F739E18DF223D00AE982D /* ELWorkoutsViewController.xib */; };
 		68AABBE618DB9FA7008E883D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68AABBE518DB9FA7008E883D /* Foundation.framework */; };
 		68AABBE818DB9FA7008E883D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68AABBE718DB9FA7008E883D /* CoreGraphics.framework */; };
 		68AABBEA18DB9FA7008E883D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68AABBE918DB9FA7008E883D /* UIKit.framework */; };
@@ -46,6 +48,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		681F739C18DF223D00AE982D /* ELWorkoutsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELWorkoutsViewController.h; sourceTree = "<group>"; };
+		681F739D18DF223D00AE982D /* ELWorkoutsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELWorkoutsViewController.m; sourceTree = "<group>"; };
+		681F739E18DF223D00AE982D /* ELWorkoutsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELWorkoutsViewController.xib; sourceTree = "<group>"; };
 		68AABBE218DB9FA7008E883D /* Evenlift iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Evenlift iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68AABBE518DB9FA7008E883D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		68AABBE718DB9FA7008E883D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -162,6 +167,9 @@
 				68AABC2A18DCF547008E883D /* ELLoginViewController.h */,
 				68AABC2B18DCF547008E883D /* ELLoginViewController.m */,
 				68AABC2C18DCF547008E883D /* ELLoginViewController.xib */,
+				681F739C18DF223D00AE982D /* ELWorkoutsViewController.h */,
+				681F739D18DF223D00AE982D /* ELWorkoutsViewController.m */,
+				681F739E18DF223D00AE982D /* ELWorkoutsViewController.xib */,
 				68CAE3E718DDED9D0080F7C5 /* ELHomeViewController.h */,
 				68CAE3E818DDED9D0080F7C5 /* ELHomeViewController.m */,
 				68CAE3E918DDED9D0080F7C5 /* ELHomeViewController.xib */,
@@ -278,6 +286,7 @@
 			files = (
 				68AABC2E18DCF547008E883D /* ELLoginViewController.xib in Resources */,
 				68AABBF018DB9FA7008E883D /* InfoPlist.strings in Resources */,
+				681F73A018DF223D00AE982D /* ELWorkoutsViewController.xib in Resources */,
 				68CAE3EB18DDED9D0080F7C5 /* ELHomeViewController.xib in Resources */,
 				68AABBF818DB9FA7008E883D /* Images.xcassets in Resources */,
 			);
@@ -301,6 +310,7 @@
 				68AABC2D18DCF547008E883D /* ELLoginViewController.m in Sources */,
 				68AABBF218DB9FA7008E883D /* main.m in Sources */,
 				68CAE3EA18DDED9D0080F7C5 /* ELHomeViewController.m in Sources */,
+				681F739F18DF223D00AE982D /* ELWorkoutsViewController.m in Sources */,
 				68AABBF618DB9FA7008E883D /* ELAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

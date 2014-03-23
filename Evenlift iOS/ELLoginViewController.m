@@ -10,6 +10,7 @@
 #import <Firebase/Firebase.h>
 #import <FirebaseSimpleLogin/FirebaseSimpleLogin.h>
 #import "ELHomeViewController.h"
+#import "ELWorkoutsViewController.h"
 
 #define kEvenliftURL @"https://evenlift.firebaseio.com/"
 
@@ -109,7 +110,7 @@
     UINavigationController* homeNavController = [[UINavigationController alloc] initWithRootViewController:home];
     
     // Initialize Workouts viewController
-    UIViewController* workouts = [[UIViewController alloc] init];
+    ELWorkoutsViewController* workouts = [[ELWorkoutsViewController alloc] init];
     workouts.title = @"Workouts";
     UINavigationController* workoutsNavController = [[UINavigationController alloc] initWithRootViewController:workouts];
     
