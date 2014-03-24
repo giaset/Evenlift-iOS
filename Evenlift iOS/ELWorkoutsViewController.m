@@ -37,16 +37,31 @@
 {
     [super viewDidLoad];
     
-    UIBarButtonItem* addWorkoutButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(launchAddWorkoutViewController)];
+    UIBarButtonItem* addWorkoutButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(popAddAlert)];
     self.navigationItem.rightBarButtonItem = addWorkoutButton;
 }
 
-- (IBAction)launchAddWorkoutViewController
+- (IBAction)popAddAlert
+{
+    UIAlertView* addAlert = [[UIAlertView alloc]
+                             initWithTitle:@"Create Workout"
+                             message:@"Please enter a title for this workout. (ex: Max-Effort Upper Body)"
+                             delegate:self
+                             cancelButtonTitle:@"Cancel"
+                             otherButtonTitles:@"Ok", nil];
+    addAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    addAlert.tag = 3;
+    [addAlert show];
+}
+
+- (void)launchAddSetsViewControllerWithTitle:(NSString*)title
 {
     // First create the workout on Firebase
     self.currentWorkoutRef = [self.firebase childByAutoId];
     
     [[self.currentWorkoutRef childByAppendingPath:@"start_time"] setValue:[self getCurrentTime]];
+    
+    [[self.currentWorkoutRef childByAppendingPath:@"title"] setValue:title];
     
     ELAddSetsViewController* addSetsViewController = [[ELAddSetsViewController alloc] initWithWorkoutRef:self.currentWorkoutRef];
     
@@ -92,6 +107,10 @@
     } else if (alertView.tag == 2 && buttonIndex == 1) {
         // Clicked YES on "Done" Alert View
         [self finishWorkout];
+    } else if (alertView.tag == 3 && buttonIndex == 1) {
+        // Clicked OK on "Add" Alert View
+        NSString* workoutTitle = [alertView textFieldAtIndex:0].text;
+        [self launchAddSetsViewControllerWithTitle:workoutTitle];
     }
 }
 
