@@ -8,6 +8,7 @@
 
 #import "ELWorkoutsViewController.h"
 #import <Firebase/Firebase.h>
+#import "ELAddSetsViewController.h"
 
 @interface ELWorkoutsViewController ()
 
@@ -47,22 +48,18 @@
     
     [[self.currentWorkoutRef childByAppendingPath:@"start_time"] setValue:[self getCurrentTime]];
     
-    //- (id)initWithWorkoutRef:(Firebase*)workoutRef;
-    
-    UIViewController* addWorkoutViewController = [[UIViewController alloc] init];
-    addWorkoutViewController.view.backgroundColor = [UIColor redColor];
-    addWorkoutViewController.title = @"Add Workout";
+    ELAddSetsViewController* addSetsViewController = [[ELAddSetsViewController alloc] initWithWorkoutRef:self.currentWorkoutRef];
     
     // Set up left Cancel button
     UIBarButtonItem* cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonClicked)];
-    addWorkoutViewController.navigationItem.leftBarButtonItem = cancelButton;
+    addSetsViewController.navigationItem.leftBarButtonItem = cancelButton;
     
     // Set up right Close button
     UIBarButtonItem* closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonClicked)];
-    addWorkoutViewController.navigationItem.rightBarButtonItem = closeButton;
+    addSetsViewController.navigationItem.rightBarButtonItem = closeButton;
     
-    UINavigationController* addWorkoutNavController = [[UINavigationController alloc] initWithRootViewController:addWorkoutViewController];
-    [self presentViewController:addWorkoutNavController animated:YES completion:nil];
+    UINavigationController* addSetsNavController = [[UINavigationController alloc] initWithRootViewController:addSetsViewController];
+    [self presentViewController:addSetsNavController animated:YES completion:nil];
 }
 
 - (IBAction)cancelButtonClicked{
