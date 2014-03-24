@@ -100,6 +100,7 @@
 
 - (void)cancelWorkout
 {
+    [self.currentWorkoutRef removeValue];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
