@@ -34,7 +34,7 @@
 	<key>FacebookAppID</key>
 	<string>420007321469839</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<true/>
+	<false/>
 	<key>FacebookDisplayName</key>
 	<string>Evenlift</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -43,6 +43,8 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleBlackOpaque</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

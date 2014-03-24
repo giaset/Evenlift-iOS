@@ -43,6 +43,10 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    
     self.loginButton.hidden = YES;
     
     // Check user's auth status
@@ -58,6 +62,13 @@
             [self launchApp];
         }
     }];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
 
 - (IBAction)login:(id)sender {
@@ -127,11 +138,6 @@
     tabBarController.viewControllers = controllers;
     
     [self presentViewController:tabBarController animated:NO completion:nil];
-}
-
--(BOOL)prefersStatusBarHidden
-{
-    return YES;
 }
 
 @end
