@@ -7,8 +7,12 @@
 //
 
 #import "ELWorkoutsViewController.h"
+#import <Firebase/Firebase.h>
 
 @interface ELWorkoutsViewController ()
+
+@property (nonatomic, strong) Firebase* firebase;
+@property (nonatomic, strong) Firebase* currentWorkoutRef;
 
 @end
 
@@ -18,7 +22,12 @@
 {
     self = [super initWithNibName:@"ELWorkoutsViewController" bundle:nil];
     if (self) {
-        // Further initialization if needed
+        // Set up the Firebase for this user's workouts
+        NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+        NSString* uid = [userDefaults stringForKey:@"uid"];
+        NSString* userWorkoutsUrl = [NSString stringWithFormat:@"%@%@", @"https://evenlift.firebaseio.com/workouts/", uid];
+        NSLog(@"%@", userWorkoutsUrl);
+        self.firebase = [[Firebase alloc] initWithUrl:userWorkoutsUrl];
     }
     return self;
 }
@@ -27,13 +36,19 @@
 {
     [super viewDidLoad];
     
-    // Do any additional setup after loading the view from its nib.
     UIBarButtonItem* addWorkoutButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(launchAddWorkoutViewController)];
     self.navigationItem.rightBarButtonItem = addWorkoutButton;
 }
 
 - (IBAction)launchAddWorkoutViewController
 {
+    // First create the workout on Firebase
+    self.currentWorkoutRef = [self.firebase childByAutoId];
+    
+    [[self.currentWorkoutRef childByAppendingPath:@"start_time"] setValue:[self getCurrentTime]];
+    
+    //- (id)initWithWorkoutRef:(Firebase*)workoutRef;
+    
     UIViewController* addWorkoutViewController = [[UIViewController alloc] init];
     addWorkoutViewController.view.backgroundColor = [UIColor redColor];
     addWorkoutViewController.title = @"Add Workout";
@@ -90,7 +105,13 @@
 
 - (void)finishWorkout
 {
+    [[self.currentWorkoutRef childByAppendingPath:@"end_time"] setValue:[self getCurrentTime]];
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (NSString*)getCurrentTime
+{
+    return [[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] stringValue];
 }
 
 @end
