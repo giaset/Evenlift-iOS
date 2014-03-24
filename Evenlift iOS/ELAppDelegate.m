@@ -15,6 +15,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Styling
+    [UINavigationBar appearance].barTintColor = [UIColor redColor];
+    [UINavigationBar appearance].tintColor = [UIColor whiteColor];
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,/* [UIFont fontWithName:@"FontNAme" size:titleSize], NSFontAttributeName,*/ nil]];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     self.window.rootViewController = [[ELLoginViewController alloc] init];
