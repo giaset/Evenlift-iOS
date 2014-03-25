@@ -27,7 +27,6 @@
         NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
         NSString* uid = [userDefaults stringForKey:@"uid"];
         NSString* userWorkoutsUrl = [NSString stringWithFormat:@"%@%@", @"https://evenlift.firebaseio.com/workouts/", uid];
-        NSLog(@"%@", userWorkoutsUrl);
         self.firebase = [[Firebase alloc] initWithUrl:userWorkoutsUrl];
     }
     return self;

@@ -10,6 +10,12 @@
 
 @interface ELAddSetsViewController ()
 
+@property (nonatomic, retain) UITextField* exerciseField;
+@property (nonatomic, retain) UITextField* repsField;
+@property (nonatomic, retain) UITextField* weightField;
+@property (nonatomic, retain) UITextField* restField;
+@property (nonatomic, retain) UITextField* notesField;
+
 @end
 
 @implementation ELAddSetsViewController
@@ -50,6 +56,37 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        
+        UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(100, 0, 320, 44)];
+        
+        switch (indexPath.row) {
+            case 0:
+                cell.textLabel.text = @"Exercise";
+                self.exerciseField = textField;
+                break;
+            case 1:
+                cell.textLabel.text = @"Reps";
+                self.repsField = textField;
+                break;
+            case 2:
+                cell.textLabel.text = @"Weight";
+                textField.placeholder = @"In kilos. Leave blank for bw";
+                self.weightField = textField;
+                break;
+            case 3:
+                cell.textLabel.text = @"Rest after";
+                textField.placeholder = @"In seconds. Optional";
+                self.restField = textField;
+                break;
+            case 4:
+                cell.textLabel.text = @"Notes";
+                textField.placeholder = @"Optional";
+                self.notesField = textField;
+                break;
+        }
+        
+        textField.tag = indexPath.row;
+        [cell.contentView addSubview:textField];
     }
     
     // Configure the cell...
@@ -57,22 +94,29 @@
     return cell;
 }
 
-/*
-#pragma mark - Table view delegate
-
-// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+// Footer view
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-
-    // Pass the selected object to the new view controller.
-    
-    // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
+    return 50;
 }
- 
- */
+
+- (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIButton* submitButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [submitButton setTitle:@"Submit" forState:UIControlStateNormal];
+    submitButton.tintColor = [UIColor redColor];
+    [submitButton addTarget:self action:@selector(submitSet) forControlEvents:UIControlEventTouchUpInside];
+    
+    return submitButton;
+}
+
+- (IBAction)submitSet
+{
+    Firebase* setRef = [[self.workoutRef childByAppendingPath:@"sets"] childByAutoId];
+    
+    [setRef setValue:@{@"exercise": self.exerciseField.text, @"reps": self.repsField.text, @"weight": self.weightField.text, @"rest": self.restField.text, @"notes": self.notesField.text, @"time": [[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] stringValue]} withCompletionBlock:^(NSError *error, Firebase *ref) {
+        //
+    }];
+}
 
 @end
