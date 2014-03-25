@@ -33,7 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableView.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0);
+    //self.tableView.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0);
 }
 
 #pragma mark - Table view data source
@@ -92,6 +92,35 @@
     // Configure the cell...
     
     return cell;
+}
+
+// Header view
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 60;
+}
+
+- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    // Create header view
+    UIView* headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
+    
+    UILabel* headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 320, 60)];
+    headerLabel.numberOfLines = 0;
+    
+    [headerView addSubview:headerLabel];
+    
+    // Bind its text to the previous set
+    Firebase* setsRef = [self.workoutRef childByAppendingPath:@"sets"];
+    FQuery* setsQuery = [setsRef queryLimitedToNumberOfChildren:1];
+    
+    [setsQuery observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
+        NSDictionary* setInfo = snapshot.value;
+        NSString* headerString = [NSString stringWithFormat:@"Previous set:\n%@, %@ x %@ (%@ sec rest)", setInfo[@"exercise"], setInfo[@"reps"], setInfo[@"weight"], setInfo[@"rest"]];
+        headerLabel.text = headerString;
+    }];
+    
+    return headerView;
 }
 
 // Footer view
