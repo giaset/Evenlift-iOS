@@ -7,6 +7,7 @@
 //
 
 #import "ELAddSetsViewController.h"
+#import "MBProgressHUD.h"
 
 @interface ELAddSetsViewController ()
 
@@ -141,10 +142,13 @@
 
 - (IBAction)submitSet
 {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     Firebase* setRef = [[self.workoutRef childByAppendingPath:@"sets"] childByAutoId];
     
     [setRef setValue:@{@"exercise": self.exerciseField.text, @"reps": self.repsField.text, @"weight": self.weightField.text, @"rest": self.restField.text, @"notes": self.notesField.text, @"time": [[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] stringValue]} withCompletionBlock:^(NSError *error, Firebase *ref) {
-        //
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        self.weightField.text = @"";
+        self.notesField.text = @"";
     }];
 }
 
