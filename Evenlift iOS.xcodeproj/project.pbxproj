@@ -37,6 +37,7 @@
 		68AABC2E18DCF547008E883D /* ELLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68AABC2C18DCF547008E883D /* ELLoginViewController.xib */; };
 		68CAE3EA18DDED9D0080F7C5 /* ELHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68CAE3E818DDED9D0080F7C5 /* ELHomeViewController.m */; };
 		68CAE3EB18DDED9D0080F7C5 /* ELHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68CAE3E918DDED9D0080F7C5 /* ELHomeViewController.xib */; };
+		68D1432318EA272600AB3FE8 /* ELWorkout.m in Sources */ = {isa = PBXBuildFile; fileRef = 68D1432218EA272600AB3FE8 /* ELWorkout.m */; };
 		68F078F818E2206C004D14AE /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F078F718E2206C004D14AE /* MBProgressHUD.m */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +90,8 @@
 		68CAE3E718DDED9D0080F7C5 /* ELHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELHomeViewController.h; sourceTree = "<group>"; };
 		68CAE3E818DDED9D0080F7C5 /* ELHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELHomeViewController.m; sourceTree = "<group>"; };
 		68CAE3E918DDED9D0080F7C5 /* ELHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELHomeViewController.xib; sourceTree = "<group>"; };
+		68D1432118EA272600AB3FE8 /* ELWorkout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ELWorkout.h; path = Model/ELWorkout.h; sourceTree = "<group>"; };
+		68D1432218EA272600AB3FE8 /* ELWorkout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ELWorkout.m; path = Model/ELWorkout.m; sourceTree = "<group>"; };
 		68F078F618E2206C004D14AE /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		68F078F718E2206C004D14AE /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -173,6 +176,7 @@
 				68F078F618E2206C004D14AE /* MBProgressHUD.h */,
 				68F078F718E2206C004D14AE /* MBProgressHUD.m */,
 				68AABBF418DB9FA7008E883D /* ELAppDelegate.h */,
+				68D1432418EA273000AB3FE8 /* Model */,
 				68AABBF518DB9FA7008E883D /* ELAppDelegate.m */,
 				68AABC2A18DCF547008E883D /* ELLoginViewController.h */,
 				68AABC2B18DCF547008E883D /* ELLoginViewController.m */,
@@ -219,6 +223,15 @@
 				68AABC0718DB9FA7008E883D /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		68D1432418EA273000AB3FE8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				68D1432118EA272600AB3FE8 /* ELWorkout.h */,
+				68D1432218EA272600AB3FE8 /* ELWorkout.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -323,6 +336,7 @@
 			files = (
 				68AABC2D18DCF547008E883D /* ELLoginViewController.m in Sources */,
 				68AABBF218DB9FA7008E883D /* main.m in Sources */,
+				68D1432318EA272600AB3FE8 /* ELWorkout.m in Sources */,
 				68CAE3EA18DDED9D0080F7C5 /* ELHomeViewController.m in Sources */,
 				681F739F18DF223D00AE982D /* ELWorkoutsViewController.m in Sources */,
 				683657D818E0670300FA50F2 /* ELAddSetsViewController.m in Sources */,
