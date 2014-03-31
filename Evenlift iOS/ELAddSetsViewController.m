@@ -69,16 +69,19 @@
             case 1:
                 cell.textLabel.text = @"Reps";
                 self.repsField = textField;
+                self.repsField.keyboardType = UIKeyboardTypeNumberPad;
                 break;
             case 2:
                 cell.textLabel.text = @"Weight";
                 textField.placeholder = @"In kilos. Leave blank for bw";
                 self.weightField = textField;
+                self.weightField.keyboardType = UIKeyboardTypeNumberPad;
                 break;
             case 3:
                 cell.textLabel.text = @"Rest after";
                 textField.placeholder = @"In seconds. Optional";
                 self.restField = textField;
+                self.restField.keyboardType = UIKeyboardTypeNumberPad;
                 break;
             case 4:
                 cell.textLabel.text = @"Notes";
