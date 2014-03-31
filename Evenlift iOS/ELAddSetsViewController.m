@@ -8,6 +8,7 @@
 
 #import "ELAddSetsViewController.h"
 #import "MBProgressHUD.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface ELAddSetsViewController ()
 
@@ -34,7 +35,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //self.tableView.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0);
 }
 
 #pragma mark - Table view data source
@@ -96,7 +97,7 @@
 }
 
 // Header view
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+/*- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 60;
 }
@@ -122,22 +123,55 @@
     }];
     
     return headerView;
-}
+}*/
 
 // Footer view
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 50;
+    return 74;
 }
 
 - (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    UIButton* submitButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [submitButton setTitle:@"Submit" forState:UIControlStateNormal];
-    submitButton.tintColor = [UIColor redColor];
-    [submitButton addTarget:self action:@selector(submitSet) forControlEvents:UIControlEventTouchUpInside];
+    UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 74)];
     
-    return submitButton;
+    // Create the button and style it
+    UIButton* submitButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 15, 64, 44)];
+    [submitButton setTitle:@"Submit" forState:UIControlStateNormal];
+    submitButton.titleLabel.font = [UIFont systemFontOfSize:20];
+    [submitButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [submitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    [submitButton addTarget:self action:@selector(submitSet) forControlEvents:UIControlEventTouchUpInside];
+    submitButton.layer.cornerRadius = 4;
+    submitButton.layer.borderWidth = 1.5;
+    submitButton.layer.borderColor = [UIColor redColor].CGColor;
+    submitButton.clipsToBounds = YES;
+    submitButton.contentEdgeInsets = UIEdgeInsetsMake(8, 8, 8, 8);
+    [submitButton setBackgroundImage:[self imageWithColor:[UIColor redColor]] forState:UIControlStateHighlighted];
+    [submitButton sizeToFit];
+    
+    // Center the button horizontally
+    CGPoint newCenter = CGPointMake(submitButton.center.x, submitButton.center.y);
+    newCenter.x = 160;
+    submitButton.center = newCenter;
+    
+    [footerView addSubview:submitButton];
+    
+    return footerView;
+}
+
+- (UIImage*)imageWithColor:(UIColor*)color {
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
 }
 
 - (IBAction)submitSet

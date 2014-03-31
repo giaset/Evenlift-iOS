@@ -44,7 +44,7 @@
 {
     UIAlertView* addAlert = [[UIAlertView alloc]
                              initWithTitle:@"Create Workout"
-                             message:@"Please enter a title for this workout. (ex: Max-Effort Upper Body)"
+                             message:@"Please enter an optional title for this workout.\n(ex: Max-Effort Upper Body)"
                              delegate:self
                              cancelButtonTitle:@"Cancel"
                              otherButtonTitles:@"Ok", nil];
