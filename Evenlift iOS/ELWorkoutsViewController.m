@@ -9,11 +9,14 @@
 #import "ELWorkoutsViewController.h"
 #import <Firebase/Firebase.h>
 #import "ELAddSetsViewController.h"
+#import "ELWorkout.h"
 
 @interface ELWorkoutsViewController ()
 
 @property (nonatomic, strong) Firebase* firebase;
 @property (nonatomic, strong) Firebase* currentWorkoutRef;
+
+@property (nonatomic, strong) NSMutableArray* workouts;
 
 @end
 
@@ -28,6 +31,7 @@
         NSString* uid = [userDefaults stringForKey:@"uid"];
         NSString* userWorkoutsUrl = [NSString stringWithFormat:@"%@%@", @"https://evenlift.firebaseio.com/workouts/", uid];
         self.firebase = [[Firebase alloc] initWithUrl:userWorkoutsUrl];
+        self.workouts = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -38,6 +42,23 @@
     
     UIBarButtonItem* addWorkoutButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(popAddAlert)];
     self.navigationItem.rightBarButtonItem = addWorkoutButton;
+    
+    // Bind to user's workouts Firebase
+    FQuery* lastTenWorkoutsQuery = [self.firebase queryLimitedToNumberOfChildren:10];
+    
+    [lastTenWorkoutsQuery observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot* snapshot) {
+        NSDictionary* workoutDict = snapshot.value;
+        ELWorkout* workoutObject = [[ELWorkout alloc] initWithDictionary:workoutDict];
+        [self.workouts addObject:workoutObject];
+        [self.tableView reloadData];
+    }];
+    
+    [lastTenWorkoutsQuery observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
+        NSDictionary* workoutDict = snapshot.value;
+        ELWorkout* workoutObject = [[ELWorkout alloc] initWithDictionary:workoutDict];
+        [self.workouts removeObject:workoutObject];
+        [self.tableView reloadData];
+    }];
 }
 
 - (IBAction)popAddAlert
@@ -128,6 +149,35 @@
 - (NSString*)getCurrentTime
 {
     return [[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] stringValue];
+}
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    // Return the number of rows in the section.
+    return self.workouts.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+    // Configure the cell...
+    ELWorkout* workout = [self.workouts objectAtIndex:(self.workouts.count - 1 - indexPath.row)];
+    cell.textLabel.text = workout.title;
+    
+    return cell;
 }
 
 @end
