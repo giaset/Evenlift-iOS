@@ -51,8 +51,14 @@
     [lastTenWorkoutsQuery observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot* snapshot) {
         NSDictionary* workoutDict = snapshot.value;
         ELWorkout* workoutObject = [[ELWorkout alloc] initWithDictionary:workoutDict];
-        [self.workouts addObject:workoutObject];
-        [self.tableView reloadData];
+        // Add a little delay here to prevent new cell popping up at top before addSetsViewController is fully visible
+        double delayInSeconds = 1.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            // code to be executed on the main queue after delay
+            [self.workouts addObject:workoutObject];
+            [self.tableView reloadData];
+        });
     }];
     
     [lastTenWorkoutsQuery observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
