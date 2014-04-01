@@ -16,9 +16,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Stylin' (navBar)
-    [UINavigationBar appearance].barTintColor = [UIColor redColor];
+    [UINavigationBar appearance].barTintColor = [UIColor blackColor];
     [UINavigationBar appearance].tintColor = [UIColor whiteColor];
-    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,/* [UIFont fontWithName:@"FontNAme" size:titleSize], NSFontAttributeName,*/ nil]];
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"Futura" size:18], NSFontAttributeName, nil]];
     
     // Stylin' (tabBar)
     [UITabBar appearance].tintColor = [UIColor redColor];
