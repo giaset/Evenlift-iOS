@@ -54,6 +54,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UIFont* futura = [UIFont fontWithName:@"Futura" size:16];
+    
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -90,11 +92,13 @@
                 break;
         }
         
+        textField.font = futura;
         textField.tag = indexPath.row;
         [cell.contentView addSubview:textField];
     }
     
     // Configure the cell...
+    cell.textLabel.font  = futura;
     
     return cell;
 }
