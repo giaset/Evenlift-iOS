@@ -21,7 +21,8 @@
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"Futura" size:18], NSFontAttributeName, nil]];
     
     // Stylin' (tabBar)
-    [UITabBar appearance].tintColor = [UIColor redColor];
+    [UITabBar appearance].tintColor = [UIColor whiteColor];
+    [UITabBar appearance].barTintColor = [UIColor blackColor];
     
     // Launch the app
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
