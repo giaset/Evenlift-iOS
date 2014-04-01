@@ -69,7 +69,7 @@
         ELWorkout* removedWorkout = [[ELWorkout alloc] initWithDictionary:(NSDictionary*)snapshot.value];
         NSMutableArray* toDelete = [NSMutableArray array];
         for (ELWorkout* workout in self.workouts) {
-            if (workout.startTime == removedWorkout.startTime) {
+            if ([workout.startTime doubleValue] == [removedWorkout.startTime doubleValue]) {
                 [toDelete addObject:workout];
             }
         }
@@ -80,7 +80,7 @@
     [lastTenWorkoutsQuery observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
         ELWorkout* modifiedWorkout = [[ELWorkout alloc] initWithDictionary:(NSDictionary*)snapshot.value];
         for (ELWorkout* workout in self.workouts) {
-            if (workout.startTime == modifiedWorkout.startTime) {
+            if ([workout.startTime doubleValue] == [modifiedWorkout.startTime doubleValue]) {
                 workout.endTime = modifiedWorkout.endTime;
                 workout.title = modifiedWorkout.title;
             }
@@ -202,7 +202,7 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 72;
+    return 67;
 }
 
 @end

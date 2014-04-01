@@ -13,7 +13,7 @@
 - (id)initWithDictionary:(NSDictionary*)dict;
 
 @property (nonatomic, copy) NSString* title;
-@property (nonatomic) double startTime;
-@property (nonatomic) double endTime;
+@property (nonatomic, strong) NSNumber* startTime;
+@property (nonatomic, strong) NSNumber* endTime;
 
 @end

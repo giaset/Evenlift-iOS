@@ -10,6 +10,7 @@
 
 @interface ELDateTimeUtil : NSObject
 
-+ (NSString*)getCurrentTime;
++ (NSNumber*)getCurrentTime;
++ (NSString*)timeStringFromTimeStamp:(NSNumber*)timeStamp;
 
 @end

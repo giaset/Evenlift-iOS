@@ -10,9 +10,17 @@
 
 @implementation ELDateTimeUtil
 
-+ (NSString*)getCurrentTime
++ (NSNumber*)getCurrentTime
 {
-    return [[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] stringValue];
+    return [NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]];
+}
+
++ (NSString*)timeStringFromTimeStamp:(NSNumber*)timeStamp {
+    NSDate* date = [NSDate dateWithTimeIntervalSince1970:[timeStamp doubleValue]];
+    NSDateFormatter* timeFormat = [[NSDateFormatter alloc] init];
+    [timeFormat setDateFormat:@"h:mm a"];
+    
+    return [timeFormat stringFromDate:date];
 }
 
 @end

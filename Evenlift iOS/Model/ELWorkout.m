@@ -15,8 +15,8 @@
     self = [super init];
     if (self) {
         self.title = [dict objectForKey:@"title"];
-        self.startTime = [(NSNumber*)[dict objectForKey:@"start_time"] doubleValue];
-        self.endTime = [(NSNumber*)[dict objectForKey:@"end_time"] doubleValue];
+        self.startTime = (NSNumber*)[dict objectForKey:@"start_time"];
+        self.endTime = (NSNumber*)[dict objectForKey:@"end_time"];
     }
     return self;
 }
