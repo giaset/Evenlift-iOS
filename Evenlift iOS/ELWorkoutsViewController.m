@@ -55,11 +55,13 @@
     
     [lastTenWorkoutsQuery observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
         ELWorkout* removedWorkout = [[ELWorkout alloc] initWithDictionary:(NSDictionary*)snapshot.value];
+        NSMutableArray* toDelete = [NSMutableArray array];
         for (ELWorkout* workout in self.workouts) {
             if (workout.startTime == removedWorkout.startTime) {
-                [self.workouts removeObject:workout];
+                [toDelete addObject:workout];
             }
         }
+        [self.workouts removeObjectsInArray:toDelete];
         [self.tableView reloadData];
     }];
     
