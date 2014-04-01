@@ -24,7 +24,7 @@
 
 - (id)init
 {
-    self = [super init];
+    self = [super initWithNibName:@"ELWorkoutsViewController" bundle:nil];
     if (self) {
         // Set up the Firebase for this user's workouts
         NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
@@ -39,6 +39,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.tableView.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0);
     
     UIBarButtonItem* addWorkoutButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(popAddAlert)];
     self.navigationItem.rightBarButtonItem = addWorkoutButton;

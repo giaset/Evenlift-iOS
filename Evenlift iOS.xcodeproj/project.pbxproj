@@ -10,6 +10,7 @@
 		681F739F18DF223D00AE982D /* ELWorkoutsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 681F739D18DF223D00AE982D /* ELWorkoutsViewController.m */; };
 		683657D818E0670300FA50F2 /* ELAddSetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683657D618E0670300FA50F2 /* ELAddSetsViewController.m */; };
 		683657D918E0670300FA50F2 /* ELAddSetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 683657D718E0670300FA50F2 /* ELAddSetsViewController.xib */; };
+		6841730618EA4CB30049829E /* ELWorkoutsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6841730518EA4CB30049829E /* ELWorkoutsViewController.xib */; };
 		68AABBE618DB9FA7008E883D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68AABBE518DB9FA7008E883D /* Foundation.framework */; };
 		68AABBE818DB9FA7008E883D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68AABBE718DB9FA7008E883D /* CoreGraphics.framework */; };
 		68AABBEA18DB9FA7008E883D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68AABBE918DB9FA7008E883D /* UIKit.framework */; };
@@ -56,6 +57,7 @@
 		683657D518E0670300FA50F2 /* ELAddSetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELAddSetsViewController.h; sourceTree = "<group>"; };
 		683657D618E0670300FA50F2 /* ELAddSetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELAddSetsViewController.m; sourceTree = "<group>"; };
 		683657D718E0670300FA50F2 /* ELAddSetsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELAddSetsViewController.xib; sourceTree = "<group>"; };
+		6841730518EA4CB30049829E /* ELWorkoutsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELWorkoutsViewController.xib; sourceTree = "<group>"; };
 		68AABBE218DB9FA7008E883D /* Evenlift iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Evenlift iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68AABBE518DB9FA7008E883D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		68AABBE718DB9FA7008E883D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -181,6 +183,7 @@
 				68AABC2C18DCF547008E883D /* ELLoginViewController.xib */,
 				681F739C18DF223D00AE982D /* ELWorkoutsViewController.h */,
 				681F739D18DF223D00AE982D /* ELWorkoutsViewController.m */,
+				6841730518EA4CB30049829E /* ELWorkoutsViewController.xib */,
 				683657D518E0670300FA50F2 /* ELAddSetsViewController.h */,
 				683657D618E0670300FA50F2 /* ELAddSetsViewController.m */,
 				683657D718E0670300FA50F2 /* ELAddSetsViewController.xib */,
@@ -308,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				683657D918E0670300FA50F2 /* ELAddSetsViewController.xib in Resources */,
+				6841730618EA4CB30049829E /* ELWorkoutsViewController.xib in Resources */,
 				68AABC2E18DCF547008E883D /* ELLoginViewController.xib in Resources */,
 				68AABBF018DB9FA7008E883D /* InfoPlist.strings in Resources */,
 				68CAE3EB18DDED9D0080F7C5 /* ELHomeViewController.xib in Resources */,
