@@ -13,6 +13,7 @@
 		6841730618EA4CB30049829E /* ELWorkoutsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6841730518EA4CB30049829E /* ELWorkoutsViewController.xib */; };
 		686B857018EAB34D00E76E15 /* ELWorkoutTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 686B856E18EAB34D00E76E15 /* ELWorkoutTableViewCell.m */; };
 		686B857118EAB34D00E76E15 /* ELWorkoutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686B856F18EAB34D00E76E15 /* ELWorkoutTableViewCell.xib */; };
+		686B857518EACE4700E76E15 /* ELDateTimeUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 686B857418EACE4700E76E15 /* ELDateTimeUtil.m */; };
 		68AABBE618DB9FA7008E883D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68AABBE518DB9FA7008E883D /* Foundation.framework */; };
 		68AABBE818DB9FA7008E883D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68AABBE718DB9FA7008E883D /* CoreGraphics.framework */; };
 		68AABBEA18DB9FA7008E883D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68AABBE918DB9FA7008E883D /* UIKit.framework */; };
@@ -63,6 +64,8 @@
 		686B856D18EAB34D00E76E15 /* ELWorkoutTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ELWorkoutTableViewCell.h; path = Views/ELWorkoutTableViewCell.h; sourceTree = "<group>"; };
 		686B856E18EAB34D00E76E15 /* ELWorkoutTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ELWorkoutTableViewCell.m; path = Views/ELWorkoutTableViewCell.m; sourceTree = "<group>"; };
 		686B856F18EAB34D00E76E15 /* ELWorkoutTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ELWorkoutTableViewCell.xib; path = Views/ELWorkoutTableViewCell.xib; sourceTree = "<group>"; };
+		686B857318EACE4700E76E15 /* ELDateTimeUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ELDateTimeUtil.h; path = Helpers/ELDateTimeUtil.h; sourceTree = "<group>"; };
+		686B857418EACE4700E76E15 /* ELDateTimeUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ELDateTimeUtil.m; path = Helpers/ELDateTimeUtil.m; sourceTree = "<group>"; };
 		68AABBE218DB9FA7008E883D /* Evenlift iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Evenlift iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68AABBE518DB9FA7008E883D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		68AABBE718DB9FA7008E883D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -154,6 +157,15 @@
 			name = Libraries;
 			sourceTree = "<group>";
 		};
+		686B857218EACE1800E76E15 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				686B857318EACE4700E76E15 /* ELDateTimeUtil.h */,
+				686B857418EACE4700E76E15 /* ELDateTimeUtil.m */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		68AABBD918DB9FA7008E883D = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +209,7 @@
 		68AABBEB18DB9FA7008E883D /* Evenlift iOS */ = {
 			isa = PBXGroup;
 			children = (
+				686B857218EACE1800E76E15 /* Helpers */,
 				686B856C18EAB2EC00E76E15 /* Libraries */,
 				68AABBF418DB9FA7008E883D /* ELAppDelegate.h */,
 				68AABBF518DB9FA7008E883D /* ELAppDelegate.m */,
@@ -368,6 +381,7 @@
 				68AABBF618DB9FA7008E883D /* ELAppDelegate.m in Sources */,
 				68F078F818E2206C004D14AE /* MBProgressHUD.m in Sources */,
 				686B857018EAB34D00E76E15 /* ELWorkoutTableViewCell.m in Sources */,
+				686B857518EACE4700E76E15 /* ELDateTimeUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

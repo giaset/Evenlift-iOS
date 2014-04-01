@@ -107,7 +107,7 @@
     // First create the workout on Firebase
     self.currentWorkoutRef = [self.firebase childByAutoId];
     
-    [[self.currentWorkoutRef childByAppendingPath:@"start_time"] setValue:[self getCurrentTime]];
+    [[self.currentWorkoutRef childByAppendingPath:@"start_time"] setValue:[ELDateTimeUtil getCurrentTime]];
     
     [[self.currentWorkoutRef childByAppendingPath:@"title"] setValue:title];
     
@@ -170,13 +170,8 @@
 
 - (void)finishWorkout
 {
-    [[self.currentWorkoutRef childByAppendingPath:@"end_time"] setValue:[self getCurrentTime]];
+    [[self.currentWorkoutRef childByAppendingPath:@"end_time"] setValue:[ELDateTimeUtil getCurrentTime]];
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (NSString*)getCurrentTime
-{
-    return [[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] stringValue];
 }
 
 #pragma mark - Table view data source
