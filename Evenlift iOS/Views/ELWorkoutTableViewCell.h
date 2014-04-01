@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ELWorkout.h"
 
 @interface ELWorkoutTableViewCell : UITableViewCell
+
+- (void) configureForWorkout:(ELWorkout*)workout;
+
+@property (weak, nonatomic) IBOutlet UILabel *dateAndTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
 @end

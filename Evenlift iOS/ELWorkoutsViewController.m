@@ -10,6 +10,7 @@
 #import <Firebase/Firebase.h>
 #import "ELAddSetsViewController.h"
 #import "ELWorkout.h"
+#import "ELWorkoutTableViewCell.h"
 
 @interface ELWorkoutsViewController ()
 
@@ -41,6 +42,9 @@
     [super viewDidLoad];
     
     self.tableView.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0);
+    
+    // Register ELWorkoutTableViewCell nib for this tableView
+    [self.tableView registerNib:[UINib nibWithNibName:@"ELWorkoutTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WorkoutCell"];
     
     UIBarButtonItem* addWorkoutButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(popAddAlert)];
     self.navigationItem.rightBarButtonItem = addWorkoutButton;
@@ -191,17 +195,19 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
+    static NSString *CellIdentifier = @"WorkoutCell";
+    ELWorkoutTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Configure the cell...
     ELWorkout* workout = [self.workouts objectAtIndex:(self.workouts.count - 1 - indexPath.row)];
-    cell.textLabel.text = workout.title;
+    [cell configureForWorkout:workout];
     
     return cell;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 72;
 }
 
 @end

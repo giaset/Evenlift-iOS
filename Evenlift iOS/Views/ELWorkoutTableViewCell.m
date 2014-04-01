@@ -22,4 +22,11 @@
     // Configure the view for the selected state
 }
 
+- (void)configureForWorkout:(ELWorkout *)workout
+{
+    self.dateAndTitleLabel.text = workout.title;
+    NSString* timeString = [NSString stringWithFormat:@"%f - %f", workout.startTime, workout.endTime];
+    self.timeLabel.text = timeString;
+}
+
 @end
