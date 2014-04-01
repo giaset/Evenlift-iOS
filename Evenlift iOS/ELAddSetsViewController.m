@@ -138,25 +138,18 @@
 {
     UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 74)];
     
-    // Create the button and style it
-    UIButton* submitButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 15, 64, 44)];
+    // Create the button
+    UIButton* submitButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 10, 310, 64)];
     [submitButton setTitle:@"Submit" forState:UIControlStateNormal];
-    submitButton.titleLabel.font = [UIFont systemFontOfSize:20];
-    [submitButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [submitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     [submitButton addTarget:self action:@selector(submitSet) forControlEvents:UIControlEventTouchUpInside];
-    submitButton.layer.cornerRadius = 4;
-    submitButton.layer.borderWidth = 1.5;
-    submitButton.layer.borderColor = [UIColor redColor].CGColor;
-    submitButton.clipsToBounds = YES;
-    submitButton.contentEdgeInsets = UIEdgeInsetsMake(8, 8, 8, 8);
-    [submitButton setBackgroundImage:[self imageWithColor:[UIColor redColor]] forState:UIControlStateHighlighted];
-    [submitButton sizeToFit];
     
-    // Center the button horizontally
-    CGPoint newCenter = CGPointMake(submitButton.center.x, submitButton.center.y);
-    newCenter.x = 160;
-    submitButton.center = newCenter;
+    // Style the button
+    submitButton.titleLabel.font = [UIFont boldSystemFontOfSize:22];
+    [submitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    submitButton.layer.cornerRadius = 4;
+    submitButton.clipsToBounds = YES;
+    [submitButton setBackgroundColor:[UIColor redColor]];
+    [submitButton setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:0.792 green:0.024 blue:0.024 alpha:1.0]] forState:UIControlStateHighlighted];
     
     [footerView addSubview:submitButton];
     
