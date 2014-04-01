@@ -119,22 +119,22 @@
     workouts.title = @"Workouts";
     UINavigationController* workoutsNavController = [[UINavigationController alloc] initWithRootViewController:workouts];
     
-    // Initialize Stats viewController
-    UIViewController* stats = [[UIViewController alloc] init];
-    stats.title = @"Stats";
+    // Initialize Exercises viewController
+    UIViewController* exercises = [[UIViewController alloc] init];
+    exercises.title = @"Exercises";
     
-    // Set up right Logout button on Stats viewController
+    // Set up right Logout button on Exercises viewController
     UIBarButtonItem* logoutButton = [[UIBarButtonItem alloc]
                                      initWithTitle:@"Logout"
                                      style:UIBarButtonItemStyleBordered
                                      target:self
                                      action:@selector(logout)];
-    stats.navigationItem.rightBarButtonItem = logoutButton;
+    exercises.navigationItem.rightBarButtonItem = logoutButton;
     
-    UINavigationController* statsNavController = [[UINavigationController alloc] initWithRootViewController:stats];
+    UINavigationController* exercisesNavController = [[UINavigationController alloc] initWithRootViewController:exercises];
     
     // Set these viewControllers to the tabBarController and present it
-    NSArray* controllers = [NSArray arrayWithObjects:workoutsNavController, statsNavController, nil];
+    NSArray* controllers = [NSArray arrayWithObjects:workoutsNavController, exercisesNavController, nil];
     tabBarController.viewControllers = controllers;
     
     [self presentViewController:tabBarController animated:NO completion:nil];
