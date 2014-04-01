@@ -13,7 +13,8 @@
 
 - (void) configureForWorkout:(ELWorkout*)workout;
 
-@property (weak, nonatomic) IBOutlet UILabel *dateAndTitleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dayLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end

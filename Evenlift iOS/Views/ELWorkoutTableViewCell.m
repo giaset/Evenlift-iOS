@@ -24,17 +24,26 @@
 
 - (void)configureForWorkout:(ELWorkout *)workout
 {
-    // Set date & title label
-    NSString* dateString = [ELDateTimeUtil dateStringFromTimeStamp:workout.startTime];
-    if (![workout.title isEqualToString:@""]) {
-        NSString* titleString = [NSString stringWithFormat:@" - %@", workout.title];
-        dateString = [dateString stringByAppendingString:titleString];
-    }
-    self.dateAndTitleLabel.text = dateString;
+    NSDate* workoutDate = [NSDate dateWithTimeIntervalSince1970:[workout.startTime doubleValue]];
     
-    // Set time label
-    NSString* timeString = [NSString stringWithFormat:@"%@ - %@", [ELDateTimeUtil timeStringFromTimeStamp:workout.startTime], [ELDateTimeUtil timeStringFromTimeStamp:workout.endTime]];
-    self.timeLabel.text = timeString;
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    NSLocale* locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    dateFormatter.locale = locale;
+    
+    // Set day label
+    [dateFormatter setDateFormat:@"EEE"];
+    self.dayLabel.text = [[dateFormatter stringFromDate:workoutDate] uppercaseString];
+    
+    // Set date label
+    [dateFormatter setDateFormat:@"MM/dd"];
+    self.dateLabel.text = [dateFormatter stringFromDate:workoutDate];
+    
+    // Set title label
+    NSString* titleString = @"UNTITLED WORKOUT";
+    if (![workout.title isEqualToString:@""]) {
+        titleString = [workout.title uppercaseString];
+    }
+    self.titleLabel.text = titleString;
 }
 
 @end
