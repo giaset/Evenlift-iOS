@@ -135,23 +135,21 @@
 // Footer view
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 74;
+    return 64;
 }
 
 - (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 74)];
+    UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 64)];
     
     // Create the button
-    UIButton* submitButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 10, 310, 64)];
+    UIButton* submitButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 320, 64)];
     [submitButton setTitle:@"Submit" forState:UIControlStateNormal];
     [submitButton addTarget:self action:@selector(submitSet) forControlEvents:UIControlEventTouchUpInside];
     
     // Style the button
     submitButton.titleLabel.font = [UIFont boldSystemFontOfSize:22];
     [submitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    submitButton.layer.cornerRadius = 4;
-    submitButton.clipsToBounds = YES;
     [submitButton setBackgroundColor:[UIColor redColor]];
     [submitButton setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:0.792 green:0.024 blue:0.024 alpha:1.0]] forState:UIControlStateHighlighted];
     
