@@ -23,4 +23,14 @@
     return [timeFormat stringFromDate:date];
 }
 
++ (NSString*)dateStringFromTimeStamp:(NSNumber*)timeStamp {
+    NSDate* date = [NSDate dateWithTimeIntervalSince1970:[timeStamp doubleValue]];
+    NSDateFormatter* dateFormat = [[NSDateFormatter alloc] init];
+    NSLocale* locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    dateFormat.locale = locale;
+    [dateFormat setDateFormat:@"EEE, MMMM d, yyyy"];
+    
+    return [dateFormat stringFromDate:date];
+}
+
 @end

@@ -24,7 +24,10 @@
 
 - (void)configureForWorkout:(ELWorkout *)workout
 {
-    self.dateAndTitleLabel.text = workout.title;
+    // Set date & title label
+    self.dateAndTitleLabel.text = [ELDateTimeUtil dateStringFromTimeStamp:workout.startTime];
+    
+    // Set time label
     NSString* timeString = [NSString stringWithFormat:@"%@ - %@", [ELDateTimeUtil timeStringFromTimeStamp:workout.startTime], [ELDateTimeUtil timeStringFromTimeStamp:workout.endTime]];
     self.timeLabel.text = timeString;
 }

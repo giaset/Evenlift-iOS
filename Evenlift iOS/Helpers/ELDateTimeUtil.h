@@ -12,5 +12,6 @@
 
 + (NSNumber*)getCurrentTime;
 + (NSString*)timeStringFromTimeStamp:(NSNumber*)timeStamp;
++ (NSString*)dateStringFromTimeStamp:(NSNumber*)timeStamp;
 
 @end
