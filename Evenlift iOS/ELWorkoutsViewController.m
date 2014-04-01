@@ -24,7 +24,7 @@
 
 - (id)init
 {
-    self = [super initWithNibName:@"ELWorkoutsViewController" bundle:nil];
+    self = [super init];
     if (self) {
         // Set up the Firebase for this user's workouts
         NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
@@ -54,9 +54,23 @@
     }];
     
     [lastTenWorkoutsQuery observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
-        NSDictionary* workoutDict = snapshot.value;
-        ELWorkout* workoutObject = [[ELWorkout alloc] initWithDictionary:workoutDict];
-        [self.workouts removeObject:workoutObject];
+        ELWorkout* removedWorkout = [[ELWorkout alloc] initWithDictionary:(NSDictionary*)snapshot.value];
+        for (ELWorkout* workout in self.workouts) {
+            if (workout.startTime == removedWorkout.startTime) {
+                [self.workouts removeObject:workout];
+            }
+        }
+        [self.tableView reloadData];
+    }];
+    
+    [lastTenWorkoutsQuery observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
+        ELWorkout* modifiedWorkout = [[ELWorkout alloc] initWithDictionary:(NSDictionary*)snapshot.value];
+        for (ELWorkout* workout in self.workouts) {
+            if (workout.startTime == modifiedWorkout.startTime) {
+                workout.endTime = modifiedWorkout.endTime;
+                workout.title = modifiedWorkout.title;
+            }
+        }
         [self.tableView reloadData];
     }];
 }

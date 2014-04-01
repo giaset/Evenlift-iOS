@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		681F739F18DF223D00AE982D /* ELWorkoutsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 681F739D18DF223D00AE982D /* ELWorkoutsViewController.m */; };
-		681F73A018DF223D00AE982D /* ELWorkoutsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 681F739E18DF223D00AE982D /* ELWorkoutsViewController.xib */; };
 		683657D818E0670300FA50F2 /* ELAddSetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683657D618E0670300FA50F2 /* ELAddSetsViewController.m */; };
 		683657D918E0670300FA50F2 /* ELAddSetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 683657D718E0670300FA50F2 /* ELAddSetsViewController.xib */; };
 		68AABBE618DB9FA7008E883D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68AABBE518DB9FA7008E883D /* Foundation.framework */; };
@@ -54,7 +53,6 @@
 /* Begin PBXFileReference section */
 		681F739C18DF223D00AE982D /* ELWorkoutsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELWorkoutsViewController.h; sourceTree = "<group>"; };
 		681F739D18DF223D00AE982D /* ELWorkoutsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELWorkoutsViewController.m; sourceTree = "<group>"; };
-		681F739E18DF223D00AE982D /* ELWorkoutsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELWorkoutsViewController.xib; sourceTree = "<group>"; };
 		683657D518E0670300FA50F2 /* ELAddSetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELAddSetsViewController.h; sourceTree = "<group>"; };
 		683657D618E0670300FA50F2 /* ELAddSetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELAddSetsViewController.m; sourceTree = "<group>"; };
 		683657D718E0670300FA50F2 /* ELAddSetsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELAddSetsViewController.xib; sourceTree = "<group>"; };
@@ -183,7 +181,6 @@
 				68AABC2C18DCF547008E883D /* ELLoginViewController.xib */,
 				681F739C18DF223D00AE982D /* ELWorkoutsViewController.h */,
 				681F739D18DF223D00AE982D /* ELWorkoutsViewController.m */,
-				681F739E18DF223D00AE982D /* ELWorkoutsViewController.xib */,
 				683657D518E0670300FA50F2 /* ELAddSetsViewController.h */,
 				683657D618E0670300FA50F2 /* ELAddSetsViewController.m */,
 				683657D718E0670300FA50F2 /* ELAddSetsViewController.xib */,
@@ -313,7 +310,6 @@
 				683657D918E0670300FA50F2 /* ELAddSetsViewController.xib in Resources */,
 				68AABC2E18DCF547008E883D /* ELLoginViewController.xib in Resources */,
 				68AABBF018DB9FA7008E883D /* InfoPlist.strings in Resources */,
-				681F73A018DF223D00AE982D /* ELWorkoutsViewController.xib in Resources */,
 				68CAE3EB18DDED9D0080F7C5 /* ELHomeViewController.xib in Resources */,
 				68AABBF818DB9FA7008E883D /* Images.xcassets in Resources */,
 			);
