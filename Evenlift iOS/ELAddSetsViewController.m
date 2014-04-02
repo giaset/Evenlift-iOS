@@ -22,6 +22,8 @@
 
 @property (nonatomic, strong) Firebase* userExercisesRef;
 
+@property (nonatomic, copy) NSString* workoutId;
+
 @end
 
 @implementation ELAddSetsViewController
@@ -31,6 +33,8 @@
     self = [super init];
     if (self) {
         self.workoutRef = workoutRef;
+        
+        self.workoutId = workoutRef.name;
         
         // Set up user's Exercises Firebase
         NSString* uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
@@ -189,7 +193,7 @@
     NSString* setID = setRef.name;
     
     // Add a reference to this set to the appropriate Exercise
-    [[self.userExercisesRef childByAppendingPath:[NSString stringWithFormat:@"%@/sets/%@", self.exerciseField.text, setID]] setValue:@YES];
+    [[self.userExercisesRef childByAppendingPath:[NSString stringWithFormat:@"%@/sets/%@/%@", self.exerciseField.text, self.workoutId, setID]] setValue:@YES];
     
     // Actually log the set
     [setRef setValue:@{@"exercise": self.exerciseField.text, @"reps": self.repsField.text, @"weight": self.weightField.text, @"rest": self.restField.text, @"notes": self.notesField.text, @"time": [ELDateTimeUtil getCurrentTime]} withCompletionBlock:^(NSError *error, Firebase *ref) {
