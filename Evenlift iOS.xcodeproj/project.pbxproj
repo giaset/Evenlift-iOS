@@ -42,6 +42,8 @@
 		68CAE3EB18DDED9D0080F7C5 /* ELHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68CAE3E918DDED9D0080F7C5 /* ELHomeViewController.xib */; };
 		68D1432318EA272600AB3FE8 /* ELWorkout.m in Sources */ = {isa = PBXBuildFile; fileRef = 68D1432218EA272600AB3FE8 /* ELWorkout.m */; };
 		68F078F818E2206C004D14AE /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F078F718E2206C004D14AE /* MBProgressHUD.m */; };
+		68F0CFA218EC2A73003DDC10 /* ELExercisesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F0CFA018EC2A73003DDC10 /* ELExercisesTableViewController.m */; };
+		68F0CFA318EC2A73003DDC10 /* ELExercisesTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68F0CFA118EC2A73003DDC10 /* ELExercisesTableViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +104,9 @@
 		68D1432218EA272600AB3FE8 /* ELWorkout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ELWorkout.m; path = Model/ELWorkout.m; sourceTree = "<group>"; };
 		68F078F618E2206C004D14AE /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		68F078F718E2206C004D14AE /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		68F0CF9F18EC2A73003DDC10 /* ELExercisesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELExercisesTableViewController.h; sourceTree = "<group>"; };
+		68F0CFA018EC2A73003DDC10 /* ELExercisesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELExercisesTableViewController.m; sourceTree = "<group>"; };
+		68F0CFA118EC2A73003DDC10 /* ELExercisesTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELExercisesTableViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +229,9 @@
 				683657D518E0670300FA50F2 /* ELAddSetsViewController.h */,
 				683657D618E0670300FA50F2 /* ELAddSetsViewController.m */,
 				683657D718E0670300FA50F2 /* ELAddSetsViewController.xib */,
+				68F0CF9F18EC2A73003DDC10 /* ELExercisesTableViewController.h */,
+				68F0CFA018EC2A73003DDC10 /* ELExercisesTableViewController.m */,
+				68F0CFA118EC2A73003DDC10 /* ELExercisesTableViewController.xib */,
 				68CAE3E718DDED9D0080F7C5 /* ELHomeViewController.h */,
 				68CAE3E818DDED9D0080F7C5 /* ELHomeViewController.m */,
 				68CAE3E918DDED9D0080F7C5 /* ELHomeViewController.xib */,
@@ -353,6 +361,7 @@
 				686B857118EAB34D00E76E15 /* ELWorkoutTableViewCell.xib in Resources */,
 				68AABBF018DB9FA7008E883D /* InfoPlist.strings in Resources */,
 				68CAE3EB18DDED9D0080F7C5 /* ELHomeViewController.xib in Resources */,
+				68F0CFA318EC2A73003DDC10 /* ELExercisesTableViewController.xib in Resources */,
 				68AABBF818DB9FA7008E883D /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -373,6 +382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				68AABC2D18DCF547008E883D /* ELLoginViewController.m in Sources */,
+				68F0CFA218EC2A73003DDC10 /* ELExercisesTableViewController.m in Sources */,
 				68AABBF218DB9FA7008E883D /* main.m in Sources */,
 				68D1432318EA272600AB3FE8 /* ELWorkout.m in Sources */,
 				68CAE3EA18DDED9D0080F7C5 /* ELHomeViewController.m in Sources */,
