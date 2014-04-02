@@ -10,6 +10,8 @@
 #import "MBProgressHUD.h"
 #import <QuartzCore/QuartzCore.h>
 
+#define kEvenliftURL @"https://evenlift.firebaseio.com/"
+
 @interface ELAddSetsViewController ()
 
 @property (nonatomic, retain) UITextField* exerciseField;
@@ -17,6 +19,8 @@
 @property (nonatomic, retain) UITextField* weightField;
 @property (nonatomic, retain) UITextField* restField;
 @property (nonatomic, retain) UITextField* notesField;
+
+@property (nonatomic, strong) Firebase* userExercisesRef;
 
 @end
 
@@ -27,6 +31,11 @@
     self = [super init];
     if (self) {
         self.workoutRef = workoutRef;
+        
+        // Set up user's Exercises Firebase
+        NSString* uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
+        self.userExercisesRef = [[[Firebase alloc] initWithUrl:kEvenliftURL] childByAppendingPath:[NSString stringWithFormat:@"users/%@/exercises", uid]];
+        
         self.title = @"Add Set";
     }
     return self;
@@ -177,6 +186,12 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     Firebase* setRef = [[self.workoutRef childByAppendingPath:@"sets"] childByAutoId];
     
+    NSString* setID = setRef.name;
+    
+    // Add a reference to this set to the appropriate Exercise
+    [[self.userExercisesRef childByAppendingPath:[NSString stringWithFormat:@"%@/sets/%@", self.exerciseField.text, setID]] setValue:@YES];
+    
+    // Actually log the set
     [setRef setValue:@{@"exercise": self.exerciseField.text, @"reps": self.repsField.text, @"weight": self.weightField.text, @"rest": self.restField.text, @"notes": self.notesField.text, @"time": [ELDateTimeUtil getCurrentTime]} withCompletionBlock:^(NSError *error, Firebase *ref) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         self.weightField.text = @"";
