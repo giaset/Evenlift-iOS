@@ -44,6 +44,10 @@
         titleString = [workout.title uppercaseString];
     }
     self.titleLabel.text = titleString;
+    
+    // Show/hide "IN PROGRESS" label depending on whether
+    // or not this Workout has an end_time
+    self.inProgressLabel.hidden = (workout.endTime == nil) ? 0 : 1;
 }
 
 @end

@@ -50,9 +50,7 @@
     self.navigationItem.rightBarButtonItem = addWorkoutButton;
     
     // Bind to user's workouts Firebase
-    FQuery* lastTenWorkoutsQuery = [self.firebase queryLimitedToNumberOfChildren:10];
-    
-    [lastTenWorkoutsQuery observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot* snapshot) {
+    [self.firebase observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot* snapshot) {
         NSDictionary* workoutDict = snapshot.value;
         ELWorkout* workoutObject = [[ELWorkout alloc] initWithDictionary:workoutDict];
         // Add a little delay here to prevent new cell popping up at top before addSetsViewController is fully visible
@@ -65,7 +63,7 @@
         });
     }];
     
-    [lastTenWorkoutsQuery observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
+    [self.firebase observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
         ELWorkout* removedWorkout = [[ELWorkout alloc] initWithDictionary:(NSDictionary*)snapshot.value];
         NSMutableArray* toDelete = [NSMutableArray array];
         for (ELWorkout* workout in self.workouts) {
@@ -77,7 +75,7 @@
         [self.tableView reloadData];
     }];
     
-    [lastTenWorkoutsQuery observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
+    [self.firebase observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
         ELWorkout* modifiedWorkout = [[ELWorkout alloc] initWithDictionary:(NSDictionary*)snapshot.value];
         for (ELWorkout* workout in self.workouts) {
             if ([workout.startTime doubleValue] == [modifiedWorkout.startTime doubleValue]) {
@@ -87,6 +85,13 @@
         }
         [self.tableView reloadData];
     }];
+    
+    // Customize the back button title for the next viewController on the stack...
+    self.navigationItem.backBarButtonItem =
+    [[UIBarButtonItem alloc] initWithTitle:@""
+                                      style:UIBarButtonItemStyleBordered
+                                     target:nil
+                                     action:nil];
 }
 
 - (IBAction)popAddAlert
@@ -114,15 +119,14 @@
     ELAddSetsViewController* addSetsViewController = [[ELAddSetsViewController alloc] initWithWorkoutRef:self.currentWorkoutRef];
     
     // Set up left Cancel button
-    UIBarButtonItem* cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonClicked)];
-    addSetsViewController.navigationItem.leftBarButtonItem = cancelButton;
+    /*UIBarButtonItem* cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonClicked)];
+    addSetsViewController.navigationItem.leftBarButtonItem = cancelButton;*/
     
-    // Set up right Close button
-    UIBarButtonItem* closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonClicked)];
-    addSetsViewController.navigationItem.rightBarButtonItem = closeButton;
+    // Set up right Done button
+    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonClicked)];
+    addSetsViewController.navigationItem.rightBarButtonItem = doneButton;
     
-    UINavigationController* addSetsNavController = [[UINavigationController alloc] initWithRootViewController:addSetsViewController];
-    [self presentViewController:addSetsNavController animated:YES completion:nil];
+    [self.navigationController pushViewController:addSetsViewController animated:YES];
 }
 
 - (IBAction)cancelButtonClicked{
@@ -171,7 +175,7 @@
 - (void)finishWorkout
 {
     [[self.currentWorkoutRef childByAppendingPath:@"end_time"] setValue:[ELDateTimeUtil getCurrentTime]];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Table view data source

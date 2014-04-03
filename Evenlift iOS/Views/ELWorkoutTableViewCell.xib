@@ -32,11 +32,19 @@
                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(IN PROGRESS)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8vs-sB-HUp">
+                        <rect key="frame" x="80" y="50" width="74" height="13"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="10"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </tableViewCellContentView>
             <connections>
                 <outlet property="dateLabel" destination="aPY-Ah-86a" id="NBD-bN-dIM"/>
                 <outlet property="dayLabel" destination="HZV-cJ-1dC" id="O04-wi-sxz"/>
+                <outlet property="inProgressLabel" destination="8vs-sB-HUp" id="3Bs-r1-Qkk"/>
                 <outlet property="titleLabel" destination="8Y3-Wm-bHd" id="9cI-vn-Lh7"/>
             </connections>
         </tableViewCell>

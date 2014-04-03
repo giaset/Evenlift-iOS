@@ -40,7 +40,7 @@
         NSString* uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
         self.userExercisesRef = [[[Firebase alloc] initWithUrl:kEvenliftURL] childByAppendingPath:[NSString stringWithFormat:@"users/%@/exercises", uid]];
         
-        self.title = @"Add Set";
+        self.title = @"Current Workout";
     }
     return self;
 }
@@ -157,7 +157,7 @@
     
     // Create the button
     UIButton* submitButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 320, 64)];
-    [submitButton setTitle:@"Submit" forState:UIControlStateNormal];
+    [submitButton setTitle:@"Add Set" forState:UIControlStateNormal];
     [submitButton addTarget:self action:@selector(submitSet) forControlEvents:UIControlEventTouchUpInside];
     
     // Style the button
