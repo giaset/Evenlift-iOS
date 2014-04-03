@@ -7,35 +7,26 @@
 //
 
 #import "ELWorkout.h"
-#import <Firebase/Firebase.h>
-
-#define kWorkoutsURL @"https://evenlift.firebaseio.com/workouts"
-
-@interface ELWorkout ()
-
-@property (nonatomic, strong) Firebase* workoutRef;
-
-@end
 
 @implementation ELWorkout
 
-- (id)initWithWorkoutId:(NSString*)workoutId
+- (id)initWithDictionary:(NSDictionary*)dict
 {
     self = [super init];
     if (self) {
-        self.workoutId = workoutId;
-        
-        // Set up the Firebase for this workout
-        self.workoutRef = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"https://evenlift.firebaseio.com/workouts/%@", self.workoutId]];
-        
-        // Bind to the workout on Firebase
-        [self.workoutRef observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
-            self.title = snapshot.value[@"title"];
-            self.startTime = snapshot.value[@"start_time"];
-            self.endTime = snapshot.value[@"end_time"];
-        }];
+        self.workoutId = [dict objectForKey:@"workout_id"];
+        self.title = [dict objectForKey:@"title"];
+        self.startTime = (NSNumber*)[dict objectForKey:@"start_time"];
+        self.endTime = (NSNumber*)[dict objectForKey:@"end_time"];
     }
     return self;
+}
+
+- (void)updateWithDictionary:(NSDictionary *)dict
+{
+    self.title = [dict objectForKey:@"title"];
+    self.startTime = (NSNumber*)[dict objectForKey:@"start_time"];
+    self.endTime = (NSNumber*)[dict objectForKey:@"end_time"];
 }
 
 @end

@@ -57,9 +57,41 @@
     
     // Bind to user's workouts Firebase
     [self.userWorkoutsRef observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot* snapshot) {
-        ELWorkout* workout = [[ELWorkout alloc] initWithWorkoutId:snapshot.name];
-        [self.workouts addObject:workout];
-        [self.tableView reloadData];
+        NSString* workoutId = snapshot.name;
+        // Bind to each individual workout's Firebase
+        [[self.allWorkoutsRef childByAppendingPath:workoutId] observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+            // Check if the workout was deleted
+            if(snapshot.value == [NSNull null]) {
+                NSMutableArray* toDelete = [NSMutableArray array];
+                for (ELWorkout* workout in self.workouts) {
+                    if (workout.workoutId == workoutId) {
+                        [toDelete addObject:workout];
+                    }
+                }
+                [self.workouts removeObjectsInArray:toDelete];
+            } else {
+                // If not, check if it exists in our array
+                BOOL exists = NO;
+                
+                for (ELWorkout* workout in self.workouts) {
+                    if (workout.workoutId == workoutId) {
+                        // If it does, update it
+                        exists = YES;
+                        [workout updateWithDictionary:snapshot.value];
+                        break;
+                    }
+                }
+                
+                // If it doesn't, create it
+                if (!exists) {
+                    NSMutableDictionary* dict = [[NSMutableDictionary alloc] initWithDictionary:snapshot.value];
+                    [dict setObject:workoutId forKey:@"workout_id"];
+                    ELWorkout* workout = [[ELWorkout alloc] initWithDictionary:dict];
+                    [self.workouts addObject:workout];
+                }
+            }
+            [self.tableView reloadData];
+        }];
     }];
     
     /*[self.firebase observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
