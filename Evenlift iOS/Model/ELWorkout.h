@@ -10,8 +10,9 @@
 
 @interface ELWorkout : NSObject
 
-- (id)initWithDictionary:(NSDictionary*)dict;
+- (id)initWithWorkoutId:(NSString*)workoutId;
 
+@property (nonatomic, copy) NSString* workoutId;
 @property (nonatomic, copy) NSString* title;
 @property (nonatomic, strong) NSNumber* startTime;
 @property (nonatomic, strong) NSNumber* endTime;

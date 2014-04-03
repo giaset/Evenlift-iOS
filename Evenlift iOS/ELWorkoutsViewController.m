@@ -14,7 +14,8 @@
 
 @interface ELWorkoutsViewController ()
 
-@property (nonatomic, strong) Firebase* firebase;
+@property (nonatomic, strong) Firebase* allWorkoutsRef;
+@property (nonatomic, strong) Firebase* userWorkoutsRef;
 @property (nonatomic, strong) Firebase* currentWorkoutRef;
 
 @property (nonatomic, strong) NSMutableArray* workouts;
@@ -27,11 +28,16 @@
 {
     self = [super initWithNibName:@"ELWorkoutsViewController" bundle:nil];
     if (self) {
+        // Set up the Firebase for all workouts
+        self.allWorkoutsRef = [[Firebase alloc] initWithUrl:@"https://evenlift.firebaseio.com/workouts/"];
+        
         // Set up the Firebase for this user's workouts
         NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
         NSString* uid = [userDefaults stringForKey:@"uid"];
-        NSString* userWorkoutsUrl = [NSString stringWithFormat:@"%@%@", @"https://evenlift.firebaseio.com/workouts/", uid];
-        self.firebase = [[Firebase alloc] initWithUrl:userWorkoutsUrl];
+        NSString* userWorkoutsUrl = [NSString stringWithFormat:@"https://evenlift.firebaseio.com/users/%@/workouts/", uid];
+        self.userWorkoutsRef = [[Firebase alloc] initWithUrl:userWorkoutsUrl];
+        
+        // Set up our local array that is the data source to our table view
         self.workouts = [[NSMutableArray alloc] init];
     }
     return self;
@@ -50,14 +56,13 @@
     self.navigationItem.rightBarButtonItem = addWorkoutButton;
     
     // Bind to user's workouts Firebase
-    [self.firebase observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot* snapshot) {
-        NSDictionary* workoutDict = snapshot.value;
-        ELWorkout* workoutObject = [[ELWorkout alloc] initWithDictionary:workoutDict];
-        [self.workouts addObject:workoutObject];
+    [self.userWorkoutsRef observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot* snapshot) {
+        ELWorkout* workout = [[ELWorkout alloc] initWithWorkoutId:snapshot.name];
+        [self.workouts addObject:workout];
         [self.tableView reloadData];
     }];
     
-    [self.firebase observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
+    /*[self.firebase observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
         ELWorkout* removedWorkout = [[ELWorkout alloc] initWithDictionary:(NSDictionary*)snapshot.value];
         NSMutableArray* toDelete = [NSMutableArray array];
         for (ELWorkout* workout in self.workouts) {
@@ -78,7 +83,7 @@
             }
         }
         [self.tableView reloadData];
-    }];
+    }];*/
     
     // Customize the back button title for the next viewController on the stack...
     self.navigationItem.backBarButtonItem =
@@ -104,12 +109,17 @@
 - (void)launchAddSetsViewControllerWithTitle:(NSString*)title
 {
     // First create the workout on Firebase
-    self.currentWorkoutRef = [self.firebase childByAutoId];
+    self.currentWorkoutRef = [self.allWorkoutsRef childByAutoId];
     
     [[self.currentWorkoutRef childByAppendingPath:@"start_time"] setValue:[ELDateTimeUtil getCurrentTime]];
     
     [[self.currentWorkoutRef childByAppendingPath:@"title"] setValue:title];
     
+    // Next, add a reference to this workout to the user's workout list
+    NSString* workoutId = self.currentWorkoutRef.name;
+    [[self.userWorkoutsRef childByAppendingPath:workoutId] setValue:@YES];
+    
+    // Finally, create the addSetsViewController
     ELAddSetsViewController* addSetsViewController = [[ELAddSetsViewController alloc] initWithWorkoutRef:self.currentWorkoutRef];
     
     // Set up left Cancel button
