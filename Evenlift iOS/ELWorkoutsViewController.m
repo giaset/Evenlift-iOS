@@ -138,7 +138,7 @@
     [addAlert show];
 }
 
-- (void)launchAddSetsViewControllerWithTitle:(NSString*)title
+- (void)createWorkoutWithTitle:(NSString*)title
 {
     // First create the workout on Firebase
     self.currentWorkoutRef = [self.allWorkoutsRef childByAutoId];
@@ -152,11 +152,16 @@
     [[self.userWorkoutsRef childByAppendingPath:workoutId] setValue:@YES];
     
     // Finally, create the addSetsViewController
+    [self launchAddSetsViewControllerForCurrentWorkoutRef];
+}
+
+- (void)launchAddSetsViewControllerForCurrentWorkoutRef
+{
     ELAddSetsViewController* addSetsViewController = [[ELAddSetsViewController alloc] initWithWorkoutRef:self.currentWorkoutRef];
     
     // Set up left Cancel button
     /*UIBarButtonItem* cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonClicked)];
-    addSetsViewController.navigationItem.leftBarButtonItem = cancelButton;*/
+     addSetsViewController.navigationItem.leftBarButtonItem = cancelButton;*/
     
     // Set up right Done button
     UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonClicked)];
@@ -198,7 +203,7 @@
     } else if (alertView.tag == 3 && buttonIndex == 1) {
         // Clicked OK on "Add" Alert View
         NSString* workoutTitle = [alertView textFieldAtIndex:0].text;
-        [self launchAddSetsViewControllerWithTitle:workoutTitle];
+        [self createWorkoutWithTitle:workoutTitle];
     }
 }
 
@@ -246,7 +251,6 @@
 }
 
 // Editing of cells! (in our case, deletion)
-
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;
@@ -258,9 +262,23 @@
         // Delete the row from the data source
         ELWorkout* workout = [self.workouts objectAtIndex:(self.workouts.count - 1 - indexPath.row)];
         [[self.allWorkoutsRef childByAppendingPath:workout.workoutId] removeValue];
-        
-        //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
+}
+
+// Cell selection
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Get the Workout we clicked on
+    ELWorkout* workout = [self.workouts objectAtIndex:(self.workouts.count - 1 - indexPath.row)];
+    
+    if (workout.endTime == nil) {
+        // If the clicked workout is still in progress, go back to the Add Sets screen
+        self.currentWorkoutRef = [self.allWorkoutsRef childByAppendingPath:workout.workoutId];
+        [self launchAddSetsViewControllerForCurrentWorkoutRef];
+    } else {
+        
+    }
+
 }
 
 @end
