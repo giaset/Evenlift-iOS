@@ -9,6 +9,7 @@
 #import "ELAddSetsViewController.h"
 #import "MBProgressHUD.h"
 #import <QuartzCore/QuartzCore.h>
+#import "ELCountdownViewController.h"
 
 #define kEvenliftURL @"https://evenlift.firebaseio.com/"
 
@@ -195,6 +196,12 @@
         self.weightField.text = @"";
         self.notesField.text = @"";
     }];
+    
+    // If user specified a rest time, show countdown
+    if (![self.restField.text isEqualToString:@""]) {
+        ELCountdownViewController* countdownViewController = [[ELCountdownViewController alloc] initWithDurationInSeconds:[self.restField.text intValue]];
+        [self presentViewController:countdownViewController animated:NO completion:nil];
+    }
 }
 
 @end
