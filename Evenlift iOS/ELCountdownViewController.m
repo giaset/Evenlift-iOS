@@ -38,8 +38,6 @@ int mSeconds;
 
 - (void)startTimer
 {
-    [self.timer invalidate];
-    
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateTimer:) userInfo:nil repeats:YES];
 }
 
@@ -47,7 +45,8 @@ int mSeconds;
 {
     mSeconds--;
     
-    if (mSeconds == 0) {
+    if (mSeconds <= 0) {
+        [theTimer invalidate];
         [self dismissCountdown];
     } else {
         self.countdownLabel.text = [NSString stringWithFormat:@"%d", mSeconds];
@@ -55,6 +54,7 @@ int mSeconds;
 }
 
 - (IBAction)skipButtonPressed {
+    [self.timer invalidate];
     [self dismissCountdown];
 }
 
