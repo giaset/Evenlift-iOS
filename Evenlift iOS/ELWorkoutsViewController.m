@@ -20,6 +20,8 @@
 
 @property (nonatomic, strong) NSMutableArray* workouts;
 
+@property NSString* userId;
+
 @end
 
 @implementation ELWorkoutsViewController
@@ -34,6 +36,7 @@
         // Set up the Firebase for this user's workouts
         NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
         NSString* uid = [userDefaults stringForKey:@"uid"];
+        self.userId = uid;
         NSString* userWorkoutsUrl = [NSString stringWithFormat:@"https://evenlift.firebaseio.com/users/%@/workouts/", uid];
         self.userWorkoutsRef = [[Firebase alloc] initWithUrl:userWorkoutsUrl];
         
@@ -146,6 +149,8 @@
     [[self.currentWorkoutRef childByAppendingPath:@"start_time"] setValue:[ELDateTimeUtil getCurrentTime]];
     
     [[self.currentWorkoutRef childByAppendingPath:@"title"] setValue:title];
+    
+    [[self.currentWorkoutRef childByAppendingPath:@"user_id"] setValue:self.userId];
     
     // Next, add a reference to this workout to the user's workout list
     NSString* workoutId = self.currentWorkoutRef.name;
