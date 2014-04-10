@@ -10,12 +10,13 @@
 #import <QuartzCore/QuartzCore.h>
 #import "ELCountdownViewController.h"
 #import "SVProgressHUD.h"
+#import "ELExerciseAutocompleteTextField.h"
 
 #define kEvenliftURL @"https://evenlift.firebaseio.com/"
 
 @interface ELAddSetsViewController ()
 
-@property (nonatomic, retain) UITextField* exerciseField;
+@property (nonatomic, retain) ELExerciseAutocompleteTextField* exerciseField;
 @property (nonatomic, retain) UITextField* repsField;
 @property (nonatomic, retain) UITextField* weightField;
 @property (nonatomic, retain) UITextField* restField;
@@ -51,7 +52,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.tableView.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0);
+    
+    // Dismiss the keyboard when the user taps outside of a text field
+    UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+    [self.view addGestureRecognizer:singleTap];
+}
+
+- (void)handleSingleTap:(UITapGestureRecognizer *)sender
+{
+    [self.view endEditing:YES];
 }
 
 #pragma mark - Table view data source
@@ -82,7 +93,10 @@
         switch (indexPath.row) {
             case 0:
                 cell.textLabel.text = @"Exercise";
-                self.exerciseField = textField;
+                self.exerciseField = [[ELExerciseAutocompleteTextField alloc] initWithFrame:CGRectMake(100, 0, 320, 54)];
+                self.exerciseField.font = futura;
+                self.exerciseField.tag = 0;
+                [cell.contentView addSubview:textField];
                 break;
             case 1:
                 cell.textLabel.text = @"Reps";
@@ -108,9 +122,11 @@
                 break;
         }
         
-        textField.font = futura;
-        textField.tag = indexPath.row;
-        [cell.contentView addSubview:textField];
+        if (indexPath.row != 0) {
+            textField.font = futura;
+            textField.tag = indexPath.row;
+            [cell.contentView addSubview:textField];
+        }
     }
     
     // Configure the cell...
