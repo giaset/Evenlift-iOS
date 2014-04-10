@@ -25,6 +25,8 @@
 
 @property (nonatomic, copy) NSString* workoutId;
 
+@property UIButton* submitButton;
+
 @end
 
 @implementation ELAddSetsViewController
@@ -167,6 +169,8 @@
     [submitButton setBackgroundColor:[UIColor redColor]];
     [submitButton setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:0.792 green:0.024 blue:0.024 alpha:1.0]] forState:UIControlStateHighlighted];
     
+    self.submitButton = submitButton;
+    
     [footerView addSubview:submitButton];
     
     return footerView;
@@ -188,6 +192,8 @@
 
 - (IBAction)submitSet
 {
+    self.submitButton.enabled = NO;
+    
     BOOL userSpecifiedRestTime = ![self.restField.text isEqualToString:@""];
     
     if (!userSpecifiedRestTime) {
@@ -209,6 +215,7 @@
         }
         self.weightField.text = @"";
         self.notesField.text = @"";
+        self.submitButton.enabled = YES;
     }];
     
     // If user specified a rest time, show countdown
