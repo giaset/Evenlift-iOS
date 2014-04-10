@@ -213,8 +213,8 @@
         if (!userSpecifiedRestTime) {
             [SVProgressHUD showSuccessWithStatus:@"Set added succesfully!"];
         }
-        self.weightField.text = @"";
-        self.notesField.text = @"";
+        [self clearAllTextFields];
+        [self.view endEditing:YES];
         self.submitButton.enabled = YES;
     }];
     
@@ -224,6 +224,15 @@
         countdownViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         [self presentViewController:countdownViewController animated:YES completion:nil];
     }
+}
+
+- (void)clearAllTextFields
+{
+    self.exerciseField.text = @"";
+    self.repsField.text = @"";
+    self.weightField.text = @"";
+    self.restField.text = @"";
+    self.notesField.text = @"";
 }
 
 @end
