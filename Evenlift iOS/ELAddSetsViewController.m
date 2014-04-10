@@ -188,9 +188,13 @@
 
 - (IBAction)submitSet
 {
-    [SVProgressHUD setBackgroundColor:[UIColor blackColor]];
-    [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
-    [SVProgressHUD show];
+    BOOL userSpecifiedRestTime = ![self.restField.text isEqualToString:@""];
+    
+    if (!userSpecifiedRestTime) {
+        [SVProgressHUD setBackgroundColor:[UIColor blackColor]];
+        [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
+        [SVProgressHUD show];
+    }
     Firebase* setRef = [[self.workoutRef childByAppendingPath:@"sets"] childByAutoId];
     
     NSString* setID = setRef.name;
@@ -200,13 +204,15 @@
     
     // Actually log the set
     [setRef setValue:@{@"exercise": self.exerciseField.text, @"reps": self.repsField.text, @"weight": self.weightField.text, @"rest": self.restField.text, @"notes": self.notesField.text, @"time": [ELDateTimeUtil getCurrentTime]} withCompletionBlock:^(NSError *error, Firebase *ref) {
-        [SVProgressHUD showSuccessWithStatus:@"Set added succesfully!"];
+        if (!userSpecifiedRestTime) {
+            [SVProgressHUD showSuccessWithStatus:@"Set added succesfully!"];
+        }
         self.weightField.text = @"";
         self.notesField.text = @"";
     }];
     
     // If user specified a rest time, show countdown
-    if (![self.restField.text isEqualToString:@""]) {
+    if (userSpecifiedRestTime) {
         ELCountdownViewController* countdownViewController = [[ELCountdownViewController alloc] initWithDurationInSeconds:[self.restField.text intValue]];
         countdownViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         [self presentViewController:countdownViewController animated:YES completion:nil];
