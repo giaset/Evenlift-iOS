@@ -200,7 +200,8 @@
     // If user specified a rest time, show countdown
     if (![self.restField.text isEqualToString:@""]) {
         ELCountdownViewController* countdownViewController = [[ELCountdownViewController alloc] initWithDurationInSeconds:[self.restField.text intValue]];
-        [self presentViewController:countdownViewController animated:NO completion:nil];
+        countdownViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:countdownViewController animated:YES completion:nil];
     }
 }
 

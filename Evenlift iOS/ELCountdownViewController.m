@@ -11,6 +11,7 @@
 @interface ELCountdownViewController ()
 
 @property (weak) NSTimer* timer;
+@property CAShapeLayer* circle;
 
 @end
 
@@ -31,9 +32,57 @@ int mSeconds;
 {
     [super viewDidLoad];
     
+    [self createCircle];
+    
     self.countdownLabel.text = [NSString stringWithFormat:@"%d", mSeconds];
     
     [self startTimer];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self animateCircle];
+}
+
+- (void)createCircle
+{
+    int radius = 100;
+    
+    // Set up the circle shape
+    CAShapeLayer* circle = [CAShapeLayer layer];
+    circle.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, 2.0*radius, 2.0*radius) cornerRadius:radius].CGPath;
+    
+    // Center the circle
+    circle.position = CGPointMake(CGRectGetMidX(self.view.frame)-radius, CGRectGetMidY(self.view.frame)-radius);
+    
+    // Configure circle's appearance
+    circle.fillColor = [UIColor clearColor].CGColor;
+    circle.strokeColor = [UIColor redColor].CGColor;
+    circle.lineWidth = 10;
+    
+    // Add to parent layer
+    self.circle = circle;
+    [self.view.layer addSublayer:self.circle];
+}
+
+- (void)animateCircle
+{
+    // Configure animation
+    CABasicAnimation* drawAnimation = [CABasicAnimation animationWithKeyPath:@"strokeStart"];
+    drawAnimation.duration = mSeconds;
+    drawAnimation.repeatCount = 1.0;
+    drawAnimation.fromValue = [NSNumber numberWithFloat:0.0f];
+    drawAnimation.toValue   = [NSNumber numberWithFloat:1.0f];
+    drawAnimation.delegate = self;
+    
+    // Add the animation to the circle
+    [self.circle addAnimation:drawAnimation forKey:@"drawCircleAnimation"];
+}
+
+-(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    [self.circle removeFromSuperlayer];
 }
 
 - (void)startTimer
@@ -45,22 +94,26 @@ int mSeconds;
 {
     mSeconds--;
     
+    self.countdownLabel.text = [NSString stringWithFormat:@"%d", mSeconds];
+    
     if (mSeconds <= 0) {
-        [theTimer invalidate];
-        [self dismissCountdown];
-    } else {
-        self.countdownLabel.text = [NSString stringWithFormat:@"%d", mSeconds];
+        [self dismissCountdownAfterDelay:1];
     }
 }
 
 - (IBAction)skipButtonPressed {
-    [self.timer invalidate];
-    [self dismissCountdown];
+    [self dismissCountdownAfterDelay:0];
 }
 
-- (void)dismissCountdown
+- (void)dismissCountdownAfterDelay:(double)delayInSeconds
 {
-    [self dismissViewControllerAnimated:NO completion:nil];
+    [self.timer invalidate];
+    
+    // Dismiss viewController after a given delay
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self dismissViewControllerAnimated:YES completion:nil];
+    });
 }
 
 @end
