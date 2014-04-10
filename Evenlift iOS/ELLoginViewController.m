@@ -124,18 +124,24 @@
     ELExercisesTableViewController* exercises = [[ELExercisesTableViewController alloc] init];
     exercises.title = @"Exercises";
     
-    // Set up right Logout button on Exercises viewController
+    UINavigationController* exercisesNavController = [[UINavigationController alloc] initWithRootViewController:exercises];
+    
+    // Initialize Settings viewController
+    UIViewController* settings = [[UIViewController alloc] init];
+    settings.title = @"Settings";
+    
+    // Set up right Logout button on Settings viewController
     UIBarButtonItem* logoutButton = [[UIBarButtonItem alloc]
                                      initWithTitle:@"Logout"
                                      style:UIBarButtonItemStyleBordered
                                      target:self
                                      action:@selector(logout)];
-    exercises.navigationItem.rightBarButtonItem = logoutButton;
+    settings.navigationItem.rightBarButtonItem = logoutButton;
     
-    UINavigationController* exercisesNavController = [[UINavigationController alloc] initWithRootViewController:exercises];
+    UINavigationController* settingsNavController = [[UINavigationController alloc] initWithRootViewController:settings];
     
     // Set these viewControllers to the tabBarController and present it
-    NSArray* controllers = [NSArray arrayWithObjects:workoutsNavController, exercisesNavController, nil];
+    NSArray* controllers = [NSArray arrayWithObjects:workoutsNavController, exercisesNavController, settingsNavController, nil];
     tabBarController.viewControllers = controllers;
     
     [self presentViewController:tabBarController animated:NO completion:nil];
