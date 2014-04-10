@@ -43,6 +43,8 @@
 		68D1432318EA272600AB3FE8 /* ELWorkout.m in Sources */ = {isa = PBXBuildFile; fileRef = 68D1432218EA272600AB3FE8 /* ELWorkout.m */; };
 		68E5A1EB18F6E18800F88D33 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 68E5A1E818F6E18800F88D33 /* SVProgressHUD.bundle */; };
 		68E5A1EC18F6E18800F88D33 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E5A1EA18F6E18800F88D33 /* SVProgressHUD.m */; };
+		68E5A1F218F6F89900F88D33 /* HTAutocompleteTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E5A1EF18F6F89900F88D33 /* HTAutocompleteTextField.m */; };
+		68E5A1F318F6F89900F88D33 /* HTEmailAutocompleteTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E5A1F118F6F89900F88D33 /* HTEmailAutocompleteTextField.m */; };
 		68E9137318F4D4A0006A20D4 /* ELCountdownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E9137118F4D4A0006A20D4 /* ELCountdownViewController.m */; };
 		68E9137418F4D4A0006A20D4 /* ELCountdownViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68E9137218F4D4A0006A20D4 /* ELCountdownViewController.xib */; };
 		68F0CFA218EC2A73003DDC10 /* ELExercisesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F0CFA018EC2A73003DDC10 /* ELExercisesTableViewController.m */; };
@@ -109,6 +111,10 @@
 		68E5A1E818F6E18800F88D33 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		68E5A1E918F6E18800F88D33 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		68E5A1EA18F6E18800F88D33 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		68E5A1EE18F6F89900F88D33 /* HTAutocompleteTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTAutocompleteTextField.h; sourceTree = "<group>"; };
+		68E5A1EF18F6F89900F88D33 /* HTAutocompleteTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTAutocompleteTextField.m; sourceTree = "<group>"; };
+		68E5A1F018F6F89900F88D33 /* HTEmailAutocompleteTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTEmailAutocompleteTextField.h; sourceTree = "<group>"; };
+		68E5A1F118F6F89900F88D33 /* HTEmailAutocompleteTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTEmailAutocompleteTextField.m; sourceTree = "<group>"; };
 		68E9137018F4D4A0006A20D4 /* ELCountdownViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCountdownViewController.h; sourceTree = "<group>"; };
 		68E9137118F4D4A0006A20D4 /* ELCountdownViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCountdownViewController.m; sourceTree = "<group>"; };
 		68E9137218F4D4A0006A20D4 /* ELCountdownViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELCountdownViewController.xib; sourceTree = "<group>"; };
@@ -164,6 +170,7 @@
 		686B856C18EAB2EC00E76E15 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				68E5A1ED18F6F87A00F88D33 /* HTAutocompleteTextField */,
 				68E5A1E618F6E18800F88D33 /* SVProgressHUD */,
 			);
 			name = Libraries;
@@ -300,6 +307,17 @@
 			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
+		68E5A1ED18F6F87A00F88D33 /* HTAutocompleteTextField */ = {
+			isa = PBXGroup;
+			children = (
+				68E5A1EE18F6F89900F88D33 /* HTAutocompleteTextField.h */,
+				68E5A1EF18F6F89900F88D33 /* HTAutocompleteTextField.m */,
+				68E5A1F018F6F89900F88D33 /* HTEmailAutocompleteTextField.h */,
+				68E5A1F118F6F89900F88D33 /* HTEmailAutocompleteTextField.m */,
+			);
+			name = HTAutocompleteTextField;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -404,12 +422,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68E5A1F318F6F89900F88D33 /* HTEmailAutocompleteTextField.m in Sources */,
 				68AABC2D18DCF547008E883D /* ELLoginViewController.m in Sources */,
 				68F0CFA218EC2A73003DDC10 /* ELExercisesTableViewController.m in Sources */,
 				68AABBF218DB9FA7008E883D /* main.m in Sources */,
 				68D1432318EA272600AB3FE8 /* ELWorkout.m in Sources */,
 				68CAE3EA18DDED9D0080F7C5 /* ELHomeViewController.m in Sources */,
 				681F739F18DF223D00AE982D /* ELWorkoutsViewController.m in Sources */,
+				68E5A1F218F6F89900F88D33 /* HTAutocompleteTextField.m in Sources */,
 				683657D818E0670300FA50F2 /* ELAddSetsViewController.m in Sources */,
 				68AABBF618DB9FA7008E883D /* ELAppDelegate.m in Sources */,
 				68E5A1EC18F6E18800F88D33 /* SVProgressHUD.m in Sources */,
