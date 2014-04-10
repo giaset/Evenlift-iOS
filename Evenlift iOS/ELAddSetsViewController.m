@@ -60,6 +60,12 @@
     return 5;
 }
 
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 54;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UIFont* futura = [UIFont fontWithName:@"Futura" size:16];
@@ -69,7 +75,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
-        UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(100, 0, 320, 44)];
+        UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(100, 0, 320, 54)];
         
         switch (indexPath.row) {
             case 0:
@@ -88,7 +94,7 @@
                 self.weightField.keyboardType = UIKeyboardTypeNumberPad;
                 break;
             case 3:
-                cell.textLabel.text = @"Rest after";
+                cell.textLabel.text = @"Rest";
                 textField.placeholder = @"In seconds. Optional";
                 self.restField = textField;
                 self.restField.keyboardType = UIKeyboardTypeNumberPad;
@@ -143,15 +149,15 @@
 // Footer view
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 64;
+    return 54;
 }
 
 - (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 64)];
+    UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 54)];
     
     // Create the button
-    UIButton* submitButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 320, 64)];
+    UIButton* submitButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 320, 54)];
     [submitButton setTitle:@"Add Set" forState:UIControlStateNormal];
     [submitButton addTarget:self action:@selector(submitSet) forControlEvents:UIControlEventTouchUpInside];
     
