@@ -45,7 +45,6 @@
 		68E5A1EC18F6E18800F88D33 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E5A1EA18F6E18800F88D33 /* SVProgressHUD.m */; };
 		68E9137318F4D4A0006A20D4 /* ELCountdownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E9137118F4D4A0006A20D4 /* ELCountdownViewController.m */; };
 		68E9137418F4D4A0006A20D4 /* ELCountdownViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68E9137218F4D4A0006A20D4 /* ELCountdownViewController.xib */; };
-		68F078F818E2206C004D14AE /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F078F718E2206C004D14AE /* MBProgressHUD.m */; };
 		68F0CFA218EC2A73003DDC10 /* ELExercisesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F0CFA018EC2A73003DDC10 /* ELExercisesTableViewController.m */; };
 		68F0CFA318EC2A73003DDC10 /* ELExercisesTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68F0CFA118EC2A73003DDC10 /* ELExercisesTableViewController.xib */; };
 /* End PBXBuildFile section */
@@ -113,8 +112,6 @@
 		68E9137018F4D4A0006A20D4 /* ELCountdownViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCountdownViewController.h; sourceTree = "<group>"; };
 		68E9137118F4D4A0006A20D4 /* ELCountdownViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCountdownViewController.m; sourceTree = "<group>"; };
 		68E9137218F4D4A0006A20D4 /* ELCountdownViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELCountdownViewController.xib; sourceTree = "<group>"; };
-		68F078F618E2206C004D14AE /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		68F078F718E2206C004D14AE /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		68F0CF9F18EC2A73003DDC10 /* ELExercisesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELExercisesTableViewController.h; sourceTree = "<group>"; };
 		68F0CFA018EC2A73003DDC10 /* ELExercisesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELExercisesTableViewController.m; sourceTree = "<group>"; };
 		68F0CFA118EC2A73003DDC10 /* ELExercisesTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELExercisesTableViewController.xib; sourceTree = "<group>"; };
@@ -168,8 +165,6 @@
 			isa = PBXGroup;
 			children = (
 				68E5A1E618F6E18800F88D33 /* SVProgressHUD */,
-				68F078F618E2206C004D14AE /* MBProgressHUD.h */,
-				68F078F718E2206C004D14AE /* MBProgressHUD.m */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -417,7 +412,6 @@
 				681F739F18DF223D00AE982D /* ELWorkoutsViewController.m in Sources */,
 				683657D818E0670300FA50F2 /* ELAddSetsViewController.m in Sources */,
 				68AABBF618DB9FA7008E883D /* ELAppDelegate.m in Sources */,
-				68F078F818E2206C004D14AE /* MBProgressHUD.m in Sources */,
 				68E5A1EC18F6E18800F88D33 /* SVProgressHUD.m in Sources */,
 				686B857018EAB34D00E76E15 /* ELWorkoutTableViewCell.m in Sources */,
 				686B857518EACE4700E76E15 /* ELDateTimeUtil.m in Sources */,
