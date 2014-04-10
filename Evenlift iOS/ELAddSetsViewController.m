@@ -7,9 +7,9 @@
 //
 
 #import "ELAddSetsViewController.h"
-#import "MBProgressHUD.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ELCountdownViewController.h"
+#import "SVProgressHUD.h"
 
 #define kEvenliftURL @"https://evenlift.firebaseio.com/"
 
@@ -188,7 +188,9 @@
 
 - (IBAction)submitSet
 {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [SVProgressHUD setBackgroundColor:[UIColor blackColor]];
+    [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
+    [SVProgressHUD show];
     Firebase* setRef = [[self.workoutRef childByAppendingPath:@"sets"] childByAutoId];
     
     NSString* setID = setRef.name;
@@ -198,7 +200,7 @@
     
     // Actually log the set
     [setRef setValue:@{@"exercise": self.exerciseField.text, @"reps": self.repsField.text, @"weight": self.weightField.text, @"rest": self.restField.text, @"notes": self.notesField.text, @"time": [ELDateTimeUtil getCurrentTime]} withCompletionBlock:^(NSError *error, Firebase *ref) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [SVProgressHUD showSuccessWithStatus:@"Set added succesfully!"];
         self.weightField.text = @"";
         self.notesField.text = @"";
     }];

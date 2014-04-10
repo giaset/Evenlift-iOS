@@ -41,6 +41,8 @@
 		68CAE3EA18DDED9D0080F7C5 /* ELHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68CAE3E818DDED9D0080F7C5 /* ELHomeViewController.m */; };
 		68CAE3EB18DDED9D0080F7C5 /* ELHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68CAE3E918DDED9D0080F7C5 /* ELHomeViewController.xib */; };
 		68D1432318EA272600AB3FE8 /* ELWorkout.m in Sources */ = {isa = PBXBuildFile; fileRef = 68D1432218EA272600AB3FE8 /* ELWorkout.m */; };
+		68E5A1EB18F6E18800F88D33 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 68E5A1E818F6E18800F88D33 /* SVProgressHUD.bundle */; };
+		68E5A1EC18F6E18800F88D33 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E5A1EA18F6E18800F88D33 /* SVProgressHUD.m */; };
 		68E9137318F4D4A0006A20D4 /* ELCountdownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E9137118F4D4A0006A20D4 /* ELCountdownViewController.m */; };
 		68E9137418F4D4A0006A20D4 /* ELCountdownViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68E9137218F4D4A0006A20D4 /* ELCountdownViewController.xib */; };
 		68F078F818E2206C004D14AE /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F078F718E2206C004D14AE /* MBProgressHUD.m */; };
@@ -104,6 +106,10 @@
 		68CAE3E918DDED9D0080F7C5 /* ELHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELHomeViewController.xib; sourceTree = "<group>"; };
 		68D1432118EA272600AB3FE8 /* ELWorkout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ELWorkout.h; path = Model/ELWorkout.h; sourceTree = "<group>"; };
 		68D1432218EA272600AB3FE8 /* ELWorkout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ELWorkout.m; path = Model/ELWorkout.m; sourceTree = "<group>"; };
+		68E5A1E718F6E18800F88D33 /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		68E5A1E818F6E18800F88D33 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		68E5A1E918F6E18800F88D33 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		68E5A1EA18F6E18800F88D33 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		68E9137018F4D4A0006A20D4 /* ELCountdownViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCountdownViewController.h; sourceTree = "<group>"; };
 		68E9137118F4D4A0006A20D4 /* ELCountdownViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCountdownViewController.m; sourceTree = "<group>"; };
 		68E9137218F4D4A0006A20D4 /* ELCountdownViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELCountdownViewController.xib; sourceTree = "<group>"; };
@@ -161,6 +167,7 @@
 		686B856C18EAB2EC00E76E15 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				68E5A1E618F6E18800F88D33 /* SVProgressHUD */,
 				68F078F618E2206C004D14AE /* MBProgressHUD.h */,
 				68F078F718E2206C004D14AE /* MBProgressHUD.m */,
 			);
@@ -287,6 +294,17 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		68E5A1E618F6E18800F88D33 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				68E5A1E718F6E18800F88D33 /* SVProgressHUD-Prefix.pch */,
+				68E5A1E818F6E18800F88D33 /* SVProgressHUD.bundle */,
+				68E5A1E918F6E18800F88D33 /* SVProgressHUD.h */,
+				68E5A1EA18F6E18800F88D33 /* SVProgressHUD.m */,
+			);
+			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -368,6 +386,7 @@
 				68AABC2E18DCF547008E883D /* ELLoginViewController.xib in Resources */,
 				686B857118EAB34D00E76E15 /* ELWorkoutTableViewCell.xib in Resources */,
 				68AABBF018DB9FA7008E883D /* InfoPlist.strings in Resources */,
+				68E5A1EB18F6E18800F88D33 /* SVProgressHUD.bundle in Resources */,
 				68E9137418F4D4A0006A20D4 /* ELCountdownViewController.xib in Resources */,
 				68CAE3EB18DDED9D0080F7C5 /* ELHomeViewController.xib in Resources */,
 				68F0CFA318EC2A73003DDC10 /* ELExercisesTableViewController.xib in Resources */,
@@ -399,6 +418,7 @@
 				683657D818E0670300FA50F2 /* ELAddSetsViewController.m in Sources */,
 				68AABBF618DB9FA7008E883D /* ELAppDelegate.m in Sources */,
 				68F078F818E2206C004D14AE /* MBProgressHUD.m in Sources */,
+				68E5A1EC18F6E18800F88D33 /* SVProgressHUD.m in Sources */,
 				686B857018EAB34D00E76E15 /* ELWorkoutTableViewCell.m in Sources */,
 				686B857518EACE4700E76E15 /* ELDateTimeUtil.m in Sources */,
 				68E9137318F4D4A0006A20D4 /* ELCountdownViewController.m in Sources */,
