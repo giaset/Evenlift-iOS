@@ -33,68 +33,19 @@
 
 - (NSString *)textField:(HTAutocompleteTextField *)textField completionForPrefix:(NSString *)prefix ignoreCase:(BOOL)ignoreCase
 {
-    // Check that text field contains an @
-    NSRange atSignRange = [prefix rangeOfString:@"@"];
-    if (atSignRange.location == NSNotFound)
-    {
-        return @"";
-    }
-
-    // Stop autocomplete if user types dot after domain
-    NSString *domainAndTLD = [prefix substringFromIndex:atSignRange.location];
-    NSRange rangeOfDot = [domainAndTLD rangeOfString:@"."];
-    if (rangeOfDot.location != NSNotFound)
-    {
-        return @"";
-    }
-
-    // Check that there aren't two @-signs
-    NSArray *textComponents = [prefix componentsSeparatedByString:@"@"];
-    if ([textComponents count] > 2)
-    {
-        return @"";
-    }
-
-    if ([textComponents count] > 1)
-    {
-        // If no domain is entered, use the first domain in the list
-        if ([(NSString *)textComponents[1] length] == 0)
-        {
-            return [self.exercises objectAtIndex:0];
-        }
-
-        NSString *textAfterAtSign = textComponents[1];
-
-        NSString *stringToLookFor;
-        if (ignoreCase)
-        {
-            stringToLookFor = [textAfterAtSign lowercaseString];
-        }
-        else
-        {
-            stringToLookFor = textAfterAtSign;
-        }
-
-        for (NSString *stringFromReference in self.exercises)
-        {
-            NSString *stringToCompare;
-            if (ignoreCase)
-            {
-                stringToCompare = [stringFromReference lowercaseString];
-            }
-            else
-            {
-                stringToCompare = stringFromReference;
-            }
-
-            if ([stringToCompare hasPrefix:stringToLookFor])
-            {
-                return [stringFromReference stringByReplacingCharactersInRange:[stringToCompare rangeOfString:stringToLookFor] withString:@""];
-            }
-
-        }
-    }
+    NSString* stringToLookFor = (ignoreCase) ? [prefix lowercaseString] : prefix;
     
+    for (NSString* stringFromReference in self.exercises)
+    {
+        NSString* stringToCompare = (ignoreCase) ? [stringFromReference lowercaseString] : stringFromReference;
+        
+        if ([stringToCompare hasPrefix:stringToLookFor])
+        {
+            return [stringFromReference stringByReplacingCharactersInRange:[stringToCompare rangeOfString:stringToLookFor] withString:@""];
+        }
+        
+    }
+
     return @"";
 }
 

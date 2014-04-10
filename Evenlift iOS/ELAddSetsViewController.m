@@ -16,7 +16,7 @@
 
 @interface ELAddSetsViewController ()
 
-@property (nonatomic, retain) ELExerciseAutocompleteTextField* exerciseField;
+@property (unsafe_unretained, nonatomic) ELExerciseAutocompleteTextField* exerciseField;
 @property (nonatomic, retain) UITextField* repsField;
 @property (nonatomic, retain) UITextField* weightField;
 @property (nonatomic, retain) UITextField* restField;
@@ -96,7 +96,7 @@
                 self.exerciseField = [[ELExerciseAutocompleteTextField alloc] initWithFrame:CGRectMake(100, 0, 320, 54)];
                 self.exerciseField.font = futura;
                 self.exerciseField.tag = 0;
-                [cell.contentView addSubview:textField];
+                [cell.contentView addSubview:self.exerciseField];
                 break;
             case 1:
                 cell.textLabel.text = @"Reps";
