@@ -181,10 +181,10 @@
     [submitButton addTarget:self action:@selector(submitSet) forControlEvents:UIControlEventTouchUpInside];
     
     // Style the button
-    submitButton.titleLabel.font = [UIFont boldSystemFontOfSize:22];
+    submitButton.titleLabel.font = [UIFont fontWithName:@"Gotham" size:22.0];
     [submitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [submitButton setBackgroundColor:[UIColor redColor]];
-    [submitButton setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:0.792 green:0.024 blue:0.024 alpha:1.0]] forState:UIControlStateHighlighted];
+    [submitButton setBackgroundColor:[UIColor colorWithRed:0.906 green:0.298 blue:0.235 alpha:1.0]]; // FLAT UI "ALIZARIN"
+    [submitButton setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:0.753 green:0.224 blue:0.169 alpha:1.0]] forState:UIControlStateHighlighted]; // FLAT UI "POMEGRANATE"
     
     self.submitButton = submitButton;
     
