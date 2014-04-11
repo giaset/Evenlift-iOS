@@ -101,7 +101,9 @@
     }
     
     // Configure the cell...
-    cell.textLabel.text = @"CACA";
+    ELExercise* exercise = (ELExercise*)[self.exercises objectAtIndex:indexPath.section];
+    ELSet* set = (ELSet*)[exercise.sets objectAtIndex:indexPath.row];
+    cell.textLabel.text = [set description];
     
     return cell;
 }

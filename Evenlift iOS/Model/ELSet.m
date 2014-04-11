@@ -25,4 +25,9 @@
     return self;
 }
 
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"%@ x %@", self.reps, self.weight];
+}
+
 @end
