@@ -14,6 +14,7 @@
 {
     // Initialization code, set custom fonts
     self.dayLabel.font = [UIFont fontWithName:@"Gotham" size:10];
+    self.dayLabel.textColor = [UIColor colorWithRed:0.906 green:0.298 blue:0.235 alpha:1.0];
     self.dateLabel.font = [UIFont fontWithName:@"Gotham" size:14];
     self.titleLabel.font = [UIFont fontWithName:@"Gotham" size:16];
     self.inProgressLabel.font = [UIFont fontWithName:@"Gotham" size:10];
