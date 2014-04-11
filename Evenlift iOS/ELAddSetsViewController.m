@@ -225,7 +225,10 @@
     [[self.userExercisesRef childByAppendingPath:[NSString stringWithFormat:@"%@/sets/%@/%@", self.exerciseField.text, self.workoutId, setID]] setValue:@YES];
     
     // Actually log the set
-    [setRef setValue:@{@"exercise": self.exerciseField.text, @"reps": self.repsField.text, @"weight": self.weightField.text, @"rest": self.restField.text, @"notes": self.notesField.text, @"time": [ELDateTimeUtil getCurrentTime]} withCompletionBlock:^(NSError *error, Firebase *ref) {
+    NSNumberFormatter* f = [[NSNumberFormatter alloc] init];
+    [f setNumberStyle:NSNumberFormatterDecimalStyle];
+    
+    [setRef setValue:@{@"exercise": self.exerciseField.text, @"reps": [f numberFromString:self.repsField.text], @"weight": [f numberFromString:self.weightField.text], @"rest": [f numberFromString:self.restField.text], @"notes": self.notesField.text, @"time": [ELDateTimeUtil getCurrentTime]} withCompletionBlock:^(NSError *error, Firebase *ref) {
         if (!userSpecifiedRestTime) {
             [SVProgressHUD showSuccessWithStatus:@"Set added succesfully!"];
         }
