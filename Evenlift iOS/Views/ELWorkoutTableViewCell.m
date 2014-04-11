@@ -39,11 +39,7 @@
     self.dateLabel.text = [dateFormatter stringFromDate:workoutDate];
     
     // Set title label
-    NSString* titleString = @"UNTITLED WORKOUT";
-    if (![workout.title isEqualToString:@""]) {
-        titleString = [workout.title uppercaseString];
-    }
-    self.titleLabel.text = titleString;
+    self.titleLabel.text = [workout.title uppercaseString];
     
     // Show/hide "IN PROGRESS" label depending on whether
     // or not this Workout has an end_time

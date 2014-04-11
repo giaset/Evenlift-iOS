@@ -29,4 +29,13 @@
     self.endTime = (NSNumber*)[dict objectForKey:@"end_time"];
 }
 
+- (NSString*)title
+{
+    if ([_title isEqualToString:@""]) {
+        return @"Untitled Workout";
+    } else {
+        return _title;
+    }
+}
+
 @end
