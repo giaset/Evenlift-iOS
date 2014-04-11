@@ -10,7 +10,7 @@
 
 @interface ELExercise : NSObject
 
-- (id)initWithName:(NSString*)name;
+- (id)initWithName:(NSString*)name andSets:(NSMutableArray*)sets;
 
 @property (nonatomic, copy) NSString* name;
 @property (nonatomic, strong) NSMutableArray* sets;

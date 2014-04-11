@@ -44,8 +44,28 @@
         [dict setObject:setId forKey:@"set_id"];
         ELSet* set = [[ELSet alloc] initWithDictionary:dict];
         
-        ELExercise* exercise = [[ELExercise alloc] initWithName:set.exercise];
-        [self.exercises addObject:exercise];
+        NSMutableArray* sets = [[NSMutableArray alloc] initWithObjects:set, nil];
+        
+        ELExercise* exercise = [[ELExercise alloc] initWithName:set.exercise andSets:sets];
+        
+        // Check if exercise exists in our array
+        BOOL exists = NO;
+        
+        for (ELExercise* exerciseInArray in self.exercises) {
+            if ([exerciseInArray.name isEqualToString:exercise.name]) {
+                exists = YES;
+                // Add this set to the already existing exercise
+                [exerciseInArray.sets addObject:set];
+                break;
+            }
+        }
+        
+        // If it doesn't, add it
+        if (!exists) {
+            [self.exercises addObject:exercise];
+        }
+        
+        [self.tableView reloadData];
     }];
 }
 
@@ -53,27 +73,37 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return self.exercises.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    ELExercise* exercise = (ELExercise*)[self.exercises objectAtIndex:section];
+    return exercise.sets.count;
 }
 
-/*
+- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    ELExercise* exercise = (ELExercise*)[self.exercises objectAtIndex:section];
+    return exercise.name;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    static NSString* CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
     
     // Configure the cell...
+    cell.textLabel.text = @"CACA";
     
     return cell;
 }
-*/
 
 @end

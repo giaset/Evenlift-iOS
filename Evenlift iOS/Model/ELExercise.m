@@ -10,12 +10,12 @@
 
 @implementation ELExercise
 
-- (id)initWithName:(NSString*)name
+- (id)initWithName:(NSString*)name andSets:(NSMutableArray *)sets
 {
     self = [super init];
     if (self) {
         self.name = name;
-        self.sets = [[NSMutableArray alloc] init];
+        self.sets = sets;
     }
     return self;
 }
