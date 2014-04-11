@@ -10,11 +10,14 @@
 
 @interface ELSet : NSObject
 
+- (id)initWithDictionary:(NSDictionary*)dict;
+
 @property (nonatomic, copy) NSString* setId;
 @property (nonatomic, copy) NSString* exercise;
 @property (nonatomic, strong) NSNumber* reps;
 @property (nonatomic, strong) NSNumber* weight;
 @property (nonatomic, strong) NSNumber* rest;
 @property (nonatomic, copy) NSString* notes;
+@property (nonatomic, strong) NSNumber* time;
 
 @end

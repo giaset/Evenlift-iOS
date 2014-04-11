@@ -10,4 +10,19 @@
 
 @implementation ELSet
 
+- (id)initWithDictionary:(NSDictionary*)dict
+{
+    self = [super init];
+    if (self) {
+        self.setId = [dict objectForKey:@"set_id"];
+        self.exercise = [dict objectForKey:@"exercise"];
+        self.reps = (NSNumber*)[dict objectForKey:@"reps"];
+        self.weight = (NSNumber*)[dict objectForKey:@"weight"];
+        self.rest = (NSNumber*)[dict objectForKey:@"rest"];
+        self.notes = [dict objectForKey:@"notes"];
+        self.time = (NSNumber*)[dict objectForKey:@"time"];
+    }
+    return self;
+}
+
 @end
