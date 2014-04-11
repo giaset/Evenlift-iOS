@@ -56,6 +56,10 @@
     return self.exercises.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 54;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -68,6 +72,7 @@
     }
     
     // Configure the cell...
+    cell.textLabel.font = [UIFont fontWithName:@"Gotham" size:16];
     cell.textLabel.text = [self.exercises objectAtIndex:indexPath.row];
     
     return cell;
