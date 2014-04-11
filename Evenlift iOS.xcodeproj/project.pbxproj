@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6802E31018F7EFDD008439D2 /* ELExercise.m in Sources */ = {isa = PBXBuildFile; fileRef = 6802E30F18F7EFDD008439D2 /* ELExercise.m */; };
+		6802E31318F7F029008439D2 /* ELSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6802E31218F7F029008439D2 /* ELSet.m */; };
 		681F739F18DF223D00AE982D /* ELWorkoutsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 681F739D18DF223D00AE982D /* ELWorkoutsViewController.m */; };
 		683657D818E0670300FA50F2 /* ELAddSetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683657D618E0670300FA50F2 /* ELAddSetsViewController.m */; };
 		683657D918E0670300FA50F2 /* ELAddSetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 683657D718E0670300FA50F2 /* ELAddSetsViewController.xib */; };
@@ -62,6 +64,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6802E30E18F7EFDD008439D2 /* ELExercise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ELExercise.h; path = Model/ELExercise.h; sourceTree = "<group>"; };
+		6802E30F18F7EFDD008439D2 /* ELExercise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ELExercise.m; path = Model/ELExercise.m; sourceTree = "<group>"; };
+		6802E31118F7F029008439D2 /* ELSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ELSet.h; path = Model/ELSet.h; sourceTree = "<group>"; };
+		6802E31218F7F029008439D2 /* ELSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ELSet.m; path = Model/ELSet.m; sourceTree = "<group>"; };
 		681F739C18DF223D00AE982D /* ELWorkoutsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELWorkoutsViewController.h; sourceTree = "<group>"; };
 		681F739D18DF223D00AE982D /* ELWorkoutsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELWorkoutsViewController.m; sourceTree = "<group>"; };
 		683657D518E0670300FA50F2 /* ELAddSetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELAddSetsViewController.h; sourceTree = "<group>"; };
@@ -290,6 +296,10 @@
 		68D1432418EA273000AB3FE8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6802E30E18F7EFDD008439D2 /* ELExercise.h */,
+				6802E30F18F7EFDD008439D2 /* ELExercise.m */,
+				6802E31118F7F029008439D2 /* ELSet.h */,
+				6802E31218F7F029008439D2 /* ELSet.m */,
 				68D1432118EA272600AB3FE8 /* ELWorkout.h */,
 				68D1432218EA272600AB3FE8 /* ELWorkout.m */,
 			);
@@ -435,7 +445,9 @@
 				68E5A1EC18F6E18800F88D33 /* SVProgressHUD.m in Sources */,
 				686B857018EAB34D00E76E15 /* ELWorkoutTableViewCell.m in Sources */,
 				686B857518EACE4700E76E15 /* ELDateTimeUtil.m in Sources */,
+				6802E31018F7EFDD008439D2 /* ELExercise.m in Sources */,
 				68E9137318F4D4A0006A20D4 /* ELCountdownViewController.m in Sources */,
+				6802E31318F7F029008439D2 /* ELSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
