@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		6802E31018F7EFDD008439D2 /* ELExercise.m in Sources */ = {isa = PBXBuildFile; fileRef = 6802E30F18F7EFDD008439D2 /* ELExercise.m */; };
 		6802E31318F7F029008439D2 /* ELSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6802E31218F7F029008439D2 /* ELSet.m */; };
+		6802E31718F7F7AF008439D2 /* ELViewWorkoutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6802E31518F7F7AF008439D2 /* ELViewWorkoutTableViewController.m */; };
+		6802E31818F7F7AF008439D2 /* ELViewWorkoutTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6802E31618F7F7AF008439D2 /* ELViewWorkoutTableViewController.xib */; };
 		681F739F18DF223D00AE982D /* ELWorkoutsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 681F739D18DF223D00AE982D /* ELWorkoutsViewController.m */; };
 		683657D818E0670300FA50F2 /* ELAddSetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683657D618E0670300FA50F2 /* ELAddSetsViewController.m */; };
 		683657D918E0670300FA50F2 /* ELAddSetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 683657D718E0670300FA50F2 /* ELAddSetsViewController.xib */; };
@@ -68,6 +70,9 @@
 		6802E30F18F7EFDD008439D2 /* ELExercise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ELExercise.m; path = Model/ELExercise.m; sourceTree = "<group>"; };
 		6802E31118F7F029008439D2 /* ELSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ELSet.h; path = Model/ELSet.h; sourceTree = "<group>"; };
 		6802E31218F7F029008439D2 /* ELSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ELSet.m; path = Model/ELSet.m; sourceTree = "<group>"; };
+		6802E31418F7F7AF008439D2 /* ELViewWorkoutTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELViewWorkoutTableViewController.h; sourceTree = "<group>"; };
+		6802E31518F7F7AF008439D2 /* ELViewWorkoutTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELViewWorkoutTableViewController.m; sourceTree = "<group>"; };
+		6802E31618F7F7AF008439D2 /* ELViewWorkoutTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELViewWorkoutTableViewController.xib; sourceTree = "<group>"; };
 		681F739C18DF223D00AE982D /* ELWorkoutsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELWorkoutsViewController.h; sourceTree = "<group>"; };
 		681F739D18DF223D00AE982D /* ELWorkoutsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELWorkoutsViewController.m; sourceTree = "<group>"; };
 		683657D518E0670300FA50F2 /* ELAddSetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELAddSetsViewController.h; sourceTree = "<group>"; };
@@ -258,6 +263,9 @@
 				68CAE3E718DDED9D0080F7C5 /* ELHomeViewController.h */,
 				68CAE3E818DDED9D0080F7C5 /* ELHomeViewController.m */,
 				68CAE3E918DDED9D0080F7C5 /* ELHomeViewController.xib */,
+				6802E31418F7F7AF008439D2 /* ELViewWorkoutTableViewController.h */,
+				6802E31518F7F7AF008439D2 /* ELViewWorkoutTableViewController.m */,
+				6802E31618F7F7AF008439D2 /* ELViewWorkoutTableViewController.xib */,
 				68AABBF718DB9FA7008E883D /* Images.xcassets */,
 				68AABBEC18DB9FA7008E883D /* Supporting Files */,
 			);
@@ -373,7 +381,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = EL;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Evenlift;
 				TargetAttributes = {
 					68AABBFC18DB9FA7008E883D = {
@@ -408,6 +416,7 @@
 				6841730618EA4CB30049829E /* ELWorkoutsViewController.xib in Resources */,
 				68AABC2E18DCF547008E883D /* ELLoginViewController.xib in Resources */,
 				686B857118EAB34D00E76E15 /* ELWorkoutTableViewCell.xib in Resources */,
+				6802E31818F7F7AF008439D2 /* ELViewWorkoutTableViewController.xib in Resources */,
 				68AABBF018DB9FA7008E883D /* InfoPlist.strings in Resources */,
 				68E5A1EB18F6E18800F88D33 /* SVProgressHUD.bundle in Resources */,
 				68E9137418F4D4A0006A20D4 /* ELCountdownViewController.xib in Resources */,
@@ -435,6 +444,7 @@
 				68E5A1F918F7019200F88D33 /* ELExerciseAutocompleteTextField.m in Sources */,
 				68AABC2D18DCF547008E883D /* ELLoginViewController.m in Sources */,
 				68F0CFA218EC2A73003DDC10 /* ELExercisesTableViewController.m in Sources */,
+				6802E31718F7F7AF008439D2 /* ELViewWorkoutTableViewController.m in Sources */,
 				68AABBF218DB9FA7008E883D /* main.m in Sources */,
 				68D1432318EA272600AB3FE8 /* ELWorkout.m in Sources */,
 				68CAE3EA18DDED9D0080F7C5 /* ELHomeViewController.m in Sources */,
@@ -493,7 +503,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -532,7 +541,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -602,7 +610,6 @@
 		68AABC1218DB9FA7008E883D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Evenlift iOS.app/Evenlift iOS";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -625,7 +632,6 @@
 		68AABC1318DB9FA7008E883D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Evenlift iOS.app/Evenlift iOS";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

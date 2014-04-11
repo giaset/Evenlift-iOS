@@ -11,6 +11,7 @@
 #import "ELAddSetsViewController.h"
 #import "ELWorkout.h"
 #import "ELWorkoutTableViewCell.h"
+#import "ELViewWorkoutTableViewController.h"
 
 @interface ELWorkoutsViewController ()
 
@@ -275,7 +276,9 @@
         self.currentWorkoutRef = [self.allWorkoutsRef childByAppendingPath:workout.workoutId];
         [self launchAddSetsViewControllerForCurrentWorkoutRef];
     } else {
-        
+        // If we have clicked a completed workout
+        ELViewWorkoutTableViewController* viewWorkout = [[ELViewWorkoutTableViewController alloc] initWithWorkout:workout];
+        [self.navigationController pushViewController:viewWorkout animated:YES];
     }
 
 }
