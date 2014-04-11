@@ -228,7 +228,11 @@
     NSNumberFormatter* f = [[NSNumberFormatter alloc] init];
     [f setNumberStyle:NSNumberFormatterDecimalStyle];
     
-    [setRef setValue:@{@"exercise": self.exerciseField.text, @"reps": [f numberFromString:self.repsField.text], @"weight": [f numberFromString:self.weightField.text], @"rest": [f numberFromString:self.restField.text], @"notes": self.notesField.text, @"time": [ELDateTimeUtil getCurrentTime]} withCompletionBlock:^(NSError *error, Firebase *ref) {
+    NSNumber* reps = ([f numberFromString:self.repsField.text]) ? [f numberFromString:self.repsField.text] : [NSNumber numberWithInt:-1];
+    NSNumber* weight = ([f numberFromString:self.weightField.text]) ? [f numberFromString:self.weightField.text] : [NSNumber numberWithInt:-1];
+    NSNumber* rest = ([f numberFromString:self.restField.text]) ? [f numberFromString:self.restField.text] : [NSNumber numberWithInt:-1];
+    
+    [setRef setValue:@{@"exercise": self.exerciseField.text, @"reps": reps, @"weight": weight, @"rest": rest, @"notes": self.notesField.text, @"time": [ELDateTimeUtil getCurrentTime]} withCompletionBlock:^(NSError *error, Firebase *ref) {
         if (!userSpecifiedRestTime) {
             [SVProgressHUD showSuccessWithStatus:@"Set added succesfully!"];
         }
