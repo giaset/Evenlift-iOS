@@ -18,7 +18,7 @@
     // Stylin' (navBar)
     [UINavigationBar appearance].barTintColor = [UIColor blackColor];
     [UINavigationBar appearance].tintColor = [UIColor whiteColor];
-    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"Futura" size:18], NSFontAttributeName, nil]];
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"Gotham-Light" size:18], NSFontAttributeName, nil]];
     
     // Stylin' (tabBar)
     [UITabBar appearance].tintColor = [UIColor whiteColor];

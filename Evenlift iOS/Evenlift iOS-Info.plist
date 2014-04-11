@@ -48,7 +48,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Gotham-Book.otf</string>
-		<string>Gotham-XLight.otf</string>
+		<string>Gotham-Light.otf</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

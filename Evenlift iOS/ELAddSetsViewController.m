@@ -81,20 +81,21 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIFont* futura = [UIFont fontWithName:@"Futura" size:16];
+    UIFont* gotham = [UIFont fontWithName:@"Gotham" size:16];
+    UIFont* gothamLight = [UIFont fontWithName:@"Gotham-Light" size:16];
     
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
-        UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(100, 0, 320, 54)];
+        UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(90, 0, 320, 54)];
         
         switch (indexPath.row) {
             case 0:
                 cell.textLabel.text = @"Exercise";
-                self.exerciseField = [[ELExerciseAutocompleteTextField alloc] initWithFrame:CGRectMake(100, 0, 320, 54)];
-                self.exerciseField.font = futura;
+                self.exerciseField = [[ELExerciseAutocompleteTextField alloc] initWithFrame:CGRectMake(90, 0, 320, 54)];
+                self.exerciseField.font = gothamLight;
                 self.exerciseField.tag = 0;
                 [cell.contentView addSubview:self.exerciseField];
                 break;
@@ -123,14 +124,14 @@
         }
         
         if (indexPath.row != 0) {
-            textField.font = futura;
+            textField.font = gothamLight;
             textField.tag = indexPath.row;
             [cell.contentView addSubview:textField];
         }
     }
     
     // Configure the cell...
-    cell.textLabel.font  = futura;
+    cell.textLabel.font  = gotham;
     
     return cell;
 }
