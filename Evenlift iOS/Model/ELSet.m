@@ -27,7 +27,11 @@
 
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"%@ x %@", self.reps, self.weight];
+    if ([self.rest intValue] == -1) {
+        return [NSString stringWithFormat:@"%@ x %@", self.reps, self.weight];
+    } else {
+        return [NSString stringWithFormat:@"%@ x %@ (%@ sec rest)", self.reps, self.weight, self.rest];
+    }
 }
 
 @end
