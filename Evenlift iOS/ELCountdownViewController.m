@@ -34,6 +34,10 @@ int mSeconds;
     
     [self createCircle];
     
+    // Apply custom fonts to both labels
+    self.countdownLabel.font = [UIFont fontWithName:@"Gotham" size:60];
+    self.secondsLabel.font = [UIFont fontWithName:@"Gotham" size:14];
+    
     self.countdownLabel.text = [NSString stringWithFormat:@"%d", mSeconds];
     
     [self startTimer];

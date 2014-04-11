@@ -12,7 +12,11 @@
 
 - (void)awakeFromNib
 {
-    // Initialization code
+    // Initialization code, set custom fonts
+    self.dayLabel.font = [UIFont fontWithName:@"Gotham" size:10];
+    self.dateLabel.font = [UIFont fontWithName:@"Gotham" size:14];
+    self.titleLabel.font = [UIFont fontWithName:@"Gotham" size:16];
+    self.inProgressLabel.font = [UIFont fontWithName:@"Gotham" size:10];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

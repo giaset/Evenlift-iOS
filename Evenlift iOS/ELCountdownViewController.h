@@ -10,7 +10,8 @@
 
 @interface ELCountdownViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UILabel *countdownLabel;
+@property (weak, nonatomic) IBOutlet UILabel* countdownLabel;
+@property (weak, nonatomic) IBOutlet UILabel* secondsLabel;
 
 - (IBAction)skipButtonPressed;
 - (id)initWithDurationInSeconds:(int)seconds;
