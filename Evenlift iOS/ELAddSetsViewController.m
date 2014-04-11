@@ -89,12 +89,12 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
-        UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(90, 0, 320, 54)];
+        UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(95, 0, 320, 54)];
         
         switch (indexPath.row) {
             case 0:
                 cell.textLabel.text = @"Exercise";
-                self.exerciseField = [[ELExerciseAutocompleteTextField alloc] initWithFrame:CGRectMake(90, 0, 320, 54)];
+                self.exerciseField = [[ELExerciseAutocompleteTextField alloc] initWithFrame:CGRectMake(95, 0, 320, 54)];
                 self.exerciseField.font = gothamLight;
                 self.exerciseField.tag = 0;
                 [cell.contentView addSubview:self.exerciseField];
