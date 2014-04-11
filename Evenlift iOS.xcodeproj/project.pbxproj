@@ -15,6 +15,8 @@
 		683657D818E0670300FA50F2 /* ELAddSetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683657D618E0670300FA50F2 /* ELAddSetsViewController.m */; };
 		683657D918E0670300FA50F2 /* ELAddSetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 683657D718E0670300FA50F2 /* ELAddSetsViewController.xib */; };
 		6841730618EA4CB30049829E /* ELWorkoutsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6841730518EA4CB30049829E /* ELWorkoutsViewController.xib */; };
+		6841D16918F857D4008CFBF3 /* Gotham-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6841D16718F857D4008CFBF3 /* Gotham-Book.otf */; };
+		6841D16A18F857D4008CFBF3 /* Gotham-XLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6841D16818F857D4008CFBF3 /* Gotham-XLight.otf */; };
 		686B857018EAB34D00E76E15 /* ELWorkoutTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 686B856E18EAB34D00E76E15 /* ELWorkoutTableViewCell.m */; };
 		686B857118EAB34D00E76E15 /* ELWorkoutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686B856F18EAB34D00E76E15 /* ELWorkoutTableViewCell.xib */; };
 		686B857518EACE4700E76E15 /* ELDateTimeUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 686B857418EACE4700E76E15 /* ELDateTimeUtil.m */; };
@@ -79,6 +81,8 @@
 		683657D618E0670300FA50F2 /* ELAddSetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELAddSetsViewController.m; sourceTree = "<group>"; };
 		683657D718E0670300FA50F2 /* ELAddSetsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELAddSetsViewController.xib; sourceTree = "<group>"; };
 		6841730518EA4CB30049829E /* ELWorkoutsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELWorkoutsViewController.xib; sourceTree = "<group>"; };
+		6841D16718F857D4008CFBF3 /* Gotham-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Book.otf"; sourceTree = "<group>"; };
+		6841D16818F857D4008CFBF3 /* Gotham-XLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-XLight.otf"; sourceTree = "<group>"; };
 		686B856D18EAB34D00E76E15 /* ELWorkoutTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ELWorkoutTableViewCell.h; path = Views/ELWorkoutTableViewCell.h; sourceTree = "<group>"; };
 		686B856E18EAB34D00E76E15 /* ELWorkoutTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ELWorkoutTableViewCell.m; path = Views/ELWorkoutTableViewCell.m; sourceTree = "<group>"; };
 		686B856F18EAB34D00E76E15 /* ELWorkoutTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ELWorkoutTableViewCell.xib; path = Views/ELWorkoutTableViewCell.xib; sourceTree = "<group>"; };
@@ -168,6 +172,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6841D16518F857B2008CFBF3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6841D16618F857BA008CFBF3 /* Fonts */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		6841D16618F857BA008CFBF3 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				6841D16718F857D4008CFBF3 /* Gotham-Book.otf */,
+				6841D16818F857D4008CFBF3 /* Gotham-XLight.otf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		686B856B18EAB2C600E76E15 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,6 +260,7 @@
 		68AABBEB18DB9FA7008E883D /* Evenlift iOS */ = {
 			isa = PBXGroup;
 			children = (
+				6841D16518F857B2008CFBF3 /* Resources */,
 				68AABBF418DB9FA7008E883D /* ELAppDelegate.h */,
 				68AABBF518DB9FA7008E883D /* ELAppDelegate.m */,
 				686B857218EACE1800E76E15 /* Helpers */,
@@ -413,11 +435,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				683657D918E0670300FA50F2 /* ELAddSetsViewController.xib in Resources */,
+				6841D16A18F857D4008CFBF3 /* Gotham-XLight.otf in Resources */,
 				6841730618EA4CB30049829E /* ELWorkoutsViewController.xib in Resources */,
 				68AABC2E18DCF547008E883D /* ELLoginViewController.xib in Resources */,
 				686B857118EAB34D00E76E15 /* ELWorkoutTableViewCell.xib in Resources */,
 				6802E31818F7F7AF008439D2 /* ELViewWorkoutTableViewController.xib in Resources */,
 				68AABBF018DB9FA7008E883D /* InfoPlist.strings in Resources */,
+				6841D16918F857D4008CFBF3 /* Gotham-Book.otf in Resources */,
 				68E5A1EB18F6E18800F88D33 /* SVProgressHUD.bundle in Resources */,
 				68E9137418F4D4A0006A20D4 /* ELCountdownViewController.xib in Resources */,
 				68CAE3EB18DDED9D0080F7C5 /* ELHomeViewController.xib in Resources */,
