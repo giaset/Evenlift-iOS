@@ -56,6 +56,10 @@
     // Register ELWorkoutTableViewCell nib for this tableView
     [self.tableView registerNib:[UINib nibWithNibName:@"ELWorkoutTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WorkoutCell"];
     
+    // Set up leftBarButtonItem
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    
+    // Set up rightBarButtonItem
     UIBarButtonItem* addWorkoutButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(popAddAlert)];
     self.navigationItem.rightBarButtonItem = addWorkoutButton;
     
