@@ -100,29 +100,6 @@
         }];
     }];
     
-    /*[self.firebase observeEventType:FEventTypeChildRemoved withBlock:^(FDataSnapshot *snapshot) {
-        ELWorkout* removedWorkout = [[ELWorkout alloc] initWithDictionary:(NSDictionary*)snapshot.value];
-        NSMutableArray* toDelete = [NSMutableArray array];
-        for (ELWorkout* workout in self.workouts) {
-            if ([workout.startTime doubleValue] == [removedWorkout.startTime doubleValue]) {
-                [toDelete addObject:workout];
-            }
-        }
-        [self.workouts removeObjectsInArray:toDelete];
-        [self.tableView reloadData];
-    }];
-    
-    [self.firebase observeEventType:FEventTypeChildChanged withBlock:^(FDataSnapshot *snapshot) {
-        ELWorkout* modifiedWorkout = [[ELWorkout alloc] initWithDictionary:(NSDictionary*)snapshot.value];
-        for (ELWorkout* workout in self.workouts) {
-            if ([workout.startTime doubleValue] == [modifiedWorkout.startTime doubleValue]) {
-                workout.endTime = modifiedWorkout.endTime;
-                workout.title = modifiedWorkout.title;
-            }
-        }
-        [self.tableView reloadData];
-    }];*/
-    
     // Customize the back button title for the next viewController on the stack...
     self.navigationItem.backBarButtonItem =
     [[UIBarButtonItem alloc] initWithTitle:@""

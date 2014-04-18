@@ -19,6 +19,7 @@
 		6841D16C18F859D4008CFBF3 /* Gotham-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6841D16B18F859D4008CFBF3 /* Gotham-Light.otf */; };
 		68535D35190148F80074AD71 /* ELSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68535D33190148F80074AD71 /* ELSettingsTableViewController.m */; };
 		68535D36190148F80074AD71 /* ELSettingsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68535D34190148F80074AD71 /* ELSettingsTableViewController.xib */; };
+		68535D401901DC180074AD71 /* ELSettingsUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 68535D3F1901DC180074AD71 /* ELSettingsUtil.m */; };
 		686B857018EAB34D00E76E15 /* ELWorkoutTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 686B856E18EAB34D00E76E15 /* ELWorkoutTableViewCell.m */; };
 		686B857118EAB34D00E76E15 /* ELWorkoutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686B856F18EAB34D00E76E15 /* ELWorkoutTableViewCell.xib */; };
 		686B857518EACE4700E76E15 /* ELDateTimeUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 686B857418EACE4700E76E15 /* ELDateTimeUtil.m */; };
@@ -86,6 +87,8 @@
 		68535D32190148F80074AD71 /* ELSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELSettingsTableViewController.h; sourceTree = "<group>"; };
 		68535D33190148F80074AD71 /* ELSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELSettingsTableViewController.m; sourceTree = "<group>"; };
 		68535D34190148F80074AD71 /* ELSettingsTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELSettingsTableViewController.xib; sourceTree = "<group>"; };
+		68535D3E1901DC180074AD71 /* ELSettingsUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ELSettingsUtil.h; path = Helpers/ELSettingsUtil.h; sourceTree = "<group>"; };
+		68535D3F1901DC180074AD71 /* ELSettingsUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ELSettingsUtil.m; path = Helpers/ELSettingsUtil.m; sourceTree = "<group>"; };
 		686B856D18EAB34D00E76E15 /* ELWorkoutTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ELWorkoutTableViewCell.h; path = Views/ELWorkoutTableViewCell.h; sourceTree = "<group>"; };
 		686B856E18EAB34D00E76E15 /* ELWorkoutTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ELWorkoutTableViewCell.m; path = Views/ELWorkoutTableViewCell.m; sourceTree = "<group>"; };
 		686B856F18EAB34D00E76E15 /* ELWorkoutTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ELWorkoutTableViewCell.xib; path = Views/ELWorkoutTableViewCell.xib; sourceTree = "<group>"; };
@@ -297,6 +300,8 @@
 			children = (
 				686B857318EACE4700E76E15 /* ELDateTimeUtil.h */,
 				686B857418EACE4700E76E15 /* ELDateTimeUtil.m */,
+				68535D3E1901DC180074AD71 /* ELSettingsUtil.h */,
+				68535D3F1901DC180074AD71 /* ELSettingsUtil.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -540,6 +545,7 @@
 				68E5A1F218F6F89900F88D33 /* HTAutocompleteTextField.m in Sources */,
 				683657D818E0670300FA50F2 /* ELAddSetsViewController.m in Sources */,
 				68AABBF618DB9FA7008E883D /* ELAppDelegate.m in Sources */,
+				68535D401901DC180074AD71 /* ELSettingsUtil.m in Sources */,
 				68E5A1EC18F6E18800F88D33 /* SVProgressHUD.m in Sources */,
 				686B857018EAB34D00E76E15 /* ELWorkoutTableViewCell.m in Sources */,
 				686B857518EACE4700E76E15 /* ELDateTimeUtil.m in Sources */,

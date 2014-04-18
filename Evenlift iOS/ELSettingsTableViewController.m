@@ -7,6 +7,7 @@
 //
 
 #import "ELSettingsTableViewController.h"
+#import "ELSettingsUtil.h"
 
 @interface ELSettingsTableViewController ()
 
@@ -51,10 +52,20 @@
     switch (indexPath.row) {
         case 0:
             cell.textLabel.text = @"Pounds";
+            if ([ELSettingsUtil getUnitType] == ELUnitTypePounds) {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
             break;
         
         case 1:
             cell.textLabel.text = @"Kilograms";
+            if ([ELSettingsUtil getUnitType] == ELUnitTypeKilos) {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
             break;
             
         default:
@@ -68,7 +79,26 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    switch (indexPath.row) {
+        case 0:
+            [ELSettingsUtil setUnitType:ELUnitTypePounds];
+            break;
+        case 1:
+            [ELSettingsUtil setUnitType:ELUnitTypeKilos];
+            break;
+        default:
+            break;
+    }
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    // Added a little delay before reloading data because it was messing with the
+    // fading out of the cell's selection background otherwise...
+    double delayInSeconds = 0.15;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [tableView reloadData];
+    });
 }
 
 @end

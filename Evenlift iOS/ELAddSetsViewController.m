@@ -11,6 +11,7 @@
 #import "ELCountdownViewController.h"
 #import "SVProgressHUD.h"
 #import "ELExerciseAutocompleteTextField.h"
+#import "ELSettingsUtil.h"
 
 #define kEvenliftURL @"https://evenlift.firebaseio.com/"
 
@@ -106,7 +107,11 @@
                 break;
             case 2:
                 cell.textLabel.text = @"Weight";
-                textField.placeholder = @"In kilos. Leave blank for bw";
+                if ([ELSettingsUtil getUnitType] == ELUnitTypePounds) {
+                    textField.placeholder = @"In lbs. Leave blank for bw";
+                } else if ([ELSettingsUtil getUnitType] == ELUnitTypeKilos) {
+                    textField.placeholder = @"In kg. Leave blank for bw";
+                }
                 self.weightField = textField;
                 self.weightField.keyboardType = UIKeyboardTypeNumberPad;
                 break;
