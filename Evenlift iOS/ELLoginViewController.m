@@ -9,9 +9,9 @@
 #import "ELLoginViewController.h"
 #import <Firebase/Firebase.h>
 #import <FirebaseSimpleLogin/FirebaseSimpleLogin.h>
-#import "ELHomeViewController.h"
 #import "ELWorkoutsViewController.h"
 #import "ELExercisesTableViewController.h"
+#import "ELSettingsTableViewController.h"
 
 #define kEvenliftURL @"https://evenlift.firebaseio.com/"
 
@@ -127,7 +127,7 @@
     UINavigationController* exercisesNavController = [[UINavigationController alloc] initWithRootViewController:exercises];
     
     // Initialize Settings viewController
-    UIViewController* settings = [[UIViewController alloc] init];
+    ELSettingsTableViewController* settings = [[ELSettingsTableViewController alloc] init];
     settings.title = @"Settings";
     
     // Set up right Logout button on Settings viewController
