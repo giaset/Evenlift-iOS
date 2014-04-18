@@ -36,6 +36,8 @@
         return ELUnitTypePounds;
     } else if ([string isEqualToString:@"kg"]) {
         return ELUnitTypeKilos;
+    } else if ([string isEqualToString:@"bw"]) {
+        return ELUnitTypeBodyWeight;
     } else {
         return ELUnitTypeUnknown;
     }
@@ -47,6 +49,8 @@
         return @"lbs";
     } else if (unitType == ELUnitTypeKilos) {
         return @"kg";
+    } else if (unitType == ELUnitTypeBodyWeight) {
+        return @"bw";
     } else {
         return nil;
     }

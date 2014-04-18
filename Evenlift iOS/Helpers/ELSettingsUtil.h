@@ -11,6 +11,7 @@
 typedef enum {
     ELUnitTypePounds,
     ELUnitTypeKilos,
+    ELUnitTypeBodyWeight,
     ELUnitTypeUnknown
 } ELUnitType;
 

@@ -31,11 +31,19 @@
 
 - (NSString*)description
 {
-    if ([self.rest intValue] == -1) {
-        return [NSString stringWithFormat:@"%@ x %@ %@", self.reps, self.weight, [ELSettingsUtil stringFromUnitType:self.unitType]];
+    NSString* description;
+    
+    if (self.unitType == ELUnitTypeBodyWeight) {
+        description = [NSString stringWithFormat:@"%@ x %@", self.reps, [ELSettingsUtil stringFromUnitType:self.unitType]];
     } else {
-        return [NSString stringWithFormat:@"%@ x %@ %@ (%@ sec rest)", self.reps, self.weight, [ELSettingsUtil stringFromUnitType:self.unitType], self.rest];
+        description = [NSString stringWithFormat:@"%@ x %@ %@", self.reps, self.weight, [ELSettingsUtil stringFromUnitType:self.unitType]];
     }
+    
+    if ([self.rest intValue] != -1) {
+        description = [NSString stringWithFormat:@"%@ (%@ sec rest)", description, self.rest];
+    }
+    
+    return description;
 }
 
 @end

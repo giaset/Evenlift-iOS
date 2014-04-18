@@ -247,6 +247,9 @@
     
     NSNumber* weight = ([f numberFromString:self.weightField.text]) ? [f numberFromString:self.weightField.text] : [NSNumber numberWithInt:-1];
     NSString* unitString = [ELSettingsUtil stringFromUnitType:[ELSettingsUtil getUnitType]];
+    if ([weight intValue] == -1) {
+        unitString = [ELSettingsUtil stringFromUnitType:ELUnitTypeBodyWeight];
+    }
     NSDictionary* weightDict = [[NSDictionary alloc] initWithObjectsAndKeys:weight, @"value", unitString, @"unit", nil];
     
     NSNumber* rest = ([f numberFromString:self.restField.text]) ? [f numberFromString:self.restField.text] : [NSNumber numberWithInt:-1];
