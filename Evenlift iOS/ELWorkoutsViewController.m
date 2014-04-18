@@ -35,10 +35,8 @@
         self.allWorkoutsRef = [[Firebase alloc] initWithUrl:@"https://evenlift.firebaseio.com/workouts/"];
         
         // Set up the Firebase for this user's workouts
-        NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-        NSString* uid = [userDefaults stringForKey:@"uid"];
-        self.userId = uid;
-        NSString* userWorkoutsUrl = [NSString stringWithFormat:@"https://evenlift.firebaseio.com/users/%@/workouts/", uid];
+        self.userId = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
+        NSString* userWorkoutsUrl = [NSString stringWithFormat:@"https://evenlift.firebaseio.com/users/%@/workouts/", self.userId];
         self.userWorkoutsRef = [[Firebase alloc] initWithUrl:userWorkoutsUrl];
         
         // Set up our local array that is the data source to our table view
@@ -284,7 +282,7 @@
         ELViewWorkoutTableViewController* viewWorkout = [[ELViewWorkoutTableViewController alloc] initWithWorkout:workout];
         [self.navigationController pushViewController:viewWorkout animated:YES];
     }
-
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end
