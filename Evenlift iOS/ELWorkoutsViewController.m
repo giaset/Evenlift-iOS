@@ -12,6 +12,7 @@
 #import "ELWorkout.h"
 #import "ELWorkoutTableViewCell.h"
 #import "ELViewWorkoutTableViewController.h"
+#import "ELSettingsUtil.h"
 
 @interface ELWorkoutsViewController ()
 
@@ -35,7 +36,7 @@
         self.allWorkoutsRef = [[Firebase alloc] initWithUrl:@"https://evenlift.firebaseio.com/workouts/"];
         
         // Set up the Firebase for this user's workouts
-        self.userId = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
+        self.userId = [ELSettingsUtil getUid];
         NSString* userWorkoutsUrl = [NSString stringWithFormat:@"https://evenlift.firebaseio.com/users/%@/workouts/", self.userId];
         self.userWorkoutsRef = [[Firebase alloc] initWithUrl:userWorkoutsUrl];
         

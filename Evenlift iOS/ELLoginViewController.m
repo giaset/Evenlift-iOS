@@ -12,6 +12,7 @@
 #import "ELWorkoutsViewController.h"
 #import "ELExercisesTableViewController.h"
 #import "ELSettingsTableViewController.h"
+#import "ELSettingsUtil.h"
 
 #define kEvenliftURL @"https://evenlift.firebaseio.com/"
 
@@ -81,12 +82,9 @@
             NSLog(@"FB LOGIN ERROR");
         } else {
             // FB login successful. First see if we already had this user in our userDefaults
-            NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-            NSString* savedUID = [userDefaults stringForKey:@"uid"];
-            
-            if (![savedUID isEqualToString:user.uid]) {
+            if (![[ELSettingsUtil getUid] isEqualToString:user.uid]) {
                 // Save user.uid to our userDefaults
-                [userDefaults setObject:user.uid forKey:@"uid"];
+                [ELSettingsUtil setUid:user.uid];
                 
                 // And add this user to our Firebase
                 NSString* userPath = [NSString stringWithFormat:@"users/%@", user.uid];
@@ -109,12 +107,7 @@
 - (void)launchApp
 {
     UITabBarController* tabBarController = [[UITabBarController alloc] init];
-    
-    // Initialize Home viewController
-    /*ELHomeViewController* home = [[ELHomeViewController alloc] init];
-    home.title = @"Home";
-    UINavigationController* homeNavController = [[UINavigationController alloc] initWithRootViewController:home];*/
-    
+        
     // Initialize Workouts viewController
     ELWorkoutsViewController* workouts = [[ELWorkoutsViewController alloc] init];
     workouts.title = @"Workouts";

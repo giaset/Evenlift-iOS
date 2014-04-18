@@ -42,8 +42,7 @@
         self.workoutId = workoutRef.name;
         
         // Set up user's Exercises Firebase
-        NSString* uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
-        self.userExercisesRef = [[[Firebase alloc] initWithUrl:kEvenliftURL] childByAppendingPath:[NSString stringWithFormat:@"users/%@/exercises", uid]];
+        self.userExercisesRef = [[[Firebase alloc] initWithUrl:kEvenliftURL] childByAppendingPath:[NSString stringWithFormat:@"users/%@/exercises", [ELSettingsUtil getUid]]];
         
         self.title = @"Current Workout";
     }

@@ -8,6 +8,7 @@
 
 #import "ELExercisesTableViewController.h"
 #import <Firebase/Firebase.h>
+#import "ELSettingsUtil.h"
 
 @interface ELExercisesTableViewController ()
 
@@ -24,8 +25,7 @@
     self = [super initWithNibName:@"ELExercisesTableViewController" bundle:nil];
     if (self) {
         // Set up the Firebase for this user's exercises
-        NSString* uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
-        self.exercisesRef = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"https://evenlift.firebaseio.com/users/%@/exercises", uid]];
+        self.exercisesRef = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"https://evenlift.firebaseio.com/users/%@/exercises", [ELSettingsUtil getUid]]];
         
         // Init the empty Exercises array
         self.exercises = [[NSMutableArray alloc] init];

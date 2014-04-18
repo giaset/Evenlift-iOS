@@ -6,6 +6,7 @@
 
 #import "ELExerciseAutocompleteTextField.h"
 #import <Firebase/Firebase.h>
+#import "ELSettingsUtil.h"
 
 @implementation ELExerciseAutocompleteTextField
 
@@ -14,8 +15,7 @@
     [super setupAutocompleteTextField];
     
     // Set up the Firebase for this user's exercises
-    NSString* uid = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
-    Firebase* exercisesRef = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"https://evenlift.firebaseio.com/users/%@/exercises", uid]];
+    Firebase* exercisesRef = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"https://evenlift.firebaseio.com/users/%@/exercises", [ELSettingsUtil getUid]]];
     
     // Init the empty Exercises array
     self.exercises = [[NSMutableArray alloc] init];

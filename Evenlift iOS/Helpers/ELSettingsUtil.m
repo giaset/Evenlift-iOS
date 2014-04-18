@@ -40,7 +40,12 @@
 
 + (NSString*)getUid
 {
-    return @"";
+    return [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
+}
+
++ (void)setUid:(NSString*)uid
+{
+    [[NSUserDefaults standardUserDefaults] setObject:uid forKey:@"uid"];
 }
 
 @end

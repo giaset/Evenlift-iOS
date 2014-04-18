@@ -18,6 +18,8 @@ typedef enum {
 
 + (ELUnitType)getUnitType;
 + (void)setUnitType:(ELUnitType)unitType;
+
 + (NSString*)getUid;
++ (void)setUid:(NSString*)uid;
 
 @end
