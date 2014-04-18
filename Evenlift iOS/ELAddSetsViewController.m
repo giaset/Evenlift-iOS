@@ -60,6 +60,16 @@
     [self.view addGestureRecognizer:singleTap];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    // Refresh the weight in case the user has changed units
+    [self.tableView beginUpdates];
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:2 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableView endUpdates];
+}
+
 - (void)handleSingleTap:(UITapGestureRecognizer *)sender
 {
     [self.view endEditing:YES];
