@@ -17,7 +17,11 @@
         self.setId = [dict objectForKey:@"set_id"];
         self.exercise = [dict objectForKey:@"exercise"];
         self.reps = (NSNumber*)[dict objectForKey:@"reps"];
-        self.weight = (NSNumber*)[dict objectForKey:@"weight"];
+        
+        NSDictionary* weight = (NSDictionary*)[dict objectForKey:@"weight"];
+        self.weight = (NSNumber*)[weight objectForKey:@"value"];
+        self.unitType = [ELSettingsUtil unitTypeFromString:[weight objectForKey:@"unit"]];
+        
         self.rest = (NSNumber*)[dict objectForKey:@"rest"];
         self.notes = [dict objectForKey:@"notes"];
         self.time = (NSNumber*)[dict objectForKey:@"time"];
@@ -28,9 +32,9 @@
 - (NSString*)description
 {
     if ([self.rest intValue] == -1) {
-        return [NSString stringWithFormat:@"%@ x %@", self.reps, self.weight];
+        return [NSString stringWithFormat:@"%@ x %@ %@", self.reps, self.weight, [ELSettingsUtil stringFromUnitType:self.unitType]];
     } else {
-        return [NSString stringWithFormat:@"%@ x %@ (%@ sec rest)", self.reps, self.weight, self.rest];
+        return [NSString stringWithFormat:@"%@ x %@ %@ (%@ sec rest)", self.reps, self.weight, [ELSettingsUtil stringFromUnitType:self.unitType], self.rest];
     }
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ELSettingsUtil.h"
 
 @interface ELSet : NSObject
 
@@ -16,6 +17,7 @@
 @property (nonatomic, copy) NSString* exercise;
 @property (nonatomic, strong) NSNumber* reps;
 @property (nonatomic, strong) NSNumber* weight;
+@property (nonatomic) ELUnitType unitType;
 @property (nonatomic, strong) NSNumber* rest;
 @property (nonatomic, copy) NSString* notes;
 @property (nonatomic, strong) NSNumber* time;

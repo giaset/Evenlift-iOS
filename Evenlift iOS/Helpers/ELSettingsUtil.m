@@ -17,24 +17,38 @@
     if (!loadedUnitType) {
         // First time ever loading unitType, set POUNDS by default
         [[NSUserDefaults standardUserDefaults] setObject:@"lbs" forKey:@"unit_type"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         loadedUnitType = @"lbs";
     }
     
-    if ([loadedUnitType isEqualToString:@"lbs"]) {
+    return [self unitTypeFromString:loadedUnitType];
+}
+
++ (void)setUnitType:(ELUnitType)unitType
+{
+    [[NSUserDefaults standardUserDefaults] setObject:[self stringFromUnitType:unitType] forKey:@"unit_type"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (ELUnitType)unitTypeFromString:(NSString *)string
+{
+    if ([string isEqualToString:@"lbs"]) {
         return ELUnitTypePounds;
-    } else if ([loadedUnitType isEqualToString:@"kg"]) {
+    } else if ([string isEqualToString:@"kg"]) {
         return ELUnitTypeKilos;
     } else {
         return ELUnitTypeUnknown;
     }
 }
 
-+ (void)setUnitType:(ELUnitType)unitType
++ (NSString*)stringFromUnitType:(ELUnitType)unitType
 {
     if (unitType == ELUnitTypePounds) {
-        [[NSUserDefaults standardUserDefaults] setObject:@"lbs" forKey:@"unit_type"];
+        return @"lbs";
     } else if (unitType == ELUnitTypeKilos) {
-        [[NSUserDefaults standardUserDefaults] setObject:@"kg" forKey:@"unit_type"];
+        return @"kg";
+    } else {
+        return nil;
     }
 }
 
@@ -46,6 +60,7 @@
 + (void)setUid:(NSString*)uid
 {
     [[NSUserDefaults standardUserDefaults] setObject:uid forKey:@"uid"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end
