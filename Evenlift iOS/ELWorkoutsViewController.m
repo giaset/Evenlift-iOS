@@ -22,6 +22,8 @@
 
 @property (nonatomic, strong) NSMutableArray* workouts;
 
+@property (nonatomic) BOOL initialLoadingComplete;
+
 @property NSString* userId;
 
 @end
@@ -62,6 +64,16 @@
     UIBarButtonItem* addWorkoutButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(popAddAlert)];
     self.navigationItem.rightBarButtonItem = addWorkoutButton;
     
+    // Since VALUE type events fire after all other events, this is a good
+    // place to detect if our initial loading is complete
+    self.initialLoadingComplete = NO;
+    [self.userWorkoutsRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        if (!self.initialLoadingComplete) {
+            self.initialLoadingComplete = YES;
+            [self.tableView reloadData];
+        }
+    }];
+    
     // Bind to user's workouts Firebase
     [self.userWorkoutsRef observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot* snapshot) {
         NSString* workoutId = snapshot.name;
@@ -97,7 +109,11 @@
                     [self.workouts addObject:workout];
                 }
             }
-            [self.tableView reloadData];
+            
+            // We do this to prevent cells from appearing one at a time during initial load
+            if (self.initialLoadingComplete) {
+                [self.tableView reloadData];
+            }
         }];
     }];
     
