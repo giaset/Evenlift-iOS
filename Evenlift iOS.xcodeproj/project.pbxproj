@@ -54,6 +54,7 @@
 		68E5A1F918F7019200F88D33 /* ELExerciseAutocompleteTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E5A1F818F7019200F88D33 /* ELExerciseAutocompleteTextField.m */; };
 		68E9137318F4D4A0006A20D4 /* ELCountdownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E9137118F4D4A0006A20D4 /* ELCountdownViewController.m */; };
 		68E9137418F4D4A0006A20D4 /* ELCountdownViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68E9137218F4D4A0006A20D4 /* ELCountdownViewController.xib */; };
+		68E97F10190315F0003F43FB /* Gotham-Ultra.otf in Resources */ = {isa = PBXBuildFile; fileRef = 68E97F0F190315F0003F43FB /* Gotham-Ultra.otf */; };
 		68F0CFA218EC2A73003DDC10 /* ELExercisesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F0CFA018EC2A73003DDC10 /* ELExercisesTableViewController.m */; };
 		68F0CFA318EC2A73003DDC10 /* ELExercisesTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68F0CFA118EC2A73003DDC10 /* ELExercisesTableViewController.xib */; };
 /* End PBXBuildFile section */
@@ -136,6 +137,7 @@
 		68E9137018F4D4A0006A20D4 /* ELCountdownViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCountdownViewController.h; sourceTree = "<group>"; };
 		68E9137118F4D4A0006A20D4 /* ELCountdownViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCountdownViewController.m; sourceTree = "<group>"; };
 		68E9137218F4D4A0006A20D4 /* ELCountdownViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELCountdownViewController.xib; sourceTree = "<group>"; };
+		68E97F0F190315F0003F43FB /* Gotham-Ultra.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Ultra.otf"; sourceTree = "<group>"; };
 		68F0CF9F18EC2A73003DDC10 /* ELExercisesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELExercisesTableViewController.h; sourceTree = "<group>"; };
 		68F0CFA018EC2A73003DDC10 /* ELExercisesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELExercisesTableViewController.m; sourceTree = "<group>"; };
 		68F0CFA118EC2A73003DDC10 /* ELExercisesTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELExercisesTableViewController.xib; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 			children = (
 				6841D16B18F859D4008CFBF3 /* Gotham-Light.otf */,
 				6841D16718F857D4008CFBF3 /* Gotham-Book.otf */,
+				68E97F0F190315F0003F43FB /* Gotham-Ultra.otf */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";
@@ -509,6 +512,7 @@
 				686B857118EAB34D00E76E15 /* ELWorkoutTableViewCell.xib in Resources */,
 				6841D16C18F859D4008CFBF3 /* Gotham-Light.otf in Resources */,
 				68535D36190148F80074AD71 /* ELSettingsTableViewController.xib in Resources */,
+				68E97F10190315F0003F43FB /* Gotham-Ultra.otf in Resources */,
 				6802E31818F7F7AF008439D2 /* ELViewWorkoutTableViewController.xib in Resources */,
 				68AABBF018DB9FA7008E883D /* InfoPlist.strings in Resources */,
 				6841D16918F857D4008CFBF3 /* Gotham-Book.otf in Resources */,

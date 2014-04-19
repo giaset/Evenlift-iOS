@@ -49,6 +49,7 @@
 	<array>
 		<string>Gotham-Book.otf</string>
 		<string>Gotham-Light.otf</string>
+		<string>Gotham-Ultra.otf</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

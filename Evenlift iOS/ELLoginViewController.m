@@ -38,6 +38,9 @@
 {
     [super viewDidLoad];
     
+    self.loginButton.titleLabel.font = [UIFont fontWithName:@"Gotham" size:14.0];
+    self.titleLabel.font = [UIFont fontWithName:@"Gotham-Ultra" size:54.0];
+    
     // Do any additional setup after loading the view from its nib.
     self.firebase = [[Firebase alloc] initWithUrl:kEvenliftURL];
     self.authClient = [[FirebaseSimpleLogin alloc] initWithRef:self.firebase];
