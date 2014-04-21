@@ -55,7 +55,7 @@
 {
     [super viewDidLoad];
     
-    self.tableView.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0);
+    //self.tableView.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0);
     
     // Dismiss the keyboard when the user taps outside of a text field
     UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
@@ -302,11 +302,24 @@
     
     UIBarButtonItem* flexButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
     
-    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(doneButtonClicked:)];
+    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonClicked:)];
     
     NSArray* itemsArray = [NSArray arrayWithObjects:previousButton, nextButton, flexButton, doneButton, nil];
     
     [toolbar setItems:itemsArray];
+    
+    // Style the toolbar
+    toolbar.barTintColor = [UIColor blackColor];
+    previousButton.tintColor = [UIColor whiteColor];
+    nextButton.tintColor = [UIColor whiteColor];
+    doneButton.tintColor = [UIColor whiteColor];
+    
+    NSDictionary* gotham = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Gotham" size:14], NSFontAttributeName, nil];
+    NSDictionary* gothamLight = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Gotham-Light" size:14], NSFontAttributeName, nil];
+    
+    [previousButton setTitleTextAttributes:gothamLight forState:UIControlStateNormal];
+    [nextButton setTitleTextAttributes:gothamLight forState:UIControlStateNormal];
+    [doneButton setTitleTextAttributes:gotham forState:UIControlStateNormal];
     
     textField.inputAccessoryView = toolbar;
 }
