@@ -7,6 +7,7 @@
 //
 
 #import "ELCountdownViewController.h"
+#import "ELColorUtil.h"
 
 @interface ELCountdownViewController ()
 
@@ -37,7 +38,7 @@ int mSeconds;
     // Apply custom fonts to both labels
     self.countdownLabel.font = [UIFont fontWithName:@"Gotham" size:60];
     self.secondsLabel.font = [UIFont fontWithName:@"Gotham" size:14];
-    self.secondsLabel.textColor = [UIColor colorWithRed:0.906 green:0.298 blue:0.235 alpha:1.0];
+    self.secondsLabel.textColor = [ELColorUtil evenLiftRedHighlighted];
     
     self.countdownLabel.text = [NSString stringWithFormat:@"%d", mSeconds];
     
@@ -63,7 +64,7 @@ int mSeconds;
     
     // Configure circle's appearance
     circle.fillColor = [UIColor clearColor].CGColor;
-    circle.strokeColor = [UIColor colorWithRed:0.906 green:0.298 blue:0.235 alpha:1.0].CGColor;
+    circle.strokeColor = [ELColorUtil evenLiftRed].CGColor;
     circle.lineWidth = 10;
     
     // Add to parent layer

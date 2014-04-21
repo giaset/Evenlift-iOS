@@ -12,6 +12,7 @@
 #import "SVProgressHUD.h"
 #import "ELExerciseAutocompleteTextField.h"
 #import "ELSettingsUtil.h"
+#import "ELColorUtil.h"
 
 #define kEvenliftURL @"https://evenlift.firebaseio.com/"
 
@@ -201,28 +202,14 @@
     // Style the button
     submitButton.titleLabel.font = [UIFont fontWithName:@"Gotham" size:22.0];
     [submitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [submitButton setBackgroundColor:[UIColor colorWithRed:0.906 green:0.298 blue:0.235 alpha:1.0]]; // FLAT UI "ALIZARIN"
-    [submitButton setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:0.753 green:0.224 blue:0.169 alpha:1.0]] forState:UIControlStateHighlighted]; // FLAT UI "POMEGRANATE"
+    [submitButton setBackgroundColor:[ELColorUtil evenLiftRed]];
+    [submitButton setBackgroundImage:[ELColorUtil imageWithColor:[ELColorUtil evenLiftRedHighlighted]] forState:UIControlStateHighlighted];
     
     self.submitButton = submitButton;
     
     [footerView addSubview:submitButton];
     
     return footerView;
-}
-
-- (UIImage*)imageWithColor:(UIColor*)color {
-    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    CGContextSetFillColorWithColor(context, [color CGColor]);
-    CGContextFillRect(context, rect);
-    
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return image;
 }
 
 - (IBAction)submitSet

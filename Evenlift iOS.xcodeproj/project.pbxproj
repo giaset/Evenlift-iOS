@@ -57,6 +57,7 @@
 		68E97F10190315F0003F43FB /* Gotham-Ultra.otf in Resources */ = {isa = PBXBuildFile; fileRef = 68E97F0F190315F0003F43FB /* Gotham-Ultra.otf */; };
 		68F0CFA218EC2A73003DDC10 /* ELExercisesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F0CFA018EC2A73003DDC10 /* ELExercisesTableViewController.m */; };
 		68F0CFA318EC2A73003DDC10 /* ELExercisesTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68F0CFA118EC2A73003DDC10 /* ELExercisesTableViewController.xib */; };
+		68F0E4261905BB41001027F6 /* ELColorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F0E4251905BB41001027F6 /* ELColorUtil.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,6 +142,8 @@
 		68F0CF9F18EC2A73003DDC10 /* ELExercisesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELExercisesTableViewController.h; sourceTree = "<group>"; };
 		68F0CFA018EC2A73003DDC10 /* ELExercisesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELExercisesTableViewController.m; sourceTree = "<group>"; };
 		68F0CFA118EC2A73003DDC10 /* ELExercisesTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELExercisesTableViewController.xib; sourceTree = "<group>"; };
+		68F0E4241905BB41001027F6 /* ELColorUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ELColorUtil.h; path = Helpers/ELColorUtil.h; sourceTree = "<group>"; };
+		68F0E4251905BB41001027F6 /* ELColorUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ELColorUtil.m; path = Helpers/ELColorUtil.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -305,6 +308,8 @@
 				686B857418EACE4700E76E15 /* ELDateTimeUtil.m */,
 				68535D3E1901DC180074AD71 /* ELSettingsUtil.h */,
 				68535D3F1901DC180074AD71 /* ELSettingsUtil.m */,
+				68F0E4241905BB41001027F6 /* ELColorUtil.h */,
+				68F0E4251905BB41001027F6 /* ELColorUtil.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -543,6 +548,7 @@
 				68F0CFA218EC2A73003DDC10 /* ELExercisesTableViewController.m in Sources */,
 				6802E31718F7F7AF008439D2 /* ELViewWorkoutTableViewController.m in Sources */,
 				68AABBF218DB9FA7008E883D /* main.m in Sources */,
+				68F0E4261905BB41001027F6 /* ELColorUtil.m in Sources */,
 				68D1432318EA272600AB3FE8 /* ELWorkout.m in Sources */,
 				68535D35190148F80074AD71 /* ELSettingsTableViewController.m in Sources */,
 				681F739F18DF223D00AE982D /* ELWorkoutsViewController.m in Sources */,
