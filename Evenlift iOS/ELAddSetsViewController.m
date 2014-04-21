@@ -227,52 +227,86 @@
 
 - (IBAction)submitSet
 {
-    self.submitButton.enabled = NO;
-    
-    BOOL userSpecifiedRestTime = ![self.restField.text isEqualToString:@""];
-    
-    if (!userSpecifiedRestTime) {
-        [SVProgressHUD setBackgroundColor:[UIColor blackColor]];
-        [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
-        [SVProgressHUD show];
-    }
-    Firebase* setRef = [[self.workoutRef childByAppendingPath:@"sets"] childByAutoId];
-    
-    NSString* setID = setRef.name;
-    
-    // Add a reference to this set to the appropriate Exercise
-    [[self.userExercisesRef childByAppendingPath:[NSString stringWithFormat:@"%@/sets/%@/%@", self.exerciseField.text, self.workoutId, setID]] setValue:@YES];
-    
-    // Actually log the set
-    NSNumberFormatter* f = [[NSNumberFormatter alloc] init];
-    [f setNumberStyle:NSNumberFormatterDecimalStyle];
-    
-    NSNumber* reps = ([f numberFromString:self.repsField.text]) ? [f numberFromString:self.repsField.text] : [NSNumber numberWithInt:-1];
-    
-    NSNumber* weight = ([f numberFromString:self.weightField.text]) ? [f numberFromString:self.weightField.text] : [NSNumber numberWithInt:-1];
-    NSString* unitString = [ELSettingsUtil stringFromUnitType:[ELSettingsUtil getUnitType]];
-    if ([weight intValue] == -1) {
-        unitString = [ELSettingsUtil stringFromUnitType:ELUnitTypeBodyWeight];
-    }
-    NSDictionary* weightDict = [[NSDictionary alloc] initWithObjectsAndKeys:weight, @"value", unitString, @"unit", nil];
-    
-    NSNumber* rest = ([f numberFromString:self.restField.text]) ? [f numberFromString:self.restField.text] : [NSNumber numberWithInt:-1];
-    
-    [setRef setValue:@{@"exercise": self.exerciseField.text, @"reps": reps, @"weight": weightDict, @"rest": rest, @"notes": self.notesField.text, @"time": [ELDateTimeUtil getCurrentTime]} withCompletionBlock:^(NSError *error, Firebase *ref) {
-        if (!userSpecifiedRestTime) {
-            [SVProgressHUD showSuccessWithStatus:@"Set added succesfully!"];
+    // First validate input, and then log the set
+    if ([self validateInput]) {
+        self.submitButton.enabled = NO;
+        
+        BOOL userDidSpecifyRestTime = ![self.restField.text isEqualToString:@""];
+        
+        if (!userDidSpecifyRestTime) {
+            [SVProgressHUD setBackgroundColor:[UIColor blackColor]];
+            [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
+            [SVProgressHUD show];
         }
-        [self clearAllTextFields];
-        [self.view endEditing:YES];
-        self.submitButton.enabled = YES;
-    }];
-    
-    // If user specified a rest time, show countdown
-    if (userSpecifiedRestTime) {
-        ELCountdownViewController* countdownViewController = [[ELCountdownViewController alloc] initWithDurationInSeconds:[self.restField.text intValue]];
-        countdownViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        [self presentViewController:countdownViewController animated:YES completion:nil];
+        
+        // Create a new Set
+        Firebase* setRef = [[self.workoutRef childByAppendingPath:@"sets"] childByAutoId];
+        
+        NSString* setID = setRef.name;
+        
+        // Add a reference to this Set to the appropriate Exercise
+        [[self.userExercisesRef childByAppendingPath:[NSString stringWithFormat:@"%@/sets/%@/%@", self.exerciseField.text, self.workoutId, setID]] setValue:@YES];
+        
+        // Actually log the Set
+        NSNumberFormatter* f = [[NSNumberFormatter alloc] init];
+        [f setNumberStyle:NSNumberFormatterDecimalStyle];
+        
+        NSNumber* reps = ([f numberFromString:self.repsField.text]) ? [f numberFromString:self.repsField.text] : [NSNumber numberWithInt:-1];
+        
+        NSNumber* weight = ([f numberFromString:self.weightField.text]) ? [f numberFromString:self.weightField.text] : [NSNumber numberWithInt:-1];
+        NSString* unitString = [ELSettingsUtil stringFromUnitType:[ELSettingsUtil getUnitType]];
+        if ([weight intValue] == -1) {
+            unitString = [ELSettingsUtil stringFromUnitType:ELUnitTypeBodyWeight];
+        }
+        NSDictionary* weightDict = [[NSDictionary alloc] initWithObjectsAndKeys:weight, @"value", unitString, @"unit", nil];
+        
+        NSNumber* rest = ([f numberFromString:self.restField.text]) ? [f numberFromString:self.restField.text] : [NSNumber numberWithInt:-1];
+        
+        [setRef setValue:@{@"exercise": self.exerciseField.text, @"reps": reps, @"weight": weightDict, @"rest": rest, @"notes": self.notesField.text, @"time": [ELDateTimeUtil getCurrentTime]} withCompletionBlock:^(NSError *error, Firebase *ref) {
+            if (!userDidSpecifyRestTime) {
+                [SVProgressHUD showSuccessWithStatus:@"Set added succesfully!"];
+            }
+            [self clearAllTextFields];
+            [self.view endEditing:YES];
+            self.submitButton.enabled = YES;
+        }];
+        
+        // If user specified a rest time, show countdown
+        if (userDidSpecifyRestTime) {
+            ELCountdownViewController* countdownViewController = [[ELCountdownViewController alloc] initWithDurationInSeconds:[self.restField.text intValue]];
+            countdownViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            [self presentViewController:countdownViewController animated:YES completion:nil];
+        }
     }
+}
+
+- (BOOL)validateInput
+{
+    // First check that there is text in the Exercise field
+    if ([self.exerciseField.text isEqualToString:@""]) {
+        UIAlertView* alert = [[UIAlertView alloc]
+                                    initWithTitle:@"Missing Info"
+                                    message:@"Please enter an Exercise name."
+                                    delegate:self
+                                    cancelButtonTitle:@"Ok"
+                                    otherButtonTitles:nil];
+        [alert show];
+        return NO;
+    }
+    
+    // Then check the same for the Reps field
+    if ([self.repsField.text isEqualToString:@""]) {
+        UIAlertView* alert = [[UIAlertView alloc]
+                                           initWithTitle:@"Missing Info"
+                                           message:@"Please enter a number of Reps"
+                                           delegate:self
+                                           cancelButtonTitle:@"Ok"
+                                           otherButtonTitles:nil];
+        [alert show];
+        return NO;
+    }
+    
+    return YES;
 }
 
 - (void)clearAllTextFields
@@ -309,10 +343,7 @@
     [toolbar setItems:itemsArray];
     
     // Style the toolbar
-    toolbar.barTintColor = [UIColor blackColor];
-    previousButton.tintColor = [UIColor whiteColor];
-    nextButton.tintColor = [UIColor whiteColor];
-    doneButton.tintColor = [UIColor whiteColor];
+    toolbar.tintColor = [UIColor blackColor];
     
     NSDictionary* gotham = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Gotham" size:14], NSFontAttributeName, nil];
     NSDictionary* gothamLight = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Gotham-Light" size:14], NSFontAttributeName, nil];
