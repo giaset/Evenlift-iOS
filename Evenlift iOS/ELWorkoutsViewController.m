@@ -13,6 +13,7 @@
 #import "ELWorkoutTableViewCell.h"
 #import "ELViewWorkoutTableViewController.h"
 #import "ELSettingsUtil.h"
+#import "SVProgressHUD.h"
 
 @interface ELWorkoutsViewController ()
 
@@ -67,10 +68,20 @@
     // Since VALUE type events fire after all other events, this is a good
     // place to detect if our initial loading is complete
     self.initialLoadingComplete = NO;
+    [SVProgressHUD setBackgroundColor:[UIColor blackColor]];
+    [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
+    [SVProgressHUD showWithStatus:@"Loading your workouts."];
     [self.userWorkoutsRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
         if (!self.initialLoadingComplete) {
             self.initialLoadingComplete = YES;
             [self.tableView reloadData];
+            
+            // Dismiss SVProgressHUD after a delay to allow for reloading of tableView
+            double delayInSeconds = 1.0;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [SVProgressHUD dismiss];
+            });
         }
     }];
     
