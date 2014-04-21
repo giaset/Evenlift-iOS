@@ -196,7 +196,7 @@
     
     // Create the button
     UIButton* submitButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 320, 54)];
-    [submitButton setTitle:@"Add Set" forState:UIControlStateNormal];
+    [submitButton setTitle:@"+ Add Set" forState:UIControlStateNormal];
     [submitButton addTarget:self action:@selector(submitSet) forControlEvents:UIControlEventTouchUpInside];
     
     // Style the button

@@ -14,6 +14,7 @@
 #import "ELViewWorkoutTableViewController.h"
 #import "ELSettingsUtil.h"
 #import "SVProgressHUD.h"
+#import "ELColorUtil.h"
 
 @interface ELWorkoutsViewController ()
 
@@ -53,17 +54,15 @@
 {
     [super viewDidLoad];
     
-    self.tableView.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0);
-    
     // Register ELWorkoutTableViewCell nib for this tableView
     [self.tableView registerNib:[UINib nibWithNibName:@"ELWorkoutTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WorkoutCell"];
     
     // Set up leftBarButtonItem
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     // Set up rightBarButtonItem
-    UIBarButtonItem* addWorkoutButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(popAddAlert)];
-    self.navigationItem.rightBarButtonItem = addWorkoutButton;
+    /*UIBarButtonItem* addWorkoutButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(popAddAlert)];
+    self.navigationItem.rightBarButtonItem = addWorkoutButton;*/
     
     // Since VALUE type events fire after all other events, this is a good
     // place to detect if our initial loading is complete
@@ -139,7 +138,7 @@
 - (IBAction)popAddAlert
 {
     UIAlertView* addAlert = [[UIAlertView alloc]
-                             initWithTitle:@"Create Workout"
+                             initWithTitle:@"Start New Workout"
                              message:@"Please enter an optional title for this workout.\n(ex: Max-Effort Upper Body)"
                              delegate:self
                              cancelButtonTitle:@"Cancel"
@@ -289,5 +288,32 @@
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+// Header view
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 54;
+}
+
+- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView* headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 54)];
+    
+    // Create the button
+    UIButton* startNewWorkoutButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 320, 54)];
+    [startNewWorkoutButton setTitle:@"+ Start New Workout" forState:UIControlStateNormal];
+    [startNewWorkoutButton addTarget:self action:@selector(popAddAlert) forControlEvents:UIControlEventTouchUpInside];
+    
+    // Style the button
+    startNewWorkoutButton.titleLabel.font = [UIFont fontWithName:@"Gotham" size:22.0];
+    [startNewWorkoutButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [startNewWorkoutButton setBackgroundColor:[ELColorUtil evenLiftRed]];
+    [startNewWorkoutButton setBackgroundImage:[ELColorUtil imageWithColor:[ELColorUtil evenLiftRedHighlighted]] forState:UIControlStateHighlighted];
+    
+    [headerView addSubview:startNewWorkoutButton];
+    
+    return headerView;
+}
+
 
 @end
