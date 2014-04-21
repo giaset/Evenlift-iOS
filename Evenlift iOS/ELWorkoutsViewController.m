@@ -57,13 +57,6 @@
     // Register ELWorkoutTableViewCell nib for this tableView
     [self.tableView registerNib:[UINib nibWithNibName:@"ELWorkoutTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WorkoutCell"];
     
-    // Set up leftBarButtonItem
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    // Set up rightBarButtonItem
-    /*UIBarButtonItem* addWorkoutButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(popAddAlert)];
-    self.navigationItem.rightBarButtonItem = addWorkoutButton;*/
-    
     // Since VALUE type events fire after all other events, this is a good
     // place to detect if our initial loading is complete
     self.initialLoadingComplete = NO;
