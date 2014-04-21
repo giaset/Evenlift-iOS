@@ -29,6 +29,8 @@
 
 @property UIButton* submitButton;
 
+@property NSInteger lastSelectedTextField;
+
 @end
 
 @implementation ELAddSetsViewController
@@ -106,7 +108,8 @@
                 cell.textLabel.text = @"Exercise";
                 self.exerciseField = [[ELExerciseAutocompleteTextField alloc] initWithFrame:CGRectMake(100, 0, 320, 54)];
                 self.exerciseField.font = gothamLight;
-                self.exerciseField.tag = 0;
+                self.exerciseField.tag = 1;
+                self.exerciseField.delegate = self;
                 [cell.contentView addSubview:self.exerciseField];
                 break;
             case 1:
@@ -139,7 +142,8 @@
         
         if (indexPath.row != 0) {
             textField.font = gothamLight;
-            textField.tag = indexPath.row;
+            textField.tag = indexPath.row+1;
+            textField.delegate = self;
             [cell.contentView addSubview:textField];
         }
     }
@@ -278,6 +282,48 @@
     self.weightField.text = @"";
     self.restField.text = @"";
     self.notesField.text = @"";
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    self.lastSelectedTextField = textField.tag;
+    [self setCustomToolBarForTextField:textField];
+}
+
+- (void)setCustomToolBarForTextField:(UITextField*)textField
+{
+    UIToolbar* toolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0,0,320,44)];
+    
+    UIBarButtonItem* previousButton = [[UIBarButtonItem alloc] initWithTitle:@"Previous" style:UIBarButtonItemStyleBordered target:self action:@selector(previousButtonClicked:)];
+    previousButton.enabled = (textField.tag != 1);
+    
+    UIBarButtonItem* nextButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleBordered target:self action:@selector(nextButtonClicked:)];
+    nextButton.enabled = (textField.tag != 5);
+    
+    UIBarButtonItem* flexButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    
+    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(doneButtonClicked:)];
+    
+    NSArray* itemsArray = [NSArray arrayWithObjects:previousButton, nextButton, flexButton, doneButton, nil];
+    
+    [toolbar setItems:itemsArray];
+    
+    textField.inputAccessoryView = toolbar;
+}
+
+- (IBAction)previousButtonClicked:(id)sender
+{
+    [[self.view viewWithTag:self.lastSelectedTextField-1] becomeFirstResponder];
+}
+
+- (IBAction)nextButtonClicked:(id)sender
+{
+    [[self.view viewWithTag:self.lastSelectedTextField+1] becomeFirstResponder];
+}
+
+- (IBAction)doneButtonClicked:(id)sender
+{
+    [self.view endEditing:YES];
 }
 
 @end

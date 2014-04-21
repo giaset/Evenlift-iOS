@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Firebase/Firebase.h>
 
-@interface ELAddSetsViewController : UITableViewController
+@interface ELAddSetsViewController : UITableViewController <UITextFieldDelegate>
 
 @property (nonatomic, strong) Firebase* workoutRef;
 
