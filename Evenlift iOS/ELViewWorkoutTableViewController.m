@@ -35,6 +35,8 @@
 {
     [super viewDidLoad];
     
+    self.tableView.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0);
+    
     Firebase* setsRef = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"https://evenlift.firebaseio.com/workouts/%@/sets", self.workout.workoutId]];
     
     [setsRef observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
@@ -71,23 +73,14 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of sections.
     return self.exercises.count;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return the number of rows in the section.
-    ELExercise* exercise = (ELExercise*)[self.exercises objectAtIndex:section];
-    return exercise.sets.count;
-}
-
-- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    ELExercise* exercise = (ELExercise*)[self.exercises objectAtIndex:section];
-    return exercise.name;
+    return 54;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -97,15 +90,55 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     // Configure the cell...
-    ELExercise* exercise = (ELExercise*)[self.exercises objectAtIndex:indexPath.section];
-    ELSet* set = (ELSet*)[exercise.sets objectAtIndex:indexPath.row];
-    cell.textLabel.text = [set description];
+    ELExercise* exercise = (ELExercise*)[self.exercises objectAtIndex:indexPath.row];
+    cell.textLabel.text = exercise.name;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%lu sets", (unsigned long)exercise.sets.count];
     
     return cell;
+}
+
+// Footer view
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 54;
+}
+
+- (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 54)];
+    
+    // Create the button
+    UIButton* addExerciseButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 320, 54)];
+    [addExerciseButton setTitle:@"+ Add Exercise" forState:UIControlStateNormal];
+    [addExerciseButton addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    
+    // Style the button
+    addExerciseButton.titleLabel.font = [UIFont fontWithName:@"Gotham" size:22.0];
+    [addExerciseButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [addExerciseButton setBackgroundColor:[UIColor colorWithRed:0.906 green:0.298 blue:0.235 alpha:1.0]]; // FLAT UI "ALIZARIN"
+    [addExerciseButton setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:0.753 green:0.224 blue:0.169 alpha:1.0]] forState:UIControlStateHighlighted]; // FLAT UI "POMEGRANATE"
+    
+    [footerView addSubview:addExerciseButton];
+    
+    return footerView;
+}
+
+- (UIImage*)imageWithColor:(UIColor*)color {
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
 }
 
 @end
