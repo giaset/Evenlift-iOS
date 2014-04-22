@@ -12,5 +12,6 @@
 @interface ELViewWorkoutTableViewController : UITableViewController
 
 - (id)initWithWorkout:(ELWorkout*)workout;
+- (id)initWithWorkoutId:(NSString*)workoutId andTitle:(NSString*)title;
 
 @end

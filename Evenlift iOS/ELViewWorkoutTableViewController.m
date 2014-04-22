@@ -14,7 +14,7 @@
 
 @interface ELViewWorkoutTableViewController ()
 
-@property (nonatomic, strong) ELWorkout* workout;
+@property (nonatomic) NSString* workoutId;
 @property (nonatomic, strong) NSMutableArray* exercises;
 
 @end
@@ -25,9 +25,20 @@
 {
     self = [super init];
     if (self) {
-        self.workout = workout;
+        self.workoutId = workout.workoutId;
         self.exercises = [[NSMutableArray alloc] init];
         self.title = workout.title;
+    }
+    return self;
+}
+
+- (id)initWithWorkoutId:(NSString *)workoutId andTitle:(NSString *)title
+{
+    self = [super init];
+    if (self) {
+        self.workoutId = workoutId;
+        self.exercises = [[NSMutableArray alloc] init];
+        self.title = title;
     }
     return self;
 }
@@ -38,7 +49,7 @@
     
     self.tableView.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0);
     
-    Firebase* setsRef = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"https://evenlift.firebaseio.com/workouts/%@/sets", self.workout.workoutId]];
+    Firebase* setsRef = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"https://evenlift.firebaseio.com/workouts/%@/sets", self.workoutId]];
     
     [setsRef observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
         NSString* setId = snapshot.name;

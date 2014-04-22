@@ -179,8 +179,9 @@
     NSString* workoutId = self.currentWorkoutRef.name;
     [[self.userWorkoutsRef childByAppendingPath:workoutId] setValue:@YES];
     
-    // Finally, create the addSetsViewController
-    [self launchAddSetsViewControllerForCurrentWorkoutRef];
+    // Finally, launch the viewWorkout viewController for the appropriate workout
+    ELViewWorkoutTableViewController* viewWorkout = [[ELViewWorkoutTableViewController alloc] initWithWorkoutId:workoutId andTitle:title];
+    [self.navigationController pushViewController:viewWorkout animated:YES];
 }
 
 - (void)launchAddSetsViewControllerForCurrentWorkoutRef
@@ -293,15 +294,9 @@
     // Get the Workout we clicked on
     ELWorkout* workout = [self.workouts objectAtIndex:(self.workouts.count - 1 - indexPath.row)];
     
-    if (workout.endTime == nil) {
-        // If the clicked workout is still in progress, go back to the Add Sets screen
-        self.currentWorkoutRef = [self.allWorkoutsRef childByAppendingPath:workout.workoutId];
-        [self launchAddSetsViewControllerForCurrentWorkoutRef];
-    } else {
-        // If we have clicked a completed workout
-        ELViewWorkoutTableViewController* viewWorkout = [[ELViewWorkoutTableViewController alloc] initWithWorkout:workout];
-        [self.navigationController pushViewController:viewWorkout animated:YES];
-    }
+    ELViewWorkoutTableViewController* viewWorkout = [[ELViewWorkoutTableViewController alloc] initWithWorkout:workout];
+    [self.navigationController pushViewController:viewWorkout animated:YES];
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
