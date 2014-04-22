@@ -11,7 +11,6 @@
 #import <FirebaseSimpleLogin/FirebaseSimpleLogin.h>
 #import "ELWorkoutsViewController.h"
 #import "ELExercisesTableViewController.h"
-#import "ELSettingsTableViewController.h"
 #import "ELSettingsUtil.h"
 
 #define kEvenliftURL @"https://evenlift.firebaseio.com/"

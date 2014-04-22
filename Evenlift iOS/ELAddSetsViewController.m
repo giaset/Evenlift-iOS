@@ -13,6 +13,7 @@
 #import "ELExerciseAutocompleteTextField.h"
 #import "ELSettingsUtil.h"
 #import "ELColorUtil.h"
+#import "ELSettingsTableViewController.h"
 
 #define kEvenliftURL @"https://evenlift.firebaseio.com/"
 
@@ -47,7 +48,7 @@
         // Set up user's Exercises Firebase
         self.userExercisesRef = [[[Firebase alloc] initWithUrl:kEvenliftURL] childByAppendingPath:[NSString stringWithFormat:@"users/%@/exercises", [ELSettingsUtil getUid]]];
         
-        self.title = @"Exercise Name Here...";
+        self.title = @"Exercise Name Here";
     }
     return self;
 }
@@ -56,7 +57,15 @@
 {
     [super viewDidLoad];
     
-    //self.tableView.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0);
+    // Set up rightBarButton to launch Settings viewController
+    UIButton* settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    settingsButton.frame = CGRectMake(0, 0, 26, 26);
+    [settingsButton setImage:[UIImage imageNamed:@"gear"] forState:UIControlStateNormal];
+    settingsButton.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
+    [settingsButton addTarget:self action:@selector(showSettingsViewController) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem* settingsButtonItem = [[UIBarButtonItem alloc] initWithCustomView:settingsButton];
+    self.navigationItem.rightBarButtonItem = settingsButtonItem;
     
     // Dismiss the keyboard when the user taps outside of a text field
     UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
@@ -76,6 +85,16 @@
 - (void)handleSingleTap:(UITapGestureRecognizer *)sender
 {
     [self.view endEditing:YES];
+}
+
+- (IBAction)showSettingsViewController
+{
+    ELSettingsTableViewController* settingsViewController = [[ELSettingsTableViewController alloc] init];
+    settingsViewController.authClient = nil;
+    
+    UINavigationController* settingsNavController = [[UINavigationController alloc] initWithRootViewController:settingsViewController];
+    
+    [self presentViewController:settingsNavController animated:YES completion:nil];
 }
 
 #pragma mark - Table view data source
@@ -102,55 +121,67 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
-        UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(100, 0, 320, 54)];
-        
-        switch (indexPath.row) {
-            case 0:
-                cell.textLabel.text = @"Exercise";
-                self.exerciseField = [[ELExerciseAutocompleteTextField alloc] initWithFrame:CGRectMake(100, 0, 320, 54)];
-                self.exerciseField.font = gothamLight;
-                self.exerciseField.tag = 1;
-                self.exerciseField.delegate = self;
-                [cell.contentView addSubview:self.exerciseField];
-                break;
-            case 1:
-                cell.textLabel.text = @"Reps";
-                self.repsField = textField;
-                self.repsField.keyboardType = UIKeyboardTypeNumberPad;
-                break;
-            case 2:
-                cell.textLabel.text = @"Weight";
-                if ([ELSettingsUtil getUnitType] == ELUnitTypePounds) {
-                    textField.placeholder = @"In lbs. Leave blank for bw";
-                } else if ([ELSettingsUtil getUnitType] == ELUnitTypeKilos) {
-                    textField.placeholder = @"In kg. Leave blank for bw";
-                }
-                self.weightField = textField;
-                self.weightField.keyboardType = UIKeyboardTypeNumberPad;
-                break;
-            case 3:
-                cell.textLabel.text = @"Rest";
-                textField.placeholder = @"In seconds. Optional";
-                self.restField = textField;
-                self.restField.keyboardType = UIKeyboardTypeNumberPad;
-                break;
-            case 4:
-                cell.textLabel.text = @"Notes";
-                textField.placeholder = @"Optional";
-                self.notesField = textField;
-                break;
-        }
+        cell.textLabel.font  = gotham;
         
         if (indexPath.row != 0) {
+            UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(100, 0, 320, 54)];
             textField.font = gothamLight;
             textField.tag = indexPath.row+1;
             textField.delegate = self;
+            
+            switch (indexPath.row) {
+                case 1:
+                    self.repsField = textField;
+                    self.repsField.keyboardType = UIKeyboardTypeNumberPad;
+                    break;
+                case 2:
+                    self.weightField = textField;
+                    self.weightField.keyboardType = UIKeyboardTypeNumberPad;
+                    break;
+                case 3:
+                    self.restField = textField;
+                    self.restField.keyboardType = UIKeyboardTypeNumberPad;
+                    break;
+                case 4:
+                    self.notesField = textField;
+                    break;
+            }
+            
             [cell.contentView addSubview:textField];
+        } else {
+            self.exerciseField = [[ELExerciseAutocompleteTextField alloc] initWithFrame:CGRectMake(100, 0, 320, 54)];
+            self.exerciseField.font = gothamLight;
+            self.exerciseField.tag = 1;
+            self.exerciseField.delegate = self;
+            [cell.contentView addSubview:self.exerciseField];
         }
     }
     
     // Configure the cell...
-    cell.textLabel.font  = gotham;
+    switch (indexPath.row) {
+        case 0:
+            cell.textLabel.text = @"Exercise";
+            break;
+        case 1:
+            cell.textLabel.text = @"Reps";
+            break;
+        case 2:
+            cell.textLabel.text = @"Weight";
+            if ([ELSettingsUtil getUnitType] == ELUnitTypePounds) {
+                self.weightField.placeholder = @"In lbs. Leave blank for bw";
+            } else if ([ELSettingsUtil getUnitType] == ELUnitTypeKilos) {
+                self.weightField.placeholder = @"In kg. Leave blank for bw";
+            }
+            break;
+        case 3:
+            cell.textLabel.text = @"Rest";
+            self.restField.placeholder = @"In seconds. Optional";
+            break;
+        case 4:
+            cell.textLabel.text = @"Notes";
+            self.notesField.placeholder = @"Optional";
+            break;
+    }
     
     return cell;
 }

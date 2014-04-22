@@ -122,27 +122,35 @@
 // Footer view
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 54;
+    if (self.authClient == nil) {
+        return 0;
+    } else {
+        return 54;
+    }
 }
 
 - (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 54)];
-    
-    // Create the button
-    UIButton* logoutButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 320, 54)];
-    [logoutButton setTitle:@"Logout" forState:UIControlStateNormal];
-    [logoutButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
-    
-    // Style the button
-    logoutButton.titleLabel.font = [UIFont fontWithName:@"Gotham" size:22.0];
-    [logoutButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [logoutButton setBackgroundColor:[ELColorUtil evenLiftRed]];
-    [logoutButton setBackgroundImage:[ELColorUtil imageWithColor:[ELColorUtil evenLiftRedHighlighted]] forState:UIControlStateHighlighted];
-    
-    [footerView addSubview:logoutButton];
-    
-    return footerView;
+    if (self.authClient == nil) {
+        return nil;
+    } else {
+        UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 54)];
+        
+        // Create the button
+        UIButton* logoutButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 320, 54)];
+        [logoutButton setTitle:@"Logout" forState:UIControlStateNormal];
+        [logoutButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
+        
+        // Style the button
+        logoutButton.titleLabel.font = [UIFont fontWithName:@"Gotham" size:22.0];
+        [logoutButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [logoutButton setBackgroundColor:[ELColorUtil evenLiftRed]];
+        [logoutButton setBackgroundImage:[ELColorUtil imageWithColor:[ELColorUtil evenLiftRedHighlighted]] forState:UIControlStateHighlighted];
+        
+        [footerView addSubview:logoutButton];
+        
+        return footerView;
+    }
 }
 
 - (IBAction)logout
