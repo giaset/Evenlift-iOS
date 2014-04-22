@@ -159,6 +159,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    ELExercise* exercise = (ELExercise*)[self.exercises objectAtIndex:indexPath.row];
+    
+    if (!self.workoutIsFinished) {
+        ELAddSetsViewController* addSetsViewController = [[ELAddSetsViewController alloc] initWithWorkoutRef:self.workoutRef andExerciseName:exercise.name];
+        [self.navigationController pushViewController:addSetsViewController animated:YES];
+    }
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
