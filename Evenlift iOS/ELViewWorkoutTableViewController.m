@@ -48,6 +48,8 @@
 {
     [super viewDidLoad];
     
+    self.tableView.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0);
+    
     // Set up right Finish button
     UIBarButtonItem* finishButton = [[UIBarButtonItem alloc] initWithTitle:@"Finish" style:UIBarButtonItemStyleBordered target:self action:@selector(finishButtonClicked)];
     self.navigationItem.rightBarButtonItem = finishButton;
