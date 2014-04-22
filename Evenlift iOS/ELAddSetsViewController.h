@@ -13,6 +13,6 @@
 
 @property (nonatomic, strong) Firebase* workoutRef;
 
-- (id)initWithWorkoutRef:(Firebase*)workoutRef;
+- (id)initWithWorkoutRef:(Firebase*)workoutRef andExerciseName:(NSString*)exerciseName;
 
 @end

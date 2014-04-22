@@ -37,7 +37,7 @@
 
 @implementation ELAddSetsViewController
 
-- (id)initWithWorkoutRef:(Firebase*)workoutRef
+- (id)initWithWorkoutRef:(Firebase*)workoutRef andExerciseName:(NSString *)exerciseName
 {
     self = [super init];
     if (self) {
@@ -48,7 +48,16 @@
         // Set up user's Exercises Firebase
         self.userExercisesRef = [[[Firebase alloc] initWithUrl:kEvenliftURL] childByAppendingPath:[NSString stringWithFormat:@"users/%@/exercises", [ELSettingsUtil getUid]]];
         
-        self.title = @"Exercise Name Here";
+        // Set up UITextField in navigationBar's titleView
+        self.exerciseField = [[ELExerciseAutocompleteTextField alloc] initWithFrame:CGRectMake(0, 0, 200, 22)];
+        self.exerciseField.font = [UIFont fontWithName:@"Gotham" size:18];
+        self.exerciseField.textColor = [UIColor whiteColor];
+        //self.exerciseField.textAlignment = NSTextAlignmentCenter;
+        self.exerciseField.tag = 99;
+        self.exerciseField.delegate = self;
+        self.exerciseField.text = exerciseName;
+        
+        self.navigationItem.titleView = self.exerciseField;
     }
     return self;
 }
@@ -78,7 +87,7 @@
     
     // Refresh the weight in case the user has changed units
     [self.tableView beginUpdates];
-    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:2 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
     [self.tableView endUpdates];
 }
 
@@ -101,8 +110,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return 5;
+    return 4;
 }
 
 
@@ -123,49 +131,38 @@
         
         cell.textLabel.font  = gotham;
         
-        if (indexPath.row != 0) {
-            UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(100, 0, 320, 54)];
-            textField.font = gothamLight;
-            textField.tag = indexPath.row+1;
-            textField.delegate = self;
-            
-            switch (indexPath.row) {
-                case 1:
-                    self.repsField = textField;
-                    self.repsField.keyboardType = UIKeyboardTypeNumberPad;
-                    break;
-                case 2:
-                    self.weightField = textField;
-                    self.weightField.keyboardType = UIKeyboardTypeNumberPad;
-                    break;
-                case 3:
-                    self.restField = textField;
-                    self.restField.keyboardType = UIKeyboardTypeNumberPad;
-                    break;
-                case 4:
-                    self.notesField = textField;
-                    break;
-            }
-            
-            [cell.contentView addSubview:textField];
-        } else {
-            self.exerciseField = [[ELExerciseAutocompleteTextField alloc] initWithFrame:CGRectMake(100, 0, 320, 54)];
-            self.exerciseField.font = gothamLight;
-            self.exerciseField.tag = 1;
-            self.exerciseField.delegate = self;
-            [cell.contentView addSubview:self.exerciseField];
+        UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(100, 0, 320, 54)];
+        textField.font = gothamLight;
+        textField.tag = indexPath.row+1;
+        textField.delegate = self;
+        
+        switch (indexPath.row) {
+            case 0:
+                self.repsField = textField;
+                self.repsField.keyboardType = UIKeyboardTypeNumberPad;
+                break;
+            case 1:
+                self.weightField = textField;
+                self.weightField.keyboardType = UIKeyboardTypeNumberPad;
+                break;
+            case 2:
+                self.restField = textField;
+                self.restField.keyboardType = UIKeyboardTypeNumberPad;
+                break;
+            case 3:
+                self.notesField = textField;
+                break;
         }
+        
+        [cell.contentView addSubview:textField];
     }
     
     // Configure the cell...
     switch (indexPath.row) {
         case 0:
-            cell.textLabel.text = @"Exercise";
-            break;
-        case 1:
             cell.textLabel.text = @"Reps";
             break;
-        case 2:
+        case 1:
             cell.textLabel.text = @"Weight";
             if ([ELSettingsUtil getUnitType] == ELUnitTypePounds) {
                 self.weightField.placeholder = @"In lbs. Leave blank for bw";
@@ -173,11 +170,11 @@
                 self.weightField.placeholder = @"In kg. Leave blank for bw";
             }
             break;
-        case 3:
+        case 2:
             cell.textLabel.text = @"Rest";
             self.restField.placeholder = @"In seconds. Optional";
             break;
-        case 4:
+        case 3:
             cell.textLabel.text = @"Notes";
             self.notesField.placeholder = @"Optional";
             break;
@@ -329,7 +326,6 @@
 
 - (void)clearAllTextFields
 {
-    self.exerciseField.text = @"";
     self.repsField.text = @"";
     self.weightField.text = @"";
     self.restField.text = @"";
@@ -350,7 +346,7 @@
     previousButton.enabled = (textField.tag != 1);
     
     UIBarButtonItem* nextButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleBordered target:self action:@selector(nextButtonClicked:)];
-    nextButton.enabled = (textField.tag != 5);
+    nextButton.enabled = (textField.tag != 4);
     
     UIBarButtonItem* flexButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
     

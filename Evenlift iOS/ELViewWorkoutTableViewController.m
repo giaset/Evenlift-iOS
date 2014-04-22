@@ -198,7 +198,7 @@
 
 - (IBAction)addExerciseButtonClicked
 {
-    ELAddSetsViewController* addSetsViewController = [[ELAddSetsViewController alloc] initWithWorkoutRef:self.workoutRef];
+    ELAddSetsViewController* addSetsViewController = [[ELAddSetsViewController alloc] initWithWorkoutRef:self.workoutRef andExerciseName:nil];
     
     [self.navigationController pushViewController:addSetsViewController animated:YES];
 }
