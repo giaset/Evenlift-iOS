@@ -23,8 +23,14 @@
     self.title = @"Settings";
     
     // Set up close button at top right
-    UIBarButtonItem* closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissModalViewController)];
-    self.navigationItem.rightBarButtonItem = closeButton;
+    UIButton* closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    closeButton.frame = CGRectMake(0, 0, 18, 18);
+    [closeButton setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
+    closeButton.imageEdgeInsets = UIEdgeInsetsMake(2, 2, 2, 2);
+    [closeButton addTarget:self action:@selector(dismissModalViewController) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem* closeButtonItem = [[UIBarButtonItem alloc] initWithCustomView:closeButton];
+    self.navigationItem.rightBarButtonItem = closeButtonItem;
 }
 
 - (IBAction)dismissModalViewController
