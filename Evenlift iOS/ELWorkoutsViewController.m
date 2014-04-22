@@ -65,7 +65,7 @@
 {
     [super viewDidLoad];
     
-    self.title = @"Workouts";
+    self.title = @"My Workouts";
     
     // Set up rightBarButton to launch Settings viewController
     UIButton* settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -260,6 +260,7 @@
 {
     static NSString *CellIdentifier = @"WorkoutCell";
     ELWorkoutTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     // Configure the cell...
     ELWorkout* workout = [self.workouts objectAtIndex:(self.workouts.count - 1 - indexPath.row)];
