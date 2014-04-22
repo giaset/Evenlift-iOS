@@ -85,7 +85,7 @@
     self.initialLoadingComplete = NO;
     [SVProgressHUD setBackgroundColor:[UIColor blackColor]];
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
-    [SVProgressHUD showWithStatus:@"Loading your workouts."];
+    [SVProgressHUD showWithStatus:@"Loading your workouts..."];
     [self.userWorkoutsRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
         if (!self.initialLoadingComplete) {
             self.initialLoadingComplete = YES;
