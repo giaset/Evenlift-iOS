@@ -15,6 +15,7 @@
 #import "ELSettingsUtil.h"
 #import "SVProgressHUD.h"
 #import "ELColorUtil.h"
+#import "ELSettingsTableViewController.h"
 
 @interface ELWorkoutsViewController ()
 
@@ -50,9 +51,31 @@
     return self;
 }
 
+- (IBAction)showSettingsViewController
+{
+    ELSettingsTableViewController* settingsViewController = [[ELSettingsTableViewController alloc] init];
+    settingsViewController.authClient = self.authClient;
+    
+    UINavigationController* settingsNavController = [[UINavigationController alloc] initWithRootViewController:settingsViewController];
+    
+    [self presentViewController:settingsNavController animated:YES completion:nil];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.title = @"Workouts";
+    
+    // Set up rightBarButton to launch Settings viewController
+    UIButton* settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    settingsButton.frame = CGRectMake(0, 0, 26, 26);
+    [settingsButton setImage:[UIImage imageNamed:@"gear"] forState:UIControlStateNormal];
+    settingsButton.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
+    [settingsButton addTarget:self action:@selector(showSettingsViewController) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem* settingsButtonItem = [[UIBarButtonItem alloc] initWithCustomView:settingsButton];
+    self.navigationItem.rightBarButtonItem = settingsButtonItem;
     
     // Register ELWorkoutTableViewCell nib for this tableView
     [self.tableView registerNib:[UINib nibWithNibName:@"ELWorkoutTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WorkoutCell"];

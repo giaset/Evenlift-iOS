@@ -18,6 +18,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.title = @"Settings";
+    
+    // Set up close button at top right
+    UIBarButtonItem* closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissModalViewController)];
+    self.navigationItem.rightBarButtonItem = closeButton;
+}
+
+- (IBAction)dismissModalViewController
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Table view data source

@@ -111,18 +111,9 @@
 {
     // Initialize Workouts viewController
     ELWorkoutsViewController* workouts = [[ELWorkoutsViewController alloc] init];
-    workouts.title = @"Workouts";
+    workouts.authClient = self.authClient;
+    
     UINavigationController* workoutsNavController = [[UINavigationController alloc] initWithRootViewController:workouts];
-    
-    // launch settings controller with logout block
-    
-    // Set up right Logout button on Settings viewController
-    /*UIBarButtonItem* logoutButton = [[UIBarButtonItem alloc]
-                                     initWithTitle:@"Logout"
-                                     style:UIBarButtonItemStyleBordered
-                                     target:self
-                                     action:@selector(logout)];
-    settings.navigationItem.rightBarButtonItem = logoutButton;*/
     
     [self presentViewController:workoutsNavController animated:NO completion:nil];
 }

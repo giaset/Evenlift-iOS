@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FirebaseSimpleLogin/FirebaseSimpleLogin.h>
 
 @interface ELSettingsTableViewController : UITableViewController
+
+@property (nonatomic, strong) FirebaseSimpleLogin* authClient;
 
 @end
