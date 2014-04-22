@@ -184,21 +184,6 @@
     [self.navigationController pushViewController:viewWorkout animated:YES];
 }
 
-- (void)launchAddSetsViewControllerForCurrentWorkoutRef
-{
-    ELAddSetsViewController* addSetsViewController = [[ELAddSetsViewController alloc] initWithWorkoutRef:self.currentWorkoutRef];
-    
-    // Set up left Cancel button
-    /*UIBarButtonItem* cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonClicked)];
-     addSetsViewController.navigationItem.leftBarButtonItem = cancelButton;*/
-    
-    // Set up right Done button
-    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonClicked)];
-    addSetsViewController.navigationItem.rightBarButtonItem = doneButton;
-    
-    [self.navigationController pushViewController:addSetsViewController animated:YES];
-}
-
 - (IBAction)cancelButtonClicked{
     UIAlertView* cancelAlert = [[UIAlertView alloc]
                                 initWithTitle:@"Cancel Workout?"
@@ -210,25 +195,11 @@
     [cancelAlert show];
 }
 
-- (IBAction)doneButtonClicked{
-    UIAlertView* doneAlert = [[UIAlertView alloc]
-                                initWithTitle:@"Finish Workout?"
-                                message:@"Finishing this workout will cause all entered data to be saved forever, without possibility for later modification. Are you sure?"
-                                delegate:self
-                                cancelButtonTitle:@"No"
-                                otherButtonTitles:@"Yes", nil];
-    doneAlert.tag = 2;
-    [doneAlert show];
-}
-
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (alertView.tag == 1 && buttonIndex == 1) {
         // Clicked YES on "Cancel" Alert View
         [self cancelWorkout];
-    } else if (alertView.tag == 2 && buttonIndex == 1) {
-        // Clicked YES on "Done" Alert View
-        [self finishWorkout];
     } else if (alertView.tag == 3 && buttonIndex == 1) {
         // Clicked OK on "Add" Alert View
         NSString* workoutTitle = [alertView textFieldAtIndex:0].text;
@@ -240,12 +211,6 @@
 {
     [self.currentWorkoutRef removeValue];
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)finishWorkout
-{
-    [[self.currentWorkoutRef childByAppendingPath:@"end_time"] setValue:[ELDateTimeUtil getCurrentTime]];
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Table view data source

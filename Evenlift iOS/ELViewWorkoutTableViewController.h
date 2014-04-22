@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ELWorkout.h"
 
-@interface ELViewWorkoutTableViewController : UITableViewController
+@interface ELViewWorkoutTableViewController : UITableViewController <UIAlertViewDelegate>
 
 - (id)initWithWorkout:(ELWorkout*)workout;
 - (id)initWithWorkoutId:(NSString*)workoutId andTitle:(NSString*)title;

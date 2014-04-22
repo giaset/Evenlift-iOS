@@ -11,11 +11,17 @@
 #import "ELSet.h"
 #import "ELExercise.h"
 #import "ELColorUtil.h"
+#import <Firebase/Firebase.h>
+#import "ELAddSetsViewController.h"
 
 @interface ELViewWorkoutTableViewController ()
 
 @property (nonatomic) NSString* workoutId;
 @property (nonatomic, strong) NSMutableArray* exercises;
+
+@property (nonatomic, strong) Firebase* workoutRef;
+
+@property BOOL workoutIsFinished;
 
 @end
 
@@ -23,13 +29,7 @@
 
 - (id)initWithWorkout:(ELWorkout *)workout
 {
-    self = [super init];
-    if (self) {
-        self.workoutId = workout.workoutId;
-        self.exercises = [[NSMutableArray alloc] init];
-        self.title = workout.title;
-    }
-    return self;
+    return [self initWithWorkoutId:workout.workoutId andTitle:workout.title];
 }
 
 - (id)initWithWorkoutId:(NSString *)workoutId andTitle:(NSString *)title
@@ -39,6 +39,7 @@
         self.workoutId = workoutId;
         self.exercises = [[NSMutableArray alloc] init];
         self.title = title;
+        self.workoutRef = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"https://evenlift.firebaseio.com/workouts/%@", workoutId]];
     }
     return self;
 }
@@ -47,9 +48,24 @@
 {
     [super viewDidLoad];
     
-    self.tableView.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0);
+    // Set up right Finish button
+    UIBarButtonItem* finishButton = [[UIBarButtonItem alloc] initWithTitle:@"Finish" style:UIBarButtonItemStyleBordered target:self action:@selector(finishButtonClicked)];
+    self.navigationItem.rightBarButtonItem = finishButton;
     
-    Firebase* setsRef = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"https://evenlift.firebaseio.com/workouts/%@/sets", self.workoutId]];
+    // Bind on the workout being finished or not
+    Firebase* endTimeRef = [self.workoutRef childByAppendingPath:@"end_time"];
+    [endTimeRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        if (snapshot.value != [NSNull null]) {
+            self.workoutIsFinished = YES;
+            self.navigationItem.rightBarButtonItem = nil;
+            [self.tableView reloadData];
+        } else {
+            self.workoutIsFinished = NO;
+        }
+    }];
+    
+    // Bind on this workout's sets
+    Firebase* setsRef = [self.workoutRef childByAppendingPath:@"sets"];
     
     [setsRef observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
         NSString* setId = snapshot.name;
@@ -81,6 +97,31 @@
         
         [self.tableView reloadData];
     }];
+    
+    // Customize the back button title for the next viewController on the stack...
+    self.navigationItem.backBarButtonItem =
+    [[UIBarButtonItem alloc] initWithTitle:@""
+                                     style:UIBarButtonItemStyleBordered
+                                    target:nil
+                                    action:nil];
+}
+
+- (IBAction)finishButtonClicked{
+    UIAlertView* finishAlert = [[UIAlertView alloc]
+                              initWithTitle:@"Finish Workout?"
+                              message:@"Finishing this workout will cause all entered data to be saved forever, without possibility for later modification. Are you sure?"
+                              delegate:self
+                              cancelButtonTitle:@"No"
+                              otherButtonTitles:@"Yes", nil];
+    [finishAlert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [[self.workoutRef childByAppendingPath:@"end_time"] setValue:[ELDateTimeUtil getCurrentTime]];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 #pragma mark - Table view data source
@@ -103,6 +144,7 @@
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
     // Configure the cell...
@@ -113,30 +155,50 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 // Footer view
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 54;
+    if (self.workoutIsFinished) {
+        return 0;
+    } else {
+        return 54;
+    }
 }
 
 - (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 54)];
+    if (self.workoutIsFinished) {
+        return nil;
+    } else {
+        UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 54)];
+        
+        // Create the button
+        UIButton* addExerciseButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 320, 54)];
+        [addExerciseButton setTitle:@"+ Add Exercise" forState:UIControlStateNormal];
+        [addExerciseButton addTarget:self action:@selector(addExerciseButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+        
+        // Style the button
+        addExerciseButton.titleLabel.font = [UIFont fontWithName:@"Gotham" size:22.0];
+        [addExerciseButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [addExerciseButton setBackgroundColor:[ELColorUtil evenLiftRed]];
+        [addExerciseButton setBackgroundImage:[ELColorUtil imageWithColor:[ELColorUtil evenLiftRedHighlighted]] forState:UIControlStateHighlighted];
+        
+        [footerView addSubview:addExerciseButton];
+        
+        return footerView;
+    }
+}
+
+- (IBAction)addExerciseButtonClicked
+{
+    ELAddSetsViewController* addSetsViewController = [[ELAddSetsViewController alloc] initWithWorkoutRef:self.workoutRef];
     
-    // Create the button
-    UIButton* addExerciseButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 320, 54)];
-    [addExerciseButton setTitle:@"+ Add Exercise" forState:UIControlStateNormal];
-    [addExerciseButton addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-    
-    // Style the button
-    addExerciseButton.titleLabel.font = [UIFont fontWithName:@"Gotham" size:22.0];
-    [addExerciseButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [addExerciseButton setBackgroundColor:[ELColorUtil evenLiftRed]];
-    [addExerciseButton setBackgroundImage:[ELColorUtil imageWithColor:[ELColorUtil evenLiftRedHighlighted]] forState:UIControlStateHighlighted];
-    
-    [footerView addSubview:addExerciseButton];
-    
-    return footerView;
+    [self.navigationController pushViewController:addSetsViewController animated:YES];
 }
 
 @end

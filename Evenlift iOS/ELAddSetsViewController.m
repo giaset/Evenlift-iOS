@@ -47,7 +47,7 @@
         // Set up user's Exercises Firebase
         self.userExercisesRef = [[[Firebase alloc] initWithUrl:kEvenliftURL] childByAppendingPath:[NSString stringWithFormat:@"users/%@/exercises", [ELSettingsUtil getUid]]];
         
-        self.title = @"Current Workout";
+        self.title = @"Exercise Name Here...";
     }
     return self;
 }
