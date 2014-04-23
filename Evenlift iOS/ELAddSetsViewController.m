@@ -364,6 +364,15 @@
     }
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField.tag == 99) {
+        [textField resignFirstResponder];
+    }
+    
+    return YES;
+}
+
 - (void)setCustomToolBarForTextField:(UITextField*)textField
 {
     UIToolbar* toolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0,0,320,44)];
