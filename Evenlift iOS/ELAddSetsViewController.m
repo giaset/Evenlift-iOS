@@ -48,16 +48,26 @@
         // Set up user's Exercises Firebase
         self.userExercisesRef = [[[Firebase alloc] initWithUrl:kEvenliftURL] childByAppendingPath:[NSString stringWithFormat:@"users/%@/exercises", [ELSettingsUtil getUid]]];
         
-        // Set up UITextField in navigationBar's titleView
+        // Set up UITextField for exerciseName
         self.exerciseField = [[ELExerciseAutocompleteTextField alloc] initWithFrame:CGRectMake(0, 0, 200, 22)];
-        self.exerciseField.font = [UIFont fontWithName:@"Gotham" size:18];
-        self.exerciseField.textColor = [UIColor whiteColor];
-        //self.exerciseField.textAlignment = NSTextAlignmentCenter;
-        self.exerciseField.tag = 99;
-        self.exerciseField.delegate = self;
         self.exerciseField.text = exerciseName;
         
-        self.navigationItem.titleView = self.exerciseField;
+        // If no exerciseName provided, put this UITextField in navigationBar's titleView
+        if (exerciseName == nil) {
+            self.exerciseField.font = [UIFont fontWithName:@"Gotham" size:18];
+            self.exerciseField.textColor = [UIColor whiteColor];
+            
+            // HACK: Use an attributedString in order to change placeholder color to white
+            NSAttributedString* attrPlaceholder = [[NSAttributedString alloc] initWithString:@"Exercise Name" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+            self.exerciseField.attributedPlaceholder = attrPlaceholder;
+            
+            self.exerciseField.tag = 99;
+            self.exerciseField.delegate = self;
+            
+            self.navigationItem.titleView = self.exerciseField;
+        } else {
+            self.title = exerciseName;
+        }
     }
     return self;
 }
@@ -65,6 +75,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // If exerciseField is blank, add a black overlay to view until user enters an exercise name
+    if ([self.exerciseField.text isEqualToString:@""]) {
+        UIView* blackOverlay = [[UIView alloc] initWithFrame:self.view.frame];
+        blackOverlay.backgroundColor = [UIColor blackColor];
+        blackOverlay.alpha = 0.8;
+        [self.view addSubview:blackOverlay];
+        
+        [self.exerciseField becomeFirstResponder];
+    }
     
     // Set up rightBarButton to launch Settings viewController
     UIButton* settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -334,8 +354,10 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    self.lastSelectedTextField = textField.tag;
-    [self setCustomToolBarForTextField:textField];
+    if (textField.tag != 99) {
+        self.lastSelectedTextField = textField.tag;
+        [self setCustomToolBarForTextField:textField];
+    }
 }
 
 - (void)setCustomToolBarForTextField:(UITextField*)textField
