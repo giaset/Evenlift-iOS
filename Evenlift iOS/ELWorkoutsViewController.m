@@ -162,6 +162,7 @@
                              otherButtonTitles:@"Ok", nil];
     addAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
     addAlert.tag = 3;
+    [addAlert textFieldAtIndex:0].autocapitalizationType = UITextAutocapitalizationTypeWords;
     [addAlert show];
 }
 
