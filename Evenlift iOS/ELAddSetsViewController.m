@@ -76,6 +76,8 @@
 {
     [super viewDidLoad];
     
+    self.tableView.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0);
+    
     // If exerciseField is blank, add a black overlay to view until user enters an exercise name
     if ([self.exerciseField.text isEqualToString:@""]) {
         UIView* blackOverlay = [[UIView alloc] initWithFrame:self.view.frame];
