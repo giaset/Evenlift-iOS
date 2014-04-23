@@ -64,6 +64,8 @@
             self.exerciseField.tag = 99;
             self.exerciseField.delegate = self;
             
+            self.exerciseField.returnKeyType = UIReturnKeyDone;
+            
             self.navigationItem.titleView = self.exerciseField;
         } else {
             self.title = exerciseName;
@@ -84,6 +86,7 @@
         blackOverlay.backgroundColor = [UIColor blackColor];
         blackOverlay.alpha = 0.8;
         blackOverlay.layer.zPosition = 99; // need this so we're on top of footerView
+        blackOverlay.tag = 1000;
         [self.view addSubview:blackOverlay];
         
         [self.exerciseField becomeFirstResponder];
@@ -98,6 +101,8 @@
     
     UIBarButtonItem* settingsButtonItem = [[UIBarButtonItem alloc] initWithCustomView:settingsButton];
     self.navigationItem.rightBarButtonItem = settingsButtonItem;
+    
+    self.navigationItem.rightBarButtonItem.enabled = ![self.exerciseField.text isEqualToString:@""];
     
     // Dismiss the keyboard when the user taps outside of a text field
     UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
@@ -368,6 +373,10 @@
 {
     if (textField.tag == 99) {
         [textField resignFirstResponder];
+        self.navigationItem.titleView = nil;
+        self.title = self.exerciseField.text;
+        [[self.view viewWithTag:1000] removeFromSuperview];
+        self.navigationItem.rightBarButtonItem.enabled = YES;
     }
     
     return YES;
