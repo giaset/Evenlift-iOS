@@ -81,6 +81,7 @@
         UIView* blackOverlay = [[UIView alloc] initWithFrame:self.view.frame];
         blackOverlay.backgroundColor = [UIColor blackColor];
         blackOverlay.alpha = 0.8;
+        blackOverlay.layer.zPosition = 99; // need this so we're on top of footerView
         [self.view addSubview:blackOverlay];
         
         [self.exerciseField becomeFirstResponder];
@@ -122,6 +123,7 @@
     settingsViewController.authClient = nil;
     
     UINavigationController* settingsNavController = [[UINavigationController alloc] initWithRootViewController:settingsViewController];
+    settingsNavController.navigationBar.translucent = NO;
     
     [self presentViewController:settingsNavController animated:YES completion:nil];
 }

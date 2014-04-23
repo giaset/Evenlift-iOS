@@ -57,6 +57,7 @@
     settingsViewController.authClient = self.authClient;
     
     UINavigationController* settingsNavController = [[UINavigationController alloc] initWithRootViewController:settingsViewController];
+    settingsNavController.navigationBar.translucent = NO;
     
     [self presentViewController:settingsNavController animated:YES completion:nil];
 }

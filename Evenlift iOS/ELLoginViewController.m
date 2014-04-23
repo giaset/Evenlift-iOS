@@ -113,6 +113,7 @@
     workouts.authClient = self.authClient;
     
     UINavigationController* workoutsNavController = [[UINavigationController alloc] initWithRootViewController:workouts];
+    workoutsNavController.navigationBar.translucent = NO;
     
     [self presentViewController:workoutsNavController animated:NO completion:nil];
 }
