@@ -96,20 +96,20 @@
 		686B856F18EAB34D00E76E15 /* ELWorkoutTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ELWorkoutTableViewCell.xib; path = Views/ELWorkoutTableViewCell.xib; sourceTree = "<group>"; };
 		686B857318EACE4700E76E15 /* ELDateTimeUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ELDateTimeUtil.h; path = Helpers/ELDateTimeUtil.h; sourceTree = "<group>"; };
 		686B857418EACE4700E76E15 /* ELDateTimeUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ELDateTimeUtil.m; path = Helpers/ELDateTimeUtil.m; sourceTree = "<group>"; };
-		68AABBE218DB9FA7008E883D /* Evenlift iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Evenlift iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		68AABBE218DB9FA7008E883D /* Evenlift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Evenlift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68AABBE518DB9FA7008E883D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		68AABBE718DB9FA7008E883D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		68AABBE918DB9FA7008E883D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		68AABBED18DB9FA7008E883D /* Evenlift iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Evenlift iOS-Info.plist"; sourceTree = "<group>"; };
+		68AABBED18DB9FA7008E883D /* Evenlift-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Evenlift-Info.plist"; sourceTree = "<group>"; };
 		68AABBEF18DB9FA7008E883D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		68AABBF118DB9FA7008E883D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		68AABBF318DB9FA7008E883D /* Evenlift iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Evenlift iOS-Prefix.pch"; sourceTree = "<group>"; };
+		68AABBF318DB9FA7008E883D /* Evenlift-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Evenlift-Prefix.pch"; sourceTree = "<group>"; };
 		68AABBF418DB9FA7008E883D /* ELAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELAppDelegate.h; sourceTree = "<group>"; };
 		68AABBF518DB9FA7008E883D /* ELAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ELAppDelegate.m; sourceTree = "<group>"; };
 		68AABBF718DB9FA7008E883D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		68AABBFD18DB9FA7008E883D /* Evenlift iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Evenlift iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		68AABBFD18DB9FA7008E883D /* EvenliftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EvenliftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		68AABBFE18DB9FA7008E883D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		68AABC0618DB9FA7008E883D /* Evenlift iOSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Evenlift iOSTests-Info.plist"; sourceTree = "<group>"; };
+		68AABC0618DB9FA7008E883D /* EvenliftTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EvenliftTests-Info.plist"; sourceTree = "<group>"; };
 		68AABC0818DB9FA7008E883D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		68AABC0A18DB9FA7008E883D /* Evenlift_iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Evenlift_iOSTests.m; sourceTree = "<group>"; };
 		68AABC1418DBA03F008E883D /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Firebase.framework; path = ../../frameworks/Firebase.framework; sourceTree = "<group>"; };
@@ -327,8 +327,8 @@
 		68AABBE318DB9FA7008E883D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				68AABBE218DB9FA7008E883D /* Evenlift iOS.app */,
-				68AABBFD18DB9FA7008E883D /* Evenlift iOSTests.xctest */,
+				68AABBE218DB9FA7008E883D /* Evenlift.app */,
+				68AABBFD18DB9FA7008E883D /* EvenliftTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -374,10 +374,10 @@
 		68AABBEC18DB9FA7008E883D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				68AABBED18DB9FA7008E883D /* Evenlift iOS-Info.plist */,
+				68AABBED18DB9FA7008E883D /* Evenlift-Info.plist */,
 				68AABBEE18DB9FA7008E883D /* InfoPlist.strings */,
 				68AABBF118DB9FA7008E883D /* main.m */,
-				68AABBF318DB9FA7008E883D /* Evenlift iOS-Prefix.pch */,
+				68AABBF318DB9FA7008E883D /* Evenlift-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -394,7 +394,7 @@
 		68AABC0518DB9FA7008E883D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				68AABC0618DB9FA7008E883D /* Evenlift iOSTests-Info.plist */,
+				68AABC0618DB9FA7008E883D /* EvenliftTests-Info.plist */,
 				68AABC0718DB9FA7008E883D /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -438,9 +438,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		68AABBE118DB9FA7008E883D /* Evenlift iOS */ = {
+		68AABBE118DB9FA7008E883D /* Evenlift */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 68AABC0E18DB9FA7008E883D /* Build configuration list for PBXNativeTarget "Evenlift iOS" */;
+			buildConfigurationList = 68AABC0E18DB9FA7008E883D /* Build configuration list for PBXNativeTarget "Evenlift" */;
 			buildPhases = (
 				68AABBDE18DB9FA7008E883D /* Sources */,
 				68AABBDF18DB9FA7008E883D /* Frameworks */,
@@ -450,14 +450,14 @@
 			);
 			dependencies = (
 			);
-			name = "Evenlift iOS";
+			name = Evenlift;
 			productName = "Evenlift iOS";
-			productReference = 68AABBE218DB9FA7008E883D /* Evenlift iOS.app */;
+			productReference = 68AABBE218DB9FA7008E883D /* Evenlift.app */;
 			productType = "com.apple.product-type.application";
 		};
-		68AABBFC18DB9FA7008E883D /* Evenlift iOSTests */ = {
+		68AABBFC18DB9FA7008E883D /* EvenliftTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 68AABC1118DB9FA7008E883D /* Build configuration list for PBXNativeTarget "Evenlift iOSTests" */;
+			buildConfigurationList = 68AABC1118DB9FA7008E883D /* Build configuration list for PBXNativeTarget "EvenliftTests" */;
 			buildPhases = (
 				68AABBF918DB9FA7008E883D /* Sources */,
 				68AABBFA18DB9FA7008E883D /* Frameworks */,
@@ -468,9 +468,9 @@
 			dependencies = (
 				68AABC0318DB9FA7008E883D /* PBXTargetDependency */,
 			);
-			name = "Evenlift iOSTests";
+			name = EvenliftTests;
 			productName = "Evenlift iOSTests";
-			productReference = 68AABBFD18DB9FA7008E883D /* Evenlift iOSTests.xctest */;
+			productReference = 68AABBFD18DB9FA7008E883D /* EvenliftTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -488,7 +488,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 68AABBDD18DB9FA7008E883D /* Build configuration list for PBXProject "Evenlift iOS" */;
+			buildConfigurationList = 68AABBDD18DB9FA7008E883D /* Build configuration list for PBXProject "Evenlift" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -500,8 +500,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				68AABBE118DB9FA7008E883D /* Evenlift iOS */,
-				68AABBFC18DB9FA7008E883D /* Evenlift iOSTests */,
+				68AABBE118DB9FA7008E883D /* Evenlift */,
+				68AABBFC18DB9FA7008E883D /* EvenliftTests */,
 			);
 		};
 /* End PBXProject section */
@@ -578,7 +578,7 @@
 /* Begin PBXTargetDependency section */
 		68AABC0318DB9FA7008E883D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 68AABBE118DB9FA7008E883D /* Evenlift iOS */;
+			target = 68AABBE118DB9FA7008E883D /* Evenlift */;
 			targetProxy = 68AABC0218DB9FA7008E883D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -684,10 +684,10 @@
 					/Users/GiaSet/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Evenlift iOS/Evenlift iOS-Prefix.pch";
-				INFOPLIST_FILE = "Evenlift iOS/Evenlift iOS-Info.plist";
+				GCC_PREFIX_HEADER = "Evenlift iOS/Evenlift-Prefix.pch";
+				INFOPLIST_FILE = "Evenlift iOS/Evenlift-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Evenlift;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -703,10 +703,10 @@
 					/Users/GiaSet/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Evenlift iOS/Evenlift iOS-Prefix.pch";
-				INFOPLIST_FILE = "Evenlift iOS/Evenlift iOS-Info.plist";
+				GCC_PREFIX_HEADER = "Evenlift iOS/Evenlift-Prefix.pch";
+				INFOPLIST_FILE = "Evenlift iOS/Evenlift-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Evenlift;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -726,8 +726,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "Evenlift iOSTests/Evenlift iOSTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "Evenlift iOSTests/EvenliftTests-Info.plist";
+				PRODUCT_NAME = EvenliftTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -744,8 +744,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Evenlift iOS/Evenlift iOS-Prefix.pch";
-				INFOPLIST_FILE = "Evenlift iOSTests/Evenlift iOSTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "Evenlift iOSTests/EvenliftTests-Info.plist";
+				PRODUCT_NAME = EvenliftTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -754,7 +754,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		68AABBDD18DB9FA7008E883D /* Build configuration list for PBXProject "Evenlift iOS" */ = {
+		68AABBDD18DB9FA7008E883D /* Build configuration list for PBXProject "Evenlift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				68AABC0C18DB9FA7008E883D /* Debug */,
@@ -763,7 +763,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		68AABC0E18DB9FA7008E883D /* Build configuration list for PBXNativeTarget "Evenlift iOS" */ = {
+		68AABC0E18DB9FA7008E883D /* Build configuration list for PBXNativeTarget "Evenlift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				68AABC0F18DB9FA7008E883D /* Debug */,
@@ -772,7 +772,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		68AABC1118DB9FA7008E883D /* Build configuration list for PBXNativeTarget "Evenlift iOSTests" */ = {
+		68AABC1118DB9FA7008E883D /* Build configuration list for PBXNativeTarget "EvenliftTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				68AABC1218DB9FA7008E883D /* Debug */,

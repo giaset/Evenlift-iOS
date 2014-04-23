@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Evenlift iOS.xcodeproj">
+      location = "self:Evenlift.xcodeproj">
    </FileRef>
 </Workspace>

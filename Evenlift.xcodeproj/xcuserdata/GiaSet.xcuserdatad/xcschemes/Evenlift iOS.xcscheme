@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "68AABBE118DB9FA7008E883D"
                BuildableName = "Evenlift iOS.app"
-               BlueprintName = "Evenlift iOS"
-               ReferencedContainer = "container:Evenlift iOS.xcodeproj">
+               BlueprintName = "Evenlift"
+               ReferencedContainer = "container:Evenlift.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,8 +34,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "68AABBFC18DB9FA7008E883D"
                BuildableName = "Evenlift iOSTests.xctest"
-               BlueprintName = "Evenlift iOSTests"
-               ReferencedContainer = "container:Evenlift iOS.xcodeproj">
+               BlueprintName = "EvenliftTests"
+               ReferencedContainer = "container:Evenlift.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -44,8 +44,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "68AABBE118DB9FA7008E883D"
             BuildableName = "Evenlift iOS.app"
-            BlueprintName = "Evenlift iOS"
-            ReferencedContainer = "container:Evenlift iOS.xcodeproj">
+            BlueprintName = "Evenlift"
+            ReferencedContainer = "container:Evenlift.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -63,8 +63,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "68AABBE118DB9FA7008E883D"
             BuildableName = "Evenlift iOS.app"
-            BlueprintName = "Evenlift iOS"
-            ReferencedContainer = "container:Evenlift iOS.xcodeproj">
+            BlueprintName = "Evenlift"
+            ReferencedContainer = "container:Evenlift.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -81,8 +81,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "68AABBE118DB9FA7008E883D"
             BuildableName = "Evenlift iOS.app"
-            BlueprintName = "Evenlift iOS"
-            ReferencedContainer = "container:Evenlift iOS.xcodeproj">
+            BlueprintName = "Evenlift"
+            ReferencedContainer = "container:Evenlift.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
