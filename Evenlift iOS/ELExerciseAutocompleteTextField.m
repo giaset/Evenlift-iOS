@@ -18,7 +18,7 @@
     Firebase* exercisesRef = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"https://evenlift.firebaseio.com/users/%@/exercises", [ELSettingsUtil getUid]]];
     
     // Init the empty Exercises array
-    self.exercises = [[NSMutableArray alloc] init];
+    self.exercises = [[NSMutableArray alloc] initWithObjects:@"Bench Press", @"Squat", @"Deadlift", @"Military Press", nil];
     
     // Get exercises to suggest
     [exercisesRef observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
