@@ -65,6 +65,7 @@
             self.exerciseField.delegate = self;
             
             self.exerciseField.returnKeyType = UIReturnKeyDone;
+            self.exerciseField.autocapitalizationType = UITextAutocapitalizationTypeWords;
             
             self.navigationItem.titleView = self.exerciseField;
         } else {
