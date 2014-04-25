@@ -264,6 +264,9 @@
     
     self.submitButton = submitButton;
     
+    // Enable/disable button based on whether or not we have entered a title
+    self.submitButton.enabled = ![self.exerciseField.text isEqualToString:@""];
+    
     [footerView addSubview:submitButton];
     
     return footerView;
@@ -377,6 +380,7 @@
         self.title = self.exerciseField.text;
         [[self.view viewWithTag:1000] removeFromSuperview];
         self.navigationItem.rightBarButtonItem.enabled = YES;
+        self.submitButton.enabled = YES;
     }
     
     return YES;
