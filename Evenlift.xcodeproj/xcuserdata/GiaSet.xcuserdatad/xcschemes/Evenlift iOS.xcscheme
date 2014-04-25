@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "68AABBE118DB9FA7008E883D"
-               BuildableName = "Evenlift iOS.app"
+               BuildableName = "Evenlift.app"
                BlueprintName = "Evenlift"
                ReferencedContainer = "container:Evenlift.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "68AABBFC18DB9FA7008E883D"
-               BuildableName = "Evenlift iOSTests.xctest"
+               BuildableName = "EvenliftTests.xctest"
                BlueprintName = "EvenliftTests"
                ReferencedContainer = "container:Evenlift.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "68AABBE118DB9FA7008E883D"
-            BuildableName = "Evenlift iOS.app"
+            BuildableName = "Evenlift.app"
             BlueprintName = "Evenlift"
             ReferencedContainer = "container:Evenlift.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "68AABBE118DB9FA7008E883D"
-            BuildableName = "Evenlift iOS.app"
+            BuildableName = "Evenlift.app"
             BlueprintName = "Evenlift"
             ReferencedContainer = "container:Evenlift.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "68AABBE118DB9FA7008E883D"
-            BuildableName = "Evenlift iOS.app"
+            BuildableName = "Evenlift.app"
             BlueprintName = "Evenlift"
             ReferencedContainer = "container:Evenlift.xcodeproj">
          </BuildableReference>

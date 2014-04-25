@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A90B1121-475D-45BE-B9E1-F9EFC7502897</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Evenlift</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>5C32373A-709D-4034-A070-029C24ED1137</key>
+		<string>https://github.com/giaset/Evenlift-iOS.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Evenlift.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>5C32373A-709D-4034-A070-029C24ED1137</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/giaset/Evenlift-iOS.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>5C32373A-709D-4034-A070-029C24ED1137</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5C32373A-709D-4034-A070-029C24ED1137</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Evenlift iOS</string>
+		</dict>
+	</array>
+</dict>
+</plist>
