@@ -252,7 +252,12 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         ELWorkout* workout = [self.workouts objectAtIndex:(self.workouts.count - 1 - indexPath.row)];
+        
+        // Delete workout object
         [[self.allWorkoutsRef childByAppendingPath:workout.workoutId] removeValue];
+        
+        // Delete reference to workout in user's workouts
+        [[self.userWorkoutsRef childByAppendingPath:workout.workoutId] removeValue];
     }
 }
 
