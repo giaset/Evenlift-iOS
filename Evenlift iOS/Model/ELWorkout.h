@@ -12,6 +12,7 @@
 
 - (id)initWithDictionary:(NSDictionary*)dict;
 - (void)updateWithDictionary:(NSDictionary*)dict;
+- (NSDate*)workoutDate;
 
 @property (nonatomic, copy) NSString* workoutId;
 @property (nonatomic, copy) NSString* title;

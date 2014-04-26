@@ -22,7 +22,7 @@
 
 - (void)configureForWorkout:(ELWorkout *)workout
 {
-    NSDate* workoutDate = [NSDate dateWithTimeIntervalSince1970:[workout.startTime doubleValue]];
+    NSDate* workoutDate = [workout workoutDate];
     
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     NSLocale* locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];

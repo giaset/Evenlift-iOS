@@ -10,9 +10,11 @@
 
 @interface ELMonth : NSObject
 
-- (id)initWithDateComponents:(NSDateComponents*)dateComponents;
+- (id)initWithDate:(NSDate*)date;
+- (NSInteger)month;
+- (NSInteger)year;
+- (BOOL)containsDate:(NSDate*)date;
 
-@property (nonatomic, copy) NSDateComponents* dateComponents;
 @property (nonatomic, strong) NSMutableArray* workouts;
 
 @end

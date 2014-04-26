@@ -145,13 +145,12 @@
                     ELWorkout* workout = [[ELWorkout alloc] initWithDictionary:dict];
                     
                     // Figure out which month this workout is in
-                    NSDate* workoutDate = [NSDate dateWithTimeIntervalSince1970:[workout.startTime doubleValue]];
-                    NSDateComponents* workoutComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitMonth | NSCalendarUnitYear fromDate:workoutDate];
+                    NSDate* workoutDate = [workout workoutDate];
                     
                     BOOL monthExists = NO;
                     
                     for (ELMonth* month in self.months) {
-                        if ( ([month.dateComponents month] == [workoutComponents month]) && ([month.dateComponents year] == [workoutComponents year]) ) {
+                        if ([month containsDate:workoutDate]) {
                             monthExists = YES;
                             [month.workouts addObject:workout];
                             break;
@@ -159,7 +158,7 @@
                     }
                     
                     if (!monthExists) {
-                        ELMonth* newMonth = [[ELMonth alloc] initWithDateComponents:workoutComponents];
+                        ELMonth* newMonth = [[ELMonth alloc] initWithDate:workoutDate];
                         [newMonth.workouts addObject:workout];
                         [self.months addObject:newMonth];
                     }

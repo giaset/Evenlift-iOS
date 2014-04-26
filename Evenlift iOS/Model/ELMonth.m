@@ -8,13 +8,19 @@
 
 #import "ELMonth.h"
 
+@interface ELMonth ()
+
+@property (nonatomic, copy) NSDateComponents* dateComponents;
+
+@end
+
 @implementation ELMonth
 
-- (id)initWithDateComponents:(NSDateComponents *)dateComponents
+- (id)initWithDate:(NSDate*)date
 {
     self = [super init];
     if (self) {
-        self.dateComponents = dateComponents;
+        self.dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitMonth | NSCalendarUnitYear fromDate:date];;
         self.workouts = [[NSMutableArray alloc] init];;
     }
     return self;
@@ -25,6 +31,23 @@
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
     NSString* monthName = [[formatter monthSymbols] objectAtIndex:([self.dateComponents month]-1)];
     return [NSString stringWithFormat:@"%@ %ld", monthName, (long)[self.dateComponents year]];
+}
+
+- (NSInteger)month
+{
+    return [self.dateComponents month];
+}
+
+- (NSInteger)year
+{
+    return [self.dateComponents year];
+}
+
+- (BOOL)containsDate:(NSDate*)date
+{
+    NSDateComponents* dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitMonth | NSCalendarUnitYear fromDate:date];
+    
+    return ([self month] == [dateComponents month]) && ([self year] == [dateComponents year]);
 }
 
 @end

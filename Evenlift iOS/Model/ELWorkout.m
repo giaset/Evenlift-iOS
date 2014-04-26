@@ -38,4 +38,9 @@
     }
 }
 
+- (NSDate*)workoutDate
+{
+    return [NSDate dateWithTimeIntervalSince1970:[self.startTime doubleValue]];
+}
+
 @end
