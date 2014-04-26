@@ -16,6 +16,7 @@
 #import "SVProgressHUD.h"
 #import "ELColorUtil.h"
 #import "ELSettingsTableViewController.h"
+#import "ELMonth.h"
 
 @interface ELWorkoutsViewController ()
 
@@ -23,7 +24,7 @@
 @property (nonatomic, strong) Firebase* userWorkoutsRef;
 @property (nonatomic, strong) Firebase* currentWorkoutRef;
 
-@property (nonatomic, strong) NSMutableArray* workouts;
+@property (nonatomic, strong) NSMutableArray* months;
 
 @property (nonatomic) BOOL initialLoadingComplete;
 
@@ -46,7 +47,7 @@
         self.userWorkoutsRef = [[Firebase alloc] initWithUrl:userWorkoutsUrl];
         
         // Set up our local array that is the data source to our table view
-        self.workouts = [[NSMutableArray alloc] init];
+        self.months = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -106,25 +107,34 @@
         NSString* workoutId = snapshot.name;
         // Bind to each individual workout's Firebase
         [[self.allWorkoutsRef childByAppendingPath:workoutId] observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-            // Check if the workout was deleted
+            // If the workout was deleted, delete it from our array
             if(snapshot.value == [NSNull null]) {
                 NSMutableArray* toDelete = [NSMutableArray array];
-                for (ELWorkout* workout in self.workouts) {
-                    if (workout.workoutId == workoutId) {
-                        [toDelete addObject:workout];
+                ELMonth* whichMonth = nil;
+                for (ELMonth* month in self.months) {
+                    for (ELWorkout* workout in month.workouts) {
+                        if (workout.workoutId == workoutId) {
+                            whichMonth = month;
+                            [toDelete addObject:workout];
+                            break;
+                        }
                     }
                 }
-                [self.workouts removeObjectsInArray:toDelete];
+                if (whichMonth != nil) {
+                    [whichMonth.workouts removeObjectsInArray:toDelete];
+                }
             } else {
                 // If not, check if it exists in our array
                 BOOL exists = NO;
                 
-                for (ELWorkout* workout in self.workouts) {
-                    if (workout.workoutId == workoutId) {
-                        // If it does, update it
-                        exists = YES;
-                        [workout updateWithDictionary:snapshot.value];
-                        break;
+                for (ELMonth* month in self.months) {
+                    for (ELWorkout* workout in month.workouts) {
+                        if (workout.workoutId == workoutId) {
+                            // If it does, update it
+                            exists = YES;
+                            [workout updateWithDictionary:snapshot.value];
+                            break;
+                        }
                     }
                 }
                 
@@ -133,7 +143,26 @@
                     NSMutableDictionary* dict = [[NSMutableDictionary alloc] initWithDictionary:snapshot.value];
                     [dict setObject:workoutId forKey:@"workout_id"];
                     ELWorkout* workout = [[ELWorkout alloc] initWithDictionary:dict];
-                    [self.workouts addObject:workout];
+                    
+                    // Figure out which month this workout is in
+                    NSDate* workoutDate = [NSDate dateWithTimeIntervalSince1970:[workout.startTime doubleValue]];
+                    NSDateComponents* workoutComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitMonth | NSCalendarUnitYear fromDate:workoutDate];
+                    
+                    BOOL monthExists = NO;
+                    
+                    for (ELMonth* month in self.months) {
+                        if ( ([month.dateComponents month] == [workoutComponents month]) && ([month.dateComponents year] == [workoutComponents year]) ) {
+                            monthExists = YES;
+                            [month.workouts addObject:workout];
+                            break;
+                        }
+                    }
+                    
+                    if (!monthExists) {
+                        ELMonth* newMonth = [[ELMonth alloc] initWithDateComponents:workoutComponents];
+                        [newMonth.workouts addObject:workout];
+                        [self.months addObject:newMonth];
+                    }
                 }
             }
             
@@ -150,6 +179,9 @@
                                       style:UIBarButtonItemStyleBordered
                                      target:nil
                                      action:nil];
+    
+    // Set custom table headerView
+    self.tableView.tableHeaderView = [self headerView];
 }
 
 - (IBAction)popAddAlert
@@ -217,10 +249,16 @@
 
 #pragma mark - Table view data source
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return self.months.count;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return self.workouts.count;
+    ELMonth* month = [self.months objectAtIndex:section];
+    
+    return month.workouts.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -230,7 +268,8 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     // Configure the cell...
-    ELWorkout* workout = [self.workouts objectAtIndex:(self.workouts.count - 1 - indexPath.row)];
+    ELMonth* month = [self.months objectAtIndex:indexPath.section];
+    ELWorkout* workout = [month.workouts objectAtIndex:(month.workouts.count - 1 - indexPath.row)];
     [cell configureForWorkout:workout];
     
     return cell;
@@ -239,6 +278,18 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 84;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 30;
+}
+
+- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    ELMonth* month = [self.months objectAtIndex:section];
+    return [month description];
+    
 }
 
 // Editing of cells! (in our case, deletion)
@@ -251,7 +302,8 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        ELWorkout* workout = [self.workouts objectAtIndex:(self.workouts.count - 1 - indexPath.row)];
+        ELMonth* month = [self.months objectAtIndex:indexPath.section];
+        ELWorkout* workout = [month.workouts objectAtIndex:(month.workouts.count - 1 - indexPath.row)];
         
         // Delete workout object
         [[self.allWorkoutsRef childByAppendingPath:workout.workoutId] removeValue];
@@ -265,7 +317,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Get the Workout we clicked on
-    ELWorkout* workout = [self.workouts objectAtIndex:(self.workouts.count - 1 - indexPath.row)];
+    ELMonth* month = [self.months objectAtIndex:indexPath.section];
+    ELWorkout* workout = [month.workouts objectAtIndex:(month.workouts.count - 1 - indexPath.row)];
     
     ELViewWorkoutTableViewController* viewWorkout = [[ELViewWorkoutTableViewController alloc] initWithWorkout:workout];
     [self.navigationController pushViewController:viewWorkout animated:YES];
@@ -274,12 +327,7 @@
 }
 
 // Header view
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 54;
-}
-
-- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+- (UIView*)headerView
 {
     UIView* headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 54)];
     
