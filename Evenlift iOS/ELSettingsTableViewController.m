@@ -22,6 +22,8 @@
     
     self.title = @"Settings";
     
+    self.tableView.backgroundColor = [ELColorUtil evenLiftBlack];
+    
     // Set up close button at top right
     UIButton* closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     closeButton.frame = CGRectMake(0, 0, 18, 18);
@@ -62,6 +64,11 @@
     }
 }
 
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 30;
+}
+
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     switch (section) {
@@ -79,6 +86,15 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    if([view isKindOfClass:[UITableViewHeaderFooterView class]]){
+        UITableViewHeaderFooterView* tableViewHeaderFooterView = (UITableViewHeaderFooterView*)view;
+        tableViewHeaderFooterView.textLabel.text = [tableViewHeaderFooterView.textLabel.text capitalizedString];
+        tableViewHeaderFooterView.textLabel.textColor = [ELColorUtil evenLiftRed];
+        tableViewHeaderFooterView.textLabel.font = [UIFont fontWithName:@"Gotham" size:14];
+    }
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -89,6 +105,9 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.tintColor = [ELColorUtil evenLiftRed];
+        cell.backgroundColor = [ELColorUtil evenLiftBlack];
+        cell.textLabel.font = [UIFont fontWithName:@"Gotham" size:14];
+        cell.textLabel.textColor = [ELColorUtil evenLiftWhite];
     }
     
     // Configure the cell...
