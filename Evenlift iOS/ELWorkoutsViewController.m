@@ -52,17 +52,6 @@
     return self;
 }
 
-- (IBAction)showSettingsViewController
-{
-    ELSettingsTableViewController* settingsViewController = [[ELSettingsTableViewController alloc] init];
-    settingsViewController.authClient = self.authClient;
-    
-    UINavigationController* settingsNavController = [[UINavigationController alloc] initWithRootViewController:settingsViewController];
-    settingsNavController.navigationBar.translucent = NO;
-    
-    [self presentViewController:settingsNavController animated:YES completion:nil];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -70,14 +59,8 @@
     self.title = @"My Workouts";
     
     // Set up rightBarButton to launch Settings viewController
-    UIButton* settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    settingsButton.frame = CGRectMake(0, 0, 26, 26);
-    [settingsButton setImage:[UIImage imageNamed:@"gear"] forState:UIControlStateNormal];
-    settingsButton.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
-    [settingsButton addTarget:self action:@selector(showSettingsViewController) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem* settingsButtonItem = [[UIBarButtonItem alloc] initWithCustomView:settingsButton];
-    self.navigationItem.rightBarButtonItem = settingsButtonItem;
+    UIBarButtonItem* addWorkoutButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(popAddAlert)];
+    self.navigationItem.rightBarButtonItem = addWorkoutButton;
     
     // Register ELWorkoutTableViewCell nib for this tableView
     [self.tableView registerNib:[UINib nibWithNibName:@"ELWorkoutTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WorkoutCell"];
@@ -178,9 +161,6 @@
                                       style:UIBarButtonItemStyleBordered
                                      target:nil
                                      action:nil];
-    
-    // Set custom table headerView
-    self.tableView.tableHeaderView = [self headerView];
 }
 
 - (IBAction)popAddAlert
@@ -192,7 +172,6 @@
                              cancelButtonTitle:@"Cancel"
                              otherButtonTitles:@"Ok", nil];
     addAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
-    addAlert.tag = 3;
     [addAlert textFieldAtIndex:0].autocapitalizationType = UITextAutocapitalizationTypeWords;
     [addAlert show];
 }
@@ -217,33 +196,13 @@
     [self.navigationController pushViewController:viewWorkout animated:YES];
 }
 
-- (IBAction)cancelButtonClicked{
-    UIAlertView* cancelAlert = [[UIAlertView alloc]
-                                initWithTitle:@"Cancel Workout?"
-                                message:@"Cancelling this workout will cause all entered data to be discarded. Are you sure?"
-                                delegate:self
-                                cancelButtonTitle:@"No"
-                                otherButtonTitles:@"Yes", nil];
-    cancelAlert.tag = 1;
-    [cancelAlert show];
-}
-
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    if (alertView.tag == 1 && buttonIndex == 1) {
-        // Clicked YES on "Cancel" Alert View
-        [self cancelWorkout];
-    } else if (alertView.tag == 3 && buttonIndex == 1) {
+    if (buttonIndex == 1) {
         // Clicked OK on "Add" Alert View
         NSString* workoutTitle = [alertView textFieldAtIndex:0].text;
         [self createWorkoutWithTitle:workoutTitle];
     }
-}
-
-- (void)cancelWorkout
-{
-    [self.currentWorkoutRef removeValue];
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Table view data source
@@ -324,27 +283,5 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-
-// Header view
-- (UIView*)headerView
-{
-    UIView* headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 54)];
-    
-    // Create the button
-    UIButton* startNewWorkoutButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 320, 54)];
-    [startNewWorkoutButton setTitle:@"+ Start New Workout" forState:UIControlStateNormal];
-    [startNewWorkoutButton addTarget:self action:@selector(popAddAlert) forControlEvents:UIControlEventTouchUpInside];
-    
-    // Style the button
-    startNewWorkoutButton.titleLabel.font = [UIFont fontWithName:@"Gotham" size:22.0];
-    [startNewWorkoutButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [startNewWorkoutButton setBackgroundColor:[ELColorUtil evenLiftRed]];
-    [startNewWorkoutButton setBackgroundImage:[ELColorUtil imageWithColor:[ELColorUtil evenLiftRedHighlighted]] forState:UIControlStateHighlighted];
-    
-    [headerView addSubview:startNewWorkoutButton];
-    
-    return headerView;
-}
-
 
 @end
