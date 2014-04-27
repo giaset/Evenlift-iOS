@@ -282,8 +282,8 @@
         BOOL userDidSpecifyRestTime = ![self.restField.text isEqualToString:@""];
         
         if (!userDidSpecifyRestTime) {
-            [SVProgressHUD setBackgroundColor:[ELColorUtil evenLiftBlack]];
-            [SVProgressHUD setForegroundColor:[ELColorUtil evenLiftWhite]];
+            [SVProgressHUD setBackgroundColor:[ELColorUtil evenLiftWhite]];
+            [SVProgressHUD setForegroundColor:[ELColorUtil evenLiftBlack]];
             [SVProgressHUD show];
         }
         

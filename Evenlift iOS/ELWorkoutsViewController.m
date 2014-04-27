@@ -70,8 +70,8 @@
     // Since VALUE type events fire after all other events, this is a good
     // place to detect if our initial loading is complete
     self.initialLoadingComplete = NO;
-    [SVProgressHUD setBackgroundColor:[ELColorUtil evenLiftBlack]];
-    [SVProgressHUD setForegroundColor:[ELColorUtil evenLiftWhite]];
+    [SVProgressHUD setBackgroundColor:[ELColorUtil evenLiftWhite]];
+    [SVProgressHUD setForegroundColor:[ELColorUtil evenLiftBlack]];
     [SVProgressHUD showWithStatus:@"Loading your workouts..."];
     [self.userWorkoutsRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
         if (!self.initialLoadingComplete) {
