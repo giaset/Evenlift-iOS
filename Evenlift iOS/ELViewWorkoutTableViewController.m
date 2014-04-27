@@ -49,6 +49,7 @@
     [super viewDidLoad];
     
     self.tableView.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0);
+    self.tableView.backgroundColor = [ELColorUtil evenLiftBlack];
     
     // Set up right Finish button
     UIBarButtonItem* finishButton = [[UIBarButtonItem alloc] initWithTitle:@"Finish" style:UIBarButtonItemStyleBordered target:self action:@selector(finishButtonClicked)];
@@ -135,7 +136,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 54;
+    return 64;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -147,6 +148,11 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.backgroundColor = [ELColorUtil evenLiftBlack];
+        cell.textLabel.font = [UIFont fontWithName:@"Gotham" size:14];
+        cell.textLabel.textColor = [ELColorUtil evenLiftWhite];
+        cell.detailTextLabel.font = [UIFont fontWithName:@"Gotham" size:12];
+        cell.detailTextLabel.textColor = [ELColorUtil evenLiftWhite];
     }
     
     // Configure the cell...

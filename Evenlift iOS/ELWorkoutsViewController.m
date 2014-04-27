@@ -226,6 +226,7 @@
     static NSString *CellIdentifier = @"WorkoutCell";
     ELWorkoutTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.backgroundColor = [ELColorUtil evenLiftBlack];
     
     // Configure the cell...
     ELMonth* month = [self.months objectAtIndex:indexPath.section];
