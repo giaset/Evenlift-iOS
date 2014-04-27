@@ -58,6 +58,8 @@
     
     self.title = @"My Workouts";
     
+    self.tableView.backgroundColor = [ELColorUtil evenLiftBlack];
+    
     // Set up rightBarButton to launch Settings viewController
     UIBarButtonItem* addWorkoutButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(popAddAlert)];
     self.navigationItem.rightBarButtonItem = addWorkoutButton;
@@ -255,6 +257,7 @@
     if([view isKindOfClass:[UITableViewHeaderFooterView class]]){
         UITableViewHeaderFooterView* tableViewHeaderFooterView = (UITableViewHeaderFooterView*)view;
         tableViewHeaderFooterView.textLabel.text = [tableViewHeaderFooterView.textLabel.text capitalizedString];
+        tableViewHeaderFooterView.textLabel.textColor = [ELColorUtil evenLiftWhite];
         tableViewHeaderFooterView.textLabel.font = [UIFont fontWithName:@"Gotham" size:14];
     }
 }
