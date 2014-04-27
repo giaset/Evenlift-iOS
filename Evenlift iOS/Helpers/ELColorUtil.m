@@ -36,4 +36,16 @@
     return [UIColor colorWithRed:0.753 green:0.224 blue:0.169 alpha:1.0];
 }
 
++ (UIColor*)evenLiftBlack
+{
+    // #222222
+    return [UIColor colorWithRed:0.133 green:0.133 blue:0.133 alpha:1];
+}
+
++ (UIColor*)evenLiftWhite
+{
+    // #f7f7f7
+    return [UIColor colorWithRed:0.969 green:0.969 blue:0.969 alpha:1];
+}
+
 @end

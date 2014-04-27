@@ -55,7 +55,7 @@
         // If no exerciseName provided, put this UITextField in navigationBar's titleView
         if (exerciseName == nil) {
             self.exerciseField.font = [UIFont fontWithName:@"Gotham" size:18];
-            self.exerciseField.textColor = [UIColor whiteColor];
+            self.exerciseField.textColor = [ELColorUtil evenLiftWhite];
             
             // HACK: Use an attributedString in order to change placeholder color to white
             NSAttributedString* attrPlaceholder = [[NSAttributedString alloc] initWithString:@"Exercise Name" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
@@ -84,7 +84,7 @@
     // If exerciseField is blank, add a black overlay to view until user enters an exercise name
     if ([self.exerciseField.text isEqualToString:@""]) {
         UIView* blackOverlay = [[UIView alloc] initWithFrame:self.view.frame];
-        blackOverlay.backgroundColor = [UIColor blackColor];
+        blackOverlay.backgroundColor = [ELColorUtil evenLiftBlack];
         blackOverlay.alpha = 0.8;
         blackOverlay.layer.zPosition = 99; // need this so we're on top of footerView
         blackOverlay.tag = 1000;
@@ -259,7 +259,7 @@
     
     // Style the button
     submitButton.titleLabel.font = [UIFont fontWithName:@"Gotham" size:22.0];
-    [submitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [submitButton setTitleColor:[ELColorUtil evenLiftWhite] forState:UIControlStateNormal];
     [submitButton setBackgroundColor:[ELColorUtil evenLiftRed]];
     [submitButton setBackgroundImage:[ELColorUtil imageWithColor:[ELColorUtil evenLiftRedHighlighted]] forState:UIControlStateHighlighted];
     
@@ -282,8 +282,8 @@
         BOOL userDidSpecifyRestTime = ![self.restField.text isEqualToString:@""];
         
         if (!userDidSpecifyRestTime) {
-            [SVProgressHUD setBackgroundColor:[UIColor blackColor]];
-            [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
+            [SVProgressHUD setBackgroundColor:[ELColorUtil evenLiftBlack]];
+            [SVProgressHUD setForegroundColor:[ELColorUtil evenLiftWhite]];
             [SVProgressHUD show];
         }
         
@@ -406,7 +406,7 @@
     [toolbar setItems:itemsArray];
     
     // Style the toolbar
-    toolbar.tintColor = [UIColor blackColor];
+    toolbar.tintColor = [ELColorUtil evenLiftBlack];
     
     NSDictionary* gotham = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Gotham" size:14], NSFontAttributeName, nil];
     NSDictionary* gothamLight = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Gotham-Light" size:14], NSFontAttributeName, nil];

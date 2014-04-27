@@ -13,5 +13,7 @@
 + (UIImage*)imageWithColor:(UIColor*)color;
 + (UIColor*)evenLiftRed;
 + (UIColor*)evenLiftRedHighlighted;
++ (UIColor*)evenLiftBlack;
++ (UIColor*)evenLiftWhite;
 
 @end

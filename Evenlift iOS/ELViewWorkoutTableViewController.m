@@ -193,7 +193,7 @@
         
         // Style the button
         addExerciseButton.titleLabel.font = [UIFont fontWithName:@"Gotham" size:22.0];
-        [addExerciseButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [addExerciseButton setTitleColor:[ELColorUtil evenLiftWhite] forState:UIControlStateNormal];
         [addExerciseButton setBackgroundColor:[ELColorUtil evenLiftRed]];
         [addExerciseButton setBackgroundImage:[ELColorUtil imageWithColor:[ELColorUtil evenLiftRedHighlighted]] forState:UIControlStateHighlighted];
         

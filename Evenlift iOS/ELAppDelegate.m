@@ -10,19 +10,16 @@
 #import "ELLoginViewController.h"
 #import <Firebase/Firebase.h>
 #import <FirebaseSimpleLogin/FirebaseSimpleLogin.h>
+#import "ELColorUtil.h"
 
 @implementation ELAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Stylin' (navBar)
-    [UINavigationBar appearance].barTintColor = [UIColor blackColor];
-    [UINavigationBar appearance].tintColor = [UIColor whiteColor];
-    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"Gotham" size:18], NSFontAttributeName, nil]];
-    
-    // Stylin' (tabBar)
-    [UITabBar appearance].tintColor = [UIColor whiteColor];
-    [UITabBar appearance].barTintColor = [UIColor blackColor];
+    [UINavigationBar appearance].barTintColor = [ELColorUtil evenLiftBlack];
+    [UINavigationBar appearance].tintColor = [ELColorUtil evenLiftWhite];
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[ELColorUtil evenLiftWhite], NSForegroundColorAttributeName, [UIFont fontWithName:@"Gotham" size:18], NSFontAttributeName, nil]];
     
     // Launch the app
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
