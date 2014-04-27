@@ -250,6 +250,15 @@
     
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    if([view isKindOfClass:[UITableViewHeaderFooterView class]]){
+        UITableViewHeaderFooterView* tableViewHeaderFooterView = (UITableViewHeaderFooterView*)view;
+        tableViewHeaderFooterView.textLabel.text = [tableViewHeaderFooterView.textLabel.text capitalizedString];
+        tableViewHeaderFooterView.textLabel.font = [UIFont fontWithName:@"Gotham" size:14];
+    }
+}
+
 // Editing of cells! (in our case, deletion)
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
