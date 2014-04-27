@@ -258,7 +258,7 @@
     if([view isKindOfClass:[UITableViewHeaderFooterView class]]){
         UITableViewHeaderFooterView* tableViewHeaderFooterView = (UITableViewHeaderFooterView*)view;
         tableViewHeaderFooterView.textLabel.text = [tableViewHeaderFooterView.textLabel.text capitalizedString];
-        tableViewHeaderFooterView.textLabel.textColor = [ELColorUtil evenLiftWhite];
+        tableViewHeaderFooterView.textLabel.textColor = [ELColorUtil evenLiftRed];
         tableViewHeaderFooterView.textLabel.font = [UIFont fontWithName:@"Gotham" size:14];
     }
 }

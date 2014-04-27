@@ -152,7 +152,7 @@
         cell.textLabel.font = [UIFont fontWithName:@"Gotham" size:14];
         cell.textLabel.textColor = [ELColorUtil evenLiftWhite];
         cell.detailTextLabel.font = [UIFont fontWithName:@"Gotham" size:12];
-        cell.detailTextLabel.textColor = [ELColorUtil evenLiftWhite];
+        cell.detailTextLabel.textColor = [ELColorUtil evenLiftRed];
     }
     
     // Configure the cell...

@@ -57,9 +57,7 @@
             self.exerciseField.font = [UIFont fontWithName:@"Gotham" size:18];
             self.exerciseField.textColor = [ELColorUtil evenLiftWhite];
             
-            // HACK: Use an attributedString in order to change placeholder color to white
-            NSAttributedString* attrPlaceholder = [[NSAttributedString alloc] initWithString:@"Exercise Name" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
-            self.exerciseField.attributedPlaceholder = attrPlaceholder;
+            self.exerciseField.attributedPlaceholder = [self coloredPlaceholderForString:@"Exercise Name"];
             
             self.exerciseField.tag = 99;
             self.exerciseField.delegate = self;
@@ -81,11 +79,13 @@
     
     self.tableView.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0);
     
+    self.tableView.backgroundColor = [ELColorUtil evenLiftBlack];
+    
     // If exerciseField is blank, add a black overlay to view until user enters an exercise name
     if ([self.exerciseField.text isEqualToString:@""]) {
         UIView* blackOverlay = [[UIView alloc] initWithFrame:self.view.frame];
         blackOverlay.backgroundColor = [ELColorUtil evenLiftBlack];
-        blackOverlay.alpha = 0.8;
+        blackOverlay.alpha = 0.95;
         blackOverlay.layer.zPosition = 99; // need this so we're on top of footerView
         blackOverlay.tag = 1000;
         [self.view addSubview:blackOverlay];
@@ -159,10 +159,14 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
-        cell.textLabel.font  = gotham;
+        cell.backgroundColor = [ELColorUtil evenLiftBlack];
+        
+        cell.textLabel.font = gotham;
+        cell.textLabel.textColor = [ELColorUtil evenLiftWhite];
         
         UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(100, 0, 320, 54)];
         textField.font = gothamLight;
+        textField.textColor = [ELColorUtil evenLiftWhite];
         textField.tag = indexPath.row+1;
         textField.delegate = self;
         
@@ -191,22 +195,23 @@
     switch (indexPath.row) {
         case 0:
             cell.textLabel.text = @"Reps";
+            self.repsField.attributedPlaceholder = [self coloredPlaceholderForString:@"Required"];
             break;
         case 1:
             cell.textLabel.text = @"Weight";
             if ([ELSettingsUtil getUnitType] == ELUnitTypePounds) {
-                self.weightField.placeholder = @"In lbs. Leave blank for bw";
+                self.weightField.attributedPlaceholder = [self coloredPlaceholderForString:@"In lbs. Leave blank for bw"];
             } else if ([ELSettingsUtil getUnitType] == ELUnitTypeKilos) {
-                self.weightField.placeholder = @"In kg. Leave blank for bw";
+                self.weightField.attributedPlaceholder = [self coloredPlaceholderForString:@"In kg. Leave blank for bw"];
             }
             break;
         case 2:
             cell.textLabel.text = @"Rest";
-            self.restField.placeholder = @"In seconds. Optional";
+            self.restField.attributedPlaceholder = [self coloredPlaceholderForString:@"In seconds. Optional"];
             break;
         case 3:
             cell.textLabel.text = @"Notes";
-            self.notesField.placeholder = @"Optional";
+            self.notesField.attributedPlaceholder = [self coloredPlaceholderForString:@"Optional"];
             break;
     }
     
@@ -431,6 +436,12 @@
 - (IBAction)doneButtonClicked:(id)sender
 {
     [self.view endEditing:YES];
+}
+
+// HACK: Use an attributedString in order to change placeholder colors
+- (NSAttributedString*)coloredPlaceholderForString:(NSString*)string
+{
+    return [[NSAttributedString alloc] initWithString:string attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
 }
 
 @end
