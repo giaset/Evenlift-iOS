@@ -1,12 +1,12 @@
 //
-//  ELAddSetsViewController.m
+//  ELAddAndViewSetsViewController.m
 //  Evenlift iOS
 //
 //  Created by Gianni Settino on 2014-03-24.
 //  Copyright (c) 2014 Evenlift. All rights reserved.
 //
 
-#import "ELAddSetsViewController.h"
+#import "ELAddAndViewSetsViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ELCountdownViewController.h"
 #import "SVProgressHUD.h"
@@ -17,7 +17,7 @@
 
 #define kEvenliftURL @"https://evenlift.firebaseio.com/"
 
-@interface ELAddSetsViewController ()
+@interface ELAddAndViewSetsViewController ()
 
 @property (unsafe_unretained, nonatomic) ELExerciseAutocompleteTextField* exerciseField;
 @property (nonatomic, retain) UITextField* repsField;
@@ -35,7 +35,7 @@
 
 @end
 
-@implementation ELAddSetsViewController
+@implementation ELAddAndViewSetsViewController
 
 - (id)initWithWorkoutRef:(Firebase*)workoutRef andExerciseName:(NSString *)exerciseName
 {

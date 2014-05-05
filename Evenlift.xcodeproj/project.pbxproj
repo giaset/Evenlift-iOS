@@ -13,8 +13,8 @@
 		6802E31818F7F7AF008439D2 /* ELViewWorkoutTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6802E31618F7F7AF008439D2 /* ELViewWorkoutTableViewController.xib */; };
 		6809E7A6190B9EE300C34620 /* ELMonth.m in Sources */ = {isa = PBXBuildFile; fileRef = 6809E7A5190B9EE300C34620 /* ELMonth.m */; };
 		681F739F18DF223D00AE982D /* ELWorkoutsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 681F739D18DF223D00AE982D /* ELWorkoutsViewController.m */; };
-		683657D818E0670300FA50F2 /* ELAddSetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683657D618E0670300FA50F2 /* ELAddSetsViewController.m */; };
-		683657D918E0670300FA50F2 /* ELAddSetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 683657D718E0670300FA50F2 /* ELAddSetsViewController.xib */; };
+		683657D818E0670300FA50F2 /* ELAddAndViewSetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683657D618E0670300FA50F2 /* ELAddAndViewSetsViewController.m */; };
+		683657D918E0670300FA50F2 /* ELAddAndViewSetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 683657D718E0670300FA50F2 /* ELAddAndViewSetsViewController.xib */; };
 		6841730618EA4CB30049829E /* ELWorkoutsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6841730518EA4CB30049829E /* ELWorkoutsViewController.xib */; };
 		6841D16918F857D4008CFBF3 /* Gotham-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6841D16718F857D4008CFBF3 /* Gotham-Book.otf */; };
 		6841D16C18F859D4008CFBF3 /* Gotham-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6841D16B18F859D4008CFBF3 /* Gotham-Light.otf */; };
@@ -83,9 +83,9 @@
 		6809E7A5190B9EE300C34620 /* ELMonth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ELMonth.m; path = Model/ELMonth.m; sourceTree = "<group>"; };
 		681F739C18DF223D00AE982D /* ELWorkoutsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELWorkoutsViewController.h; sourceTree = "<group>"; };
 		681F739D18DF223D00AE982D /* ELWorkoutsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELWorkoutsViewController.m; sourceTree = "<group>"; };
-		683657D518E0670300FA50F2 /* ELAddSetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELAddSetsViewController.h; sourceTree = "<group>"; };
-		683657D618E0670300FA50F2 /* ELAddSetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELAddSetsViewController.m; sourceTree = "<group>"; };
-		683657D718E0670300FA50F2 /* ELAddSetsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELAddSetsViewController.xib; sourceTree = "<group>"; };
+		683657D518E0670300FA50F2 /* ELAddAndViewSetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELAddAndViewSetsViewController.h; sourceTree = "<group>"; };
+		683657D618E0670300FA50F2 /* ELAddAndViewSetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELAddAndViewSetsViewController.m; sourceTree = "<group>"; };
+		683657D718E0670300FA50F2 /* ELAddAndViewSetsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELAddAndViewSetsViewController.xib; sourceTree = "<group>"; };
 		6841730518EA4CB30049829E /* ELWorkoutsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELWorkoutsViewController.xib; sourceTree = "<group>"; };
 		6841D16718F857D4008CFBF3 /* Gotham-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Book.otf"; sourceTree = "<group>"; };
 		6841D16B18F859D4008CFBF3 /* Gotham-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Light.otf"; sourceTree = "<group>"; };
@@ -231,14 +231,14 @@
 			name = Workouts;
 			sourceTree = "<group>";
 		};
-		68535D391901497B0074AD71 /* AddSets */ = {
+		68535D391901497B0074AD71 /* AddAndViewSets */ = {
 			isa = PBXGroup;
 			children = (
-				683657D518E0670300FA50F2 /* ELAddSetsViewController.h */,
-				683657D618E0670300FA50F2 /* ELAddSetsViewController.m */,
-				683657D718E0670300FA50F2 /* ELAddSetsViewController.xib */,
+				683657D518E0670300FA50F2 /* ELAddAndViewSetsViewController.h */,
+				683657D618E0670300FA50F2 /* ELAddAndViewSetsViewController.m */,
+				683657D718E0670300FA50F2 /* ELAddAndViewSetsViewController.xib */,
 			);
-			name = AddSets;
+			name = AddAndViewSets;
 			sourceTree = "<group>";
 		};
 		68535D3A190149C10074AD71 /* Exercises */ = {
@@ -254,7 +254,7 @@
 		68535D3B190149DB0074AD71 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				68535D391901497B0074AD71 /* AddSets */,
+				68535D391901497B0074AD71 /* AddAndViewSets */,
 				68535D3C190149F50074AD71 /* Countdown */,
 				68535D3A190149C10074AD71 /* Exercises */,
 				68535D371901493A0074AD71 /* Login */,
@@ -516,7 +516,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				683657D918E0670300FA50F2 /* ELAddSetsViewController.xib in Resources */,
+				683657D918E0670300FA50F2 /* ELAddAndViewSetsViewController.xib in Resources */,
 				6841730618EA4CB30049829E /* ELWorkoutsViewController.xib in Resources */,
 				68AABC2E18DCF547008E883D /* ELLoginViewController.xib in Resources */,
 				686B857118EAB34D00E76E15 /* ELWorkoutTableViewCell.xib in Resources */,
@@ -558,7 +558,7 @@
 				68535D35190148F80074AD71 /* ELSettingsTableViewController.m in Sources */,
 				681F739F18DF223D00AE982D /* ELWorkoutsViewController.m in Sources */,
 				68E5A1F218F6F89900F88D33 /* HTAutocompleteTextField.m in Sources */,
-				683657D818E0670300FA50F2 /* ELAddSetsViewController.m in Sources */,
+				683657D818E0670300FA50F2 /* ELAddAndViewSetsViewController.m in Sources */,
 				68AABBF618DB9FA7008E883D /* ELAppDelegate.m in Sources */,
 				68535D401901DC180074AD71 /* ELSettingsUtil.m in Sources */,
 				68E5A1EC18F6E18800F88D33 /* SVProgressHUD.m in Sources */,

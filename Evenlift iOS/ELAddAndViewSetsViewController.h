@@ -1,5 +1,5 @@
 //
-//  ELAddSetsViewController.h
+//  ELAddAndViewSetsViewController.h
 //  Evenlift iOS
 //
 //  Created by Gianni Settino on 2014-03-24.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Firebase/Firebase.h>
 
-@interface ELAddSetsViewController : UITableViewController <UITextFieldDelegate>
+@interface ELAddAndViewSetsViewController : UITableViewController <UITextFieldDelegate>
 
 @property (nonatomic, strong) Firebase* workoutRef;
 

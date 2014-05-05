@@ -12,7 +12,7 @@
 #import "ELExercise.h"
 #import "ELColorUtil.h"
 #import <Firebase/Firebase.h>
-#import "ELAddSetsViewController.h"
+#import "ELAddAndViewSetsViewController.h"
 
 @interface ELViewWorkoutTableViewController ()
 
@@ -168,8 +168,7 @@
     ELExercise* exercise = (ELExercise*)[self.exercises objectAtIndex:indexPath.row];
     
     if (!self.workoutIsFinished) {
-        ELAddSetsViewController* addSetsViewController = [[ELAddSetsViewController alloc] initWithWorkoutRef:self.workoutRef andExerciseName:exercise.name];
-        [self.navigationController pushViewController:addSetsViewController animated:YES];
+        [self addAndViewSetsForExerciseNamed:exercise.name];
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -211,9 +210,14 @@
 
 - (IBAction)addExerciseButtonClicked
 {
-    ELAddSetsViewController* addSetsViewController = [[ELAddSetsViewController alloc] initWithWorkoutRef:self.workoutRef andExerciseName:nil];
+    [self addAndViewSetsForExerciseNamed:nil];
+}
+
+- (void)addAndViewSetsForExerciseNamed:(NSString*)exerciseName
+{
+    ELAddAndViewSetsViewController* addAndViewSetsViewController = [[ELAddAndViewSetsViewController alloc] initWithWorkoutRef:self.workoutRef andExerciseName:exerciseName];
     
-    [self.navigationController pushViewController:addSetsViewController animated:YES];
+    [self.navigationController pushViewController:addAndViewSetsViewController animated:YES];
 }
 
 @end

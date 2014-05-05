@@ -8,7 +8,6 @@
 
 #import "ELWorkoutsViewController.h"
 #import <Firebase/Firebase.h>
-#import "ELAddSetsViewController.h"
 #import "ELWorkout.h"
 #import "ELWorkoutTableViewCell.h"
 #import "ELViewWorkoutTableViewController.h"
