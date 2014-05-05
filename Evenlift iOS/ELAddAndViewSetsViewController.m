@@ -14,10 +14,13 @@
 #import "ELSettingsUtil.h"
 #import "ELColorUtil.h"
 #import "ELSettingsTableViewController.h"
+#import "ELSet.h"
 
 #define kEvenliftURL @"https://evenlift.firebaseio.com/"
 
 @interface ELAddAndViewSetsViewController ()
+
+@property (nonatomic, strong) NSMutableArray* completedSets;
 
 @property (unsafe_unretained, nonatomic) ELExerciseAutocompleteTextField* exerciseField;
 @property (nonatomic, retain) UITextField* repsField;
@@ -44,6 +47,8 @@
         self.workoutRef = workoutRef;
         
         self.workoutId = workoutRef.name;
+        
+        self.completedSets = [[NSMutableArray alloc] init];
         
         // Set up user's Exercises Firebase
         self.userExercisesRef = [[[Firebase alloc] initWithUrl:kEvenliftURL] childByAppendingPath:[NSString stringWithFormat:@"users/%@/exercises", [ELSettingsUtil getUid]]];
@@ -81,18 +86,6 @@
     
     self.tableView.backgroundColor = [ELColorUtil evenLiftBlack];
     
-    // If exerciseField is blank, add a black overlay to view until user enters an exercise name
-    if ([self.exerciseField.text isEqualToString:@""]) {
-        UIView* blackOverlay = [[UIView alloc] initWithFrame:self.view.frame];
-        blackOverlay.backgroundColor = [ELColorUtil evenLiftBlack];
-        blackOverlay.alpha = 0.95;
-        blackOverlay.layer.zPosition = 99; // need this so we're on top of footerView
-        blackOverlay.tag = 1000;
-        [self.view addSubview:blackOverlay];
-        
-        [self.exerciseField becomeFirstResponder];
-    }
-    
     // Set up rightBarButton to launch Settings viewController
     UIButton* settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
     settingsButton.frame = CGRectMake(0, 0, 26, 26);
@@ -103,7 +96,22 @@
     UIBarButtonItem* settingsButtonItem = [[UIBarButtonItem alloc] initWithCustomView:settingsButton];
     self.navigationItem.rightBarButtonItem = settingsButtonItem;
     
-    self.navigationItem.rightBarButtonItem.enabled = ![self.exerciseField.text isEqualToString:@""];
+    if ([self.exerciseField.text isEqualToString:@""]) {
+        // If exerciseField is blank, add a black overlay to view until user enters an exercise name. Also disable settings button
+        UIView* blackOverlay = [[UIView alloc] initWithFrame:self.view.frame];
+        blackOverlay.backgroundColor = [ELColorUtil evenLiftBlack];
+        blackOverlay.alpha = 0.95;
+        blackOverlay.layer.zPosition = 99; // need this so we're on top of footerView
+        blackOverlay.tag = 1000;
+        [self.view addSubview:blackOverlay];
+        
+        [self.exerciseField becomeFirstResponder];
+        
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    } else {
+        // If this is an existing exercise, bind to its sets for this workout
+        [self bindToSetsOfThisExerciseForThisWorkout];
+    }
     
     // Dismiss the keyboard when the user taps outside of a text field
     UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
@@ -118,6 +126,25 @@
     [self.tableView beginUpdates];
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
     [self.tableView endUpdates];
+}
+
+- (void)bindToSetsOfThisExerciseForThisWorkout
+{
+    Firebase* thisExerciseThisWorkoutRef = [self.userExercisesRef childByAppendingPath:[NSString stringWithFormat:@"%@/sets/%@", self.exerciseField.text, self.workoutId]];
+    
+    [thisExerciseThisWorkoutRef observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot* snapshot) {
+        NSString* setId = snapshot.name;
+        // Bind to each individual set
+        Firebase* thisSetRef = [[self.workoutRef childByAppendingPath:@"sets"] childByAppendingPath:setId];
+        [thisSetRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+            NSMutableDictionary* dict = [[NSMutableDictionary alloc] initWithDictionary:snapshot.value];
+            [dict setObject:setId forKey:@"set_id"];
+            ELSet* thisSet = [[ELSet alloc] initWithDictionary:dict];
+            [self.completedSets addObject:thisSet];
+            
+            [self.tableView reloadData];
+        }];
+    }];
 }
 
 - (void)handleSingleTap:(UITapGestureRecognizer *)sender
@@ -381,6 +408,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     if (textField.tag == 99) {
+        [self bindToSetsOfThisExerciseForThisWorkout];
         [textField resignFirstResponder];
         self.navigationItem.titleView = nil;
         self.title = self.exerciseField.text;
