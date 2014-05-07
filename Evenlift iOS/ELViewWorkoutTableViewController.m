@@ -167,9 +167,7 @@
 {
     ELExercise* exercise = (ELExercise*)[self.exercises objectAtIndex:indexPath.row];
     
-    if (!self.workoutIsFinished) {
-        [self addAndViewSetsForExerciseNamed:exercise.name];
-    }
+    [self addAndViewSetsForExerciseNamed:exercise.name];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

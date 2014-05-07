@@ -165,9 +165,26 @@
 
 #pragma mark - Table view data source
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    switch (section) {
+        case 0:
+            return 4;
+            break;
+            
+        case 1:
+            return self.completedSets.count;
+            break;
+            
+        default:
+            return 0;
+            break;
+    }
 }
 
 
@@ -190,7 +207,12 @@
         
         cell.textLabel.font = gotham;
         cell.textLabel.textColor = [ELColorUtil evenLiftWhite];
-        
+    }
+    
+    // Configure the cell...
+    [[cell.contentView subviews] makeObjectsPerformSelector: @selector(removeFromSuperview)];
+    
+    if (indexPath.section == 0) {
         UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(100, 0, 320, 54)];
         textField.font = gothamLight;
         textField.textColor = [ELColorUtil evenLiftWhite];
@@ -199,110 +221,80 @@
         
         switch (indexPath.row) {
             case 0:
+                cell.textLabel.text = @"Reps";
                 self.repsField = textField;
                 self.repsField.keyboardType = UIKeyboardTypeNumberPad;
+                self.repsField.attributedPlaceholder = [self coloredPlaceholderForString:@"Required"];
                 break;
             case 1:
+                cell.textLabel.text = @"Weight";
                 self.weightField = textField;
                 self.weightField.keyboardType = UIKeyboardTypeNumberPad;
+                if ([ELSettingsUtil getUnitType] == ELUnitTypePounds) {
+                    self.weightField.attributedPlaceholder = [self coloredPlaceholderForString:@"In lbs. Leave blank for bw"];
+                } else if ([ELSettingsUtil getUnitType] == ELUnitTypeKilos) {
+                    self.weightField.attributedPlaceholder = [self coloredPlaceholderForString:@"In kg. Leave blank for bw"];
+                }
                 break;
             case 2:
+                cell.textLabel.text = @"Rest";
                 self.restField = textField;
                 self.restField.keyboardType = UIKeyboardTypeNumberPad;
+                self.restField.attributedPlaceholder = [self coloredPlaceholderForString:@"In seconds. Optional"];
                 break;
             case 3:
+                cell.textLabel.text = @"Notes";
                 self.notesField = textField;
+                self.notesField.attributedPlaceholder = [self coloredPlaceholderForString:@"Optional"];
                 break;
         }
         
         [cell.contentView addSubview:textField];
-    }
-    
-    // Configure the cell...
-    switch (indexPath.row) {
-        case 0:
-            cell.textLabel.text = @"Reps";
-            self.repsField.attributedPlaceholder = [self coloredPlaceholderForString:@"Required"];
-            break;
-        case 1:
-            cell.textLabel.text = @"Weight";
-            if ([ELSettingsUtil getUnitType] == ELUnitTypePounds) {
-                self.weightField.attributedPlaceholder = [self coloredPlaceholderForString:@"In lbs. Leave blank for bw"];
-            } else if ([ELSettingsUtil getUnitType] == ELUnitTypeKilos) {
-                self.weightField.attributedPlaceholder = [self coloredPlaceholderForString:@"In kg. Leave blank for bw"];
-            }
-            break;
-        case 2:
-            cell.textLabel.text = @"Rest";
-            self.restField.attributedPlaceholder = [self coloredPlaceholderForString:@"In seconds. Optional"];
-            break;
-        case 3:
-            cell.textLabel.text = @"Notes";
-            self.notesField.attributedPlaceholder = [self coloredPlaceholderForString:@"Optional"];
-            break;
+    } else {
+        ELSet* set = [self.completedSets objectAtIndex:indexPath.row];
+        cell.textLabel.text = [set description];
     }
     
     return cell;
 }
 
-// Header view
-/*- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 60;
-}
-
-- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    // Create header view
-    UIView* headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
-    
-    UILabel* headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 320, 60)];
-    headerLabel.numberOfLines = 0;
-    
-    [headerView addSubview:headerLabel];
-    
-    // Bind its text to the previous set
-    Firebase* setsRef = [self.workoutRef childByAppendingPath:@"sets"];
-    FQuery* setsQuery = [setsRef queryLimitedToNumberOfChildren:1];
-    
-    [setsQuery observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
-        NSDictionary* setInfo = snapshot.value;
-        NSString* headerString = [NSString stringWithFormat:@"Previous set:\n%@, %@ x %@ (%@ sec rest)", setInfo[@"exercise"], setInfo[@"reps"], setInfo[@"weight"], setInfo[@"rest"]];
-        headerLabel.text = headerString;
-    }];
-    
-    return headerView;
-}*/
-
 // Footer view
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 54;
+    if (section == 0) {
+        return 54;
+    } else {
+        return 0;
+    }
 }
 
 - (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 54)];
-    
-    // Create the button
-    UIButton* submitButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 320, 54)];
-    [submitButton setTitle:@"+ Add Set" forState:UIControlStateNormal];
-    [submitButton addTarget:self action:@selector(submitSet) forControlEvents:UIControlEventTouchUpInside];
-    
-    // Style the button
-    submitButton.titleLabel.font = [UIFont fontWithName:@"Gotham" size:22.0];
-    [submitButton setTitleColor:[ELColorUtil evenLiftWhite] forState:UIControlStateNormal];
-    [submitButton setBackgroundColor:[ELColorUtil evenLiftRed]];
-    [submitButton setBackgroundImage:[ELColorUtil imageWithColor:[ELColorUtil evenLiftRedHighlighted]] forState:UIControlStateHighlighted];
-    
-    self.submitButton = submitButton;
-    
-    // Enable/disable button based on whether or not we have entered a title
-    self.submitButton.enabled = ![self.exerciseField.text isEqualToString:@""];
-    
-    [footerView addSubview:submitButton];
-    
-    return footerView;
+    if (section == 0) {
+        UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 54)];
+        
+        // Create the button
+        UIButton* submitButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 320, 54)];
+        [submitButton setTitle:@"+ Add Set" forState:UIControlStateNormal];
+        [submitButton addTarget:self action:@selector(submitSet) forControlEvents:UIControlEventTouchUpInside];
+        
+        // Style the button
+        submitButton.titleLabel.font = [UIFont fontWithName:@"Gotham" size:22.0];
+        [submitButton setTitleColor:[ELColorUtil evenLiftWhite] forState:UIControlStateNormal];
+        [submitButton setBackgroundColor:[ELColorUtil evenLiftRed]];
+        [submitButton setBackgroundImage:[ELColorUtil imageWithColor:[ELColorUtil evenLiftRedHighlighted]] forState:UIControlStateHighlighted];
+        
+        self.submitButton = submitButton;
+        
+        // Enable/disable button based on whether or not we have entered a title
+        self.submitButton.enabled = ![self.exerciseField.text isEqualToString:@""];
+        
+        [footerView addSubview:submitButton];
+        
+        return footerView;
+    } else {
+        return nil;
+    }
 }
 
 - (IBAction)submitSet
