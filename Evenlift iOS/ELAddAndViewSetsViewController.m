@@ -141,10 +141,18 @@
             [dict setObject:setId forKey:@"set_id"];
             ELSet* thisSet = [[ELSet alloc] initWithDictionary:dict];
             [self.completedSets addObject:thisSet];
+            [self sortCompletedSetsArray];
             
             [self.tableView reloadData];
         }];
     }];
+}
+
+- (void)sortCompletedSetsArray
+{
+    NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"time" ascending:NO];
+    NSArray* sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    [self.completedSets sortUsingDescriptors:sortDescriptors];
 }
 
 - (void)handleSingleTap:(UITapGestureRecognizer *)sender
