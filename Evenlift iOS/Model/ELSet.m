@@ -7,6 +7,7 @@
 //
 
 #import "ELSet.h"
+#import "ELDateTimeUtil.h"
 
 @implementation ELSet
 
@@ -31,12 +32,12 @@
 
 - (NSString*)description
 {
-    NSString* description;
+    NSString* description = [NSString stringWithFormat:@"%@ - %@ x", [ELDateTimeUtil timeStringFromTimeStamp:self.time], self.reps];
     
     if (self.unitType == ELUnitTypeBodyWeight) {
-        description = [NSString stringWithFormat:@"%@ x %@", self.reps, [ELSettingsUtil stringFromUnitType:self.unitType]];
+        description = [NSString stringWithFormat:@"%@ %@", description, [ELSettingsUtil stringFromUnitType:self.unitType]];
     } else {
-        description = [NSString stringWithFormat:@"%@ x %@ %@", self.reps, self.weight, [ELSettingsUtil stringFromUnitType:self.unitType]];
+        description = [NSString stringWithFormat:@"%@ %@ %@", description, self.weight, [ELSettingsUtil stringFromUnitType:self.unitType]];
     }
     
     if ([self.rest intValue] != -1) {
