@@ -215,7 +215,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    ELMonth* month = [self.months objectAtIndex:section];
+    ELMonth* month = [self.months objectAtIndex:(self.months.count - 1 - section)];
     
     return month.workouts.count;
 }
@@ -228,7 +228,7 @@
     cell.backgroundColor = [ELColorUtil evenLiftBlack];
     
     // Configure the cell...
-    ELMonth* month = [self.months objectAtIndex:indexPath.section];
+    ELMonth* month = [self.months objectAtIndex:(self.months.count - 1 - indexPath.section)];
     ELWorkout* workout = [month.workouts objectAtIndex:(month.workouts.count - 1 - indexPath.row)];
     [cell configureForWorkout:workout];
     
@@ -247,7 +247,7 @@
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    ELMonth* month = [self.months objectAtIndex:section];
+    ELMonth* month = [self.months objectAtIndex:(self.months.count - 1 - section)];
     return [month description];
     
 }
@@ -272,7 +272,7 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        ELMonth* month = [self.months objectAtIndex:indexPath.section];
+        ELMonth* month = [self.months objectAtIndex:(self.months.count - 1 - indexPath.section)];
         ELWorkout* workout = [month.workouts objectAtIndex:(month.workouts.count - 1 - indexPath.row)];
         
         // Delete workout object
@@ -287,7 +287,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Get the Workout we clicked on
-    ELMonth* month = [self.months objectAtIndex:indexPath.section];
+    ELMonth* month = [self.months objectAtIndex:(self.months.count - 1 - indexPath.section)];
     ELWorkout* workout = [month.workouts objectAtIndex:(month.workouts.count - 1 - indexPath.row)];
     
     ELViewWorkoutTableViewController* viewWorkout = [[ELViewWorkoutTableViewController alloc] initWithWorkout:workout];
