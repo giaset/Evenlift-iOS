@@ -137,11 +137,37 @@
         // Bind to each individual set
         Firebase* thisSetRef = [[self.workoutRef childByAppendingPath:@"sets"] childByAppendingPath:setId];
         [thisSetRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-            NSMutableDictionary* dict = [[NSMutableDictionary alloc] initWithDictionary:snapshot.value];
-            [dict setObject:setId forKey:@"set_id"];
-            ELSet* thisSet = [[ELSet alloc] initWithDictionary:dict];
-            [self.completedSets addObject:thisSet];
-            [self sortCompletedSetsArray];
+            // If the set was deleted, delete it from our array
+            if (snapshot.value == [NSNull null]) {
+                NSMutableArray* toDelete = [NSMutableArray array];
+                for (ELSet* set in self.completedSets) {
+                    if (set.setId == setId) {
+                        [toDelete addObject:set];
+                        break;
+                    }
+                }
+                [self.completedSets removeObjectsInArray:toDelete];
+            } else {
+                // If it wasn't deleted, check if it already exists in our array (i.e. it was modified)
+                BOOL exists = NO;
+                
+                for (ELSet* set in self.completedSets) {
+                    if (set.setId == setId) {
+                        exists = YES;
+                        [set updateWithDictionary:snapshot.value];
+                        break;
+                    }
+                }
+                
+                // If it doesn't yet exist, create it
+                if (!exists) {
+                    NSMutableDictionary* dict = [[NSMutableDictionary alloc] initWithDictionary:snapshot.value];
+                    [dict setObject:setId forKey:@"set_id"];
+                    ELSet* set = [[ELSet alloc] initWithDictionary:dict];
+                    [self.completedSets addObject:set];
+                    [self sortCompletedSetsArray];
+                }
+            }
             
             [self.tableView reloadData];
         }];

@@ -16,18 +16,23 @@
     self = [super init];
     if (self) {
         self.setId = [dict objectForKey:@"set_id"];
-        self.exercise = [dict objectForKey:@"exercise"];
-        self.reps = (NSNumber*)[dict objectForKey:@"reps"];
-        
-        NSDictionary* weight = (NSDictionary*)[dict objectForKey:@"weight"];
-        self.weight = (NSNumber*)[weight objectForKey:@"value"];
-        self.unitType = [ELSettingsUtil unitTypeFromString:[weight objectForKey:@"unit"]];
-        
-        self.rest = (NSNumber*)[dict objectForKey:@"rest"];
-        self.notes = [dict objectForKey:@"notes"];
-        self.time = (NSNumber*)[dict objectForKey:@"time"];
+        [self updateWithDictionary:dict];
     }
     return self;
+}
+
+- (void)updateWithDictionary:(NSDictionary *)dict
+{
+    self.exercise = [dict objectForKey:@"exercise"];
+    self.reps = (NSNumber*)[dict objectForKey:@"reps"];
+    
+    NSDictionary* weight = (NSDictionary*)[dict objectForKey:@"weight"];
+    self.weight = (NSNumber*)[weight objectForKey:@"value"];
+    self.unitType = [ELSettingsUtil unitTypeFromString:[weight objectForKey:@"unit"]];
+    
+    self.rest = (NSNumber*)[dict objectForKey:@"rest"];
+    self.notes = [dict objectForKey:@"notes"];
+    self.time = (NSNumber*)[dict objectForKey:@"time"];
 }
 
 - (NSString*)description

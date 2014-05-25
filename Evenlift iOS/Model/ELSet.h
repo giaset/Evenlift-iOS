@@ -12,6 +12,7 @@
 @interface ELSet : NSObject
 
 - (id)initWithDictionary:(NSDictionary*)dict;
+- (void)updateWithDictionary:(NSDictionary *)dict;
 
 @property (nonatomic, copy) NSString* setId;
 @property (nonatomic, copy) NSString* exercise;

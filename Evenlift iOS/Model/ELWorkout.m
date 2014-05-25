@@ -15,9 +15,7 @@
     self = [super init];
     if (self) {
         self.workoutId = [dict objectForKey:@"workout_id"];
-        self.title = [dict objectForKey:@"title"];
-        self.startTime = (NSNumber*)[dict objectForKey:@"start_time"];
-        self.endTime = (NSNumber*)[dict objectForKey:@"end_time"];
+        [self updateWithDictionary:dict];
     }
     return self;
 }
