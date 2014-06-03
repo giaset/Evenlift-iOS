@@ -15,6 +15,7 @@
 #import "ELColorUtil.h"
 #import "ELSettingsTableViewController.h"
 #import "ELSet.h"
+#import "ELTextFieldTableViewCell.h"
 
 #define kEvenliftURL @"https://evenlift.firebaseio.com/"
 
@@ -237,60 +238,57 @@
     NSString* CellIdentifier = (needsTextField) ? @"CellWithEditText" : @"NormalCell";
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        if (needsTextField) {
+            cell = [[ELTextFieldTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            ELTextFieldTableViewCell* castedCell =  (ELTextFieldTableViewCell*)cell;
+            castedCell.textField.font = gothamLight;
+            castedCell.textField.textColor = [ELColorUtil evenLiftWhite];
+            castedCell.textField.delegate = self;
+            
+        } else {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
         
         cell.backgroundColor = [ELColorUtil evenLiftBlack];
         cell.textLabel.font = gotham;
         cell.textLabel.textColor = [ELColorUtil evenLiftWhite];
-        
-        if (needsTextField) {
-            UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(100, 0, 320, 54)];
-            textField.font = gothamLight;
-            textField.textColor = [ELColorUtil evenLiftWhite];
-            textField.delegate = self;
-            [cell.contentView addSubview:textField];
-        }
     }
     
     // Configure the cell...
     if (needsTextField) {
-        // Retrieve the textField already in the cell
-        for (UIView* v in [cell.contentView subviews]) {
-            if ([v isKindOfClass:[UITextField class]]) {
-                UITextField* textField = (UITextField*) v;
-                textField.tag = indexPath.row+1;
-                
-                // Customize the cell and textField
-                switch (indexPath.row) {
-                    case 0:
-                        cell.textLabel.text = @"Reps";
-                        textField.keyboardType = UIKeyboardTypeNumberPad;
-                        textField.attributedPlaceholder = [self coloredPlaceholderForString:@"Required"];
-                        self.repsField = textField;
-                        break;
-                    case 1:
-                        cell.textLabel.text = @"Weight";
-                        textField.keyboardType = UIKeyboardTypeNumberPad;
-                        if ([ELSettingsUtil getUnitType] == ELUnitTypePounds) {
-                            textField.attributedPlaceholder = [self coloredPlaceholderForString:@"In lbs. Leave blank for bw"];
-                        } else if ([ELSettingsUtil getUnitType] == ELUnitTypeKilos) {
-                            textField.attributedPlaceholder = [self coloredPlaceholderForString:@"In kg. Leave blank for bw"];
-                        }
-                        self.weightField = textField;
-                        break;
-                    case 2:
-                        cell.textLabel.text = @"Rest";
-                        textField.keyboardType = UIKeyboardTypeNumberPad;
-                        textField.attributedPlaceholder = [self coloredPlaceholderForString:@"In seconds. Optional"];
-                        self.restField = textField;
-                        break;
-                    case 3:
-                        cell.textLabel.text = @"Notes";
-                        textField.attributedPlaceholder = [self coloredPlaceholderForString:@"Optional"];
-                        self.notesField = textField;
-                        break;
+        ELTextFieldTableViewCell* castedCell =  (ELTextFieldTableViewCell*)cell;
+        UITextField* textField = castedCell.textField;
+        textField.tag = indexPath.row+1;
+        
+        // Customize the cell and textField
+        switch (indexPath.row) {
+            case 0:
+                cell.textLabel.text = @"Reps";
+                textField.keyboardType = UIKeyboardTypeNumberPad;
+                textField.attributedPlaceholder = [self coloredPlaceholderForString:@"Required"];
+                self.repsField = textField;
+                break;
+            case 1:
+                cell.textLabel.text = @"Weight";
+                textField.keyboardType = UIKeyboardTypeNumberPad;
+                if ([ELSettingsUtil getUnitType] == ELUnitTypePounds) {
+                    textField.attributedPlaceholder = [self coloredPlaceholderForString:@"In lbs. Leave blank for bw"];
+                } else if ([ELSettingsUtil getUnitType] == ELUnitTypeKilos) {
+                    textField.attributedPlaceholder = [self coloredPlaceholderForString:@"In kg. Leave blank for bw"];
                 }
-            }
+                self.weightField = textField;
+                break;
+            case 2:
+                cell.textLabel.text = @"Rest";
+                textField.keyboardType = UIKeyboardTypeNumberPad;
+                textField.attributedPlaceholder = [self coloredPlaceholderForString:@"In seconds. Optional"];
+                self.restField = textField;
+                break;
+            case 3:
+                cell.textLabel.text = @"Notes";
+                textField.attributedPlaceholder = [self coloredPlaceholderForString:@"Optional"];
+                self.notesField = textField;
+                break;
         }
     } else {
         ELSet* set = [self.completedSets objectAtIndex:indexPath.row];
